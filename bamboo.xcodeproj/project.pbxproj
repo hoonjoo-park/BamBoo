@@ -9,13 +9,12 @@
 /* Begin PBXBuildFile section */
 		CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CD29F055950057CBEA /* AppDelegate.swift */; };
 		CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CF29F055950057CBEA /* SceneDelegate.swift */; };
-		CBCD43D229F055950057CBEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43D129F055950057CBEA /* ViewController.swift */; };
-		CBCD43D529F055950057CBEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBCD43D329F055950057CBEA /* Main.storyboard */; };
 		CBCD43D729F055970057CBEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD43D629F055970057CBEA /* Assets.xcassets */; };
 		CBCD43DA29F055970057CBEA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBCD43D829F055970057CBEA /* LaunchScreen.storyboard */; };
 		CBCD43E529F055970057CBEA /* bambooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43E429F055970057CBEA /* bambooTests.swift */; };
 		CBCD43EF29F055970057CBEA /* bambooUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43EE29F055970057CBEA /* bambooUITests.swift */; };
 		CBCD43F129F055970057CBEA /* bambooUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43F029F055970057CBEA /* bambooUITestsLaunchTests.swift */; };
+		CBCD43FE29F058400057CBEA /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43FD29F058400057CBEA /* RootTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +38,6 @@
 		CBCD43CA29F055950057CBEA /* bamboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bamboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCD43CD29F055950057CBEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBCD43CF29F055950057CBEA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CBCD43D129F055950057CBEA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CBCD43D429F055950057CBEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CBCD43D629F055970057CBEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBCD43D929F055970057CBEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBCD43DB29F055970057CBEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +46,7 @@
 		CBCD43EA29F055970057CBEA /* bambooUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bambooUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCD43EE29F055970057CBEA /* bambooUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bambooUITests.swift; sourceTree = "<group>"; };
 		CBCD43F029F055970057CBEA /* bambooUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bambooUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CBCD43FD29F058400057CBEA /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +97,8 @@
 		CBCD43CC29F055950057CBEA /* bamboo */ = {
 			isa = PBXGroup;
 			children = (
-				CBCD43CD29F055950057CBEA /* AppDelegate.swift */,
-				CBCD43CF29F055950057CBEA /* SceneDelegate.swift */,
-				CBCD43D129F055950057CBEA /* ViewController.swift */,
-				CBCD43D329F055950057CBEA /* Main.storyboard */,
-				CBCD43D629F055970057CBEA /* Assets.xcassets */,
-				CBCD43D829F055970057CBEA /* LaunchScreen.storyboard */,
-				CBCD43DB29F055970057CBEA /* Info.plist */,
+				CBCD43FF29F058C10057CBEA /* App */,
+				CBCD43FD29F058400057CBEA /* RootTabBarController.swift */,
 			);
 			path = bamboo;
 			sourceTree = "<group>";
@@ -125,6 +118,18 @@
 				CBCD43F029F055970057CBEA /* bambooUITestsLaunchTests.swift */,
 			);
 			path = bambooUITests;
+			sourceTree = "<group>";
+		};
+		CBCD43FF29F058C10057CBEA /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CBCD43CD29F055950057CBEA /* AppDelegate.swift */,
+				CBCD43CF29F055950057CBEA /* SceneDelegate.swift */,
+				CBCD43D629F055970057CBEA /* Assets.xcassets */,
+				CBCD43D829F055970057CBEA /* LaunchScreen.storyboard */,
+				CBCD43DB29F055970057CBEA /* Info.plist */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +238,6 @@
 			files = (
 				CBCD43DA29F055970057CBEA /* LaunchScreen.storyboard in Resources */,
 				CBCD43D729F055970057CBEA /* Assets.xcassets in Resources */,
-				CBCD43D529F055950057CBEA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBCD43D229F055950057CBEA /* ViewController.swift in Sources */,
+				CBCD43FE29F058400057CBEA /* RootTabBarController.swift in Sources */,
 				CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */,
 				CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */,
 			);
@@ -297,14 +301,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CBCD43D329F055950057CBEA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CBCD43D429F055950057CBEA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CBCD43D829F055970057CBEA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -439,12 +435,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TQX48B3375;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = bamboo/Info.plist;
+				INFOPLIST_FILE = bamboo/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,9 +448,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = hoonjoo.bamboo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -467,12 +466,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TQX48B3375;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = bamboo/Info.plist;
+				INFOPLIST_FILE = bamboo/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -480,9 +479,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = hoonjoo.bamboo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
