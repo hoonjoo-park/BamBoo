@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09E09F0EE01DD6C1F262FD1B /* Pods_bambooTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B66D56879D201C03E2D8F083 /* Pods_bambooTests.framework */; };
+		4B2D8D4407786DD0C11317CC /* Pods_bamboo_bambooUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08B22B52AA4B60F8BB535A55 /* Pods_bamboo_bambooUITests.framework */; };
+		7D39424284414EE361F7D3C7 /* Pods_bamboo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29A536DE793FF6AFAAA68404 /* Pods_bamboo.framework */; };
 		CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CD29F055950057CBEA /* AppDelegate.swift */; };
 		CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CF29F055950057CBEA /* SceneDelegate.swift */; };
 		CBCD43D729F055970057CBEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD43D629F055970057CBEA /* Assets.xcassets */; };
@@ -35,6 +38,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08B22B52AA4B60F8BB535A55 /* Pods_bamboo_bambooUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bamboo_bambooUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		23AFE3DBCE98F7834D62DC6C /* Pods-bamboo-bambooUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamboo-bambooUITests.debug.xcconfig"; path = "Target Support Files/Pods-bamboo-bambooUITests/Pods-bamboo-bambooUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		29A536DE793FF6AFAAA68404 /* Pods_bamboo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bamboo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5098584B91F4FEAEB045A470 /* Pods-bambooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bambooTests.release.xcconfig"; path = "Target Support Files/Pods-bambooTests/Pods-bambooTests.release.xcconfig"; sourceTree = "<group>"; };
+		6578B8A974731F886C5E26AD /* Pods-bamboo-bambooUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamboo-bambooUITests.release.xcconfig"; path = "Target Support Files/Pods-bamboo-bambooUITests/Pods-bamboo-bambooUITests.release.xcconfig"; sourceTree = "<group>"; };
+		8FDE3B4D3C6647E0F4AA8BF1 /* Pods-bambooTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bambooTests.debug.xcconfig"; path = "Target Support Files/Pods-bambooTests/Pods-bambooTests.debug.xcconfig"; sourceTree = "<group>"; };
+		95AE51AAA8203FBE02B35919 /* Pods-bamboo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamboo.release.xcconfig"; path = "Target Support Files/Pods-bamboo/Pods-bamboo.release.xcconfig"; sourceTree = "<group>"; };
+		B66D56879D201C03E2D8F083 /* Pods_bambooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bambooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCD43CA29F055950057CBEA /* bamboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bamboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCD43CD29F055950057CBEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBCD43CF29F055950057CBEA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +58,7 @@
 		CBCD43EE29F055970057CBEA /* bambooUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bambooUITests.swift; sourceTree = "<group>"; };
 		CBCD43F029F055970057CBEA /* bambooUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bambooUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CBCD43FD29F058400057CBEA /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
+		D3CA9D8BB38C111D45D34272 /* Pods-bamboo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamboo.debug.xcconfig"; path = "Target Support Files/Pods-bamboo/Pods-bamboo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D39424284414EE361F7D3C7 /* Pods_bamboo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09E09F0EE01DD6C1F262FD1B /* Pods_bambooTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +82,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B2D8D4407786DD0C11317CC /* Pods_bamboo_bambooUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04F0F10307A91E175EC8890D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29A536DE793FF6AFAAA68404 /* Pods_bamboo.framework */,
+				08B22B52AA4B60F8BB535A55 /* Pods_bamboo_bambooUITests.framework */,
+				B66D56879D201C03E2D8F083 /* Pods_bambooTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B45333D48331AF60942FFA3B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D3CA9D8BB38C111D45D34272 /* Pods-bamboo.debug.xcconfig */,
+				95AE51AAA8203FBE02B35919 /* Pods-bamboo.release.xcconfig */,
+				23AFE3DBCE98F7834D62DC6C /* Pods-bamboo-bambooUITests.debug.xcconfig */,
+				6578B8A974731F886C5E26AD /* Pods-bamboo-bambooUITests.release.xcconfig */,
+				8FDE3B4D3C6647E0F4AA8BF1 /* Pods-bambooTests.debug.xcconfig */,
+				5098584B91F4FEAEB045A470 /* Pods-bambooTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CBCD43C129F055950057CBEA = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +120,8 @@
 				CBCD43E329F055970057CBEA /* bambooTests */,
 				CBCD43ED29F055970057CBEA /* bambooUITests */,
 				CBCD43CB29F055950057CBEA /* Products */,
+				B45333D48331AF60942FFA3B /* Pods */,
+				04F0F10307A91E175EC8890D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -139,9 +180,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CBCD43F429F055970057CBEA /* Build configuration list for PBXNativeTarget "bamboo" */;
 			buildPhases = (
+				19D162A5061047353B8A0DDD /* [CP] Check Pods Manifest.lock */,
 				CBCD43C629F055950057CBEA /* Sources */,
 				CBCD43C729F055950057CBEA /* Frameworks */,
 				CBCD43C829F055950057CBEA /* Resources */,
+				5786F9D2814181983F620F9D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -156,6 +199,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CBCD43F729F055970057CBEA /* Build configuration list for PBXNativeTarget "bambooTests" */;
 			buildPhases = (
+				5500D211884D6C00F1A2A8EC /* [CP] Check Pods Manifest.lock */,
 				CBCD43DC29F055970057CBEA /* Sources */,
 				CBCD43DD29F055970057CBEA /* Frameworks */,
 				CBCD43DE29F055970057CBEA /* Resources */,
@@ -174,9 +218,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CBCD43FA29F055970057CBEA /* Build configuration list for PBXNativeTarget "bambooUITests" */;
 			buildPhases = (
+				AF776947AD5D41CCACB21EB7 /* [CP] Check Pods Manifest.lock */,
 				CBCD43E629F055970057CBEA /* Sources */,
 				CBCD43E729F055970057CBEA /* Frameworks */,
 				CBCD43E829F055970057CBEA /* Resources */,
+				194A61FDA7D1599F8E0E1CC4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,6 +302,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		194A61FDA7D1599F8E0E1CC4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-bamboo-bambooUITests/Pods-bamboo-bambooUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-bamboo-bambooUITests/Pods-bamboo-bambooUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bamboo-bambooUITests/Pods-bamboo-bambooUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		19D162A5061047353B8A0DDD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-bamboo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5500D211884D6C00F1A2A8EC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-bambooTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5786F9D2814181983F620F9D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-bamboo/Pods-bamboo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-bamboo/Pods-bamboo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bamboo/Pods-bamboo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF776947AD5D41CCACB21EB7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-bamboo-bambooUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CBCD43C629F055950057CBEA /* Sources */ = {
@@ -428,6 +577,7 @@
 		};
 		CBCD43F529F055970057CBEA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3CA9D8BB38C111D45D34272 /* Pods-bamboo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -459,6 +609,7 @@
 		};
 		CBCD43F629F055970057CBEA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95AE51AAA8203FBE02B35919 /* Pods-bamboo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -490,6 +641,7 @@
 		};
 		CBCD43F829F055970057CBEA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FDE3B4D3C6647E0F4AA8BF1 /* Pods-bambooTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -510,6 +662,7 @@
 		};
 		CBCD43F929F055970057CBEA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5098584B91F4FEAEB045A470 /* Pods-bambooTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -530,6 +683,7 @@
 		};
 		CBCD43FB29F055970057CBEA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23AFE3DBCE98F7834D62DC6C /* Pods-bamboo-bambooUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -548,6 +702,7 @@
 		};
 		CBCD43FC29F055970057CBEA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6578B8A974731F886C5E26AD /* Pods-bamboo-bambooUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
