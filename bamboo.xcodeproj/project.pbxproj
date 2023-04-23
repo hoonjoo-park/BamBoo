@@ -12,6 +12,9 @@
 		7D39424284414EE361F7D3C7 /* Pods_bamboo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29A536DE793FF6AFAAA68404 /* Pods_bamboo.framework */; };
 		CB2FA93829F54B450009F39F /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA93729F54B450009F39F /* UIHelper.swift */; };
 		CB2FA93B29F54B870009F39F /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA93A29F54B870009F39F /* UIColor+Ext.swift */; };
+		CB2FA93F29F5544B0009F39F /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA93E29F5544B0009F39F /* HomeVC.swift */; };
+		CB2FA94129F554690009F39F /* WritePostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94029F554690009F39F /* WritePostVC.swift */; };
+		CB2FA94329F554750009F39F /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94229F554750009F39F /* MyPageVC.swift */; };
 		CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CD29F055950057CBEA /* AppDelegate.swift */; };
 		CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CF29F055950057CBEA /* SceneDelegate.swift */; };
 		CBCD43D729F055970057CBEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD43D629F055970057CBEA /* Assets.xcassets */; };
@@ -50,6 +53,9 @@
 		B66D56879D201C03E2D8F083 /* Pods_bambooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bambooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB2FA93729F54B450009F39F /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		CB2FA93A29F54B870009F39F /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		CB2FA93E29F5544B0009F39F /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		CB2FA94029F554690009F39F /* WritePostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostVC.swift; sourceTree = "<group>"; };
+		CB2FA94229F554750009F39F /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
 		CBCD43CA29F055950057CBEA /* bamboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bamboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCD43CD29F055950057CBEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBCD43CF29F055950057CBEA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +138,25 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		CB2FA93C29F550910009F39F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CB2FA93D29F550990009F39F /* Controllers */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CB2FA93D29F550990009F39F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CBCD43FD29F058400057CBEA /* RootTabBarController.swift */,
+				CB2FA93E29F5544B0009F39F /* HomeVC.swift */,
+				CB2FA94029F554690009F39F /* WritePostVC.swift */,
+				CB2FA94229F554750009F39F /* MyPageVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		CBCD43C129F055950057CBEA = {
 			isa = PBXGroup;
 			children = (
@@ -157,10 +182,10 @@
 		CBCD43CC29F055950057CBEA /* bamboo */ = {
 			isa = PBXGroup;
 			children = (
+				CB2FA93C29F550910009F39F /* Views */,
 				CB2FA93929F54B780009F39F /* Extensions */,
 				CB2FA93629F54B330009F39F /* Utils */,
 				CBCD43FF29F058C10057CBEA /* App */,
-				CBCD43FD29F058400057CBEA /* RootTabBarController.swift */,
 			);
 			path = bamboo;
 			sourceTree = "<group>";
@@ -434,7 +459,10 @@
 			files = (
 				CBCD43FE29F058400057CBEA /* RootTabBarController.swift in Sources */,
 				CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */,
+				CB2FA94129F554690009F39F /* WritePostVC.swift in Sources */,
 				CB2FA93B29F54B870009F39F /* UIColor+Ext.swift in Sources */,
+				CB2FA93F29F5544B0009F39F /* HomeVC.swift in Sources */,
+				CB2FA94329F554750009F39F /* MyPageVC.swift in Sources */,
 				CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */,
 				CB2FA93829F54B450009F39F /* UIHelper.swift in Sources */,
 			);
@@ -609,6 +637,7 @@
 				DEVELOPMENT_TEAM = TQX48B3375;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bamboo/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "뱀부";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
@@ -642,6 +671,7 @@
 				DEVELOPMENT_TEAM = TQX48B3375;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bamboo/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "뱀부";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
