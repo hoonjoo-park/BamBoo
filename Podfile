@@ -12,6 +12,9 @@ target 'bamboo' do
   pod 'Kingfisher', '~> 7.0'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'ObjectMapper', '~> 3.5'
+  pod 'FirebaseAnalytics'
+  pod 'FirebaseAuth'
+  pod 'GoogleSignIn'
 
 
   target 'bambooTests' do

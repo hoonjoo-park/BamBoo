@@ -15,6 +15,7 @@
 		CB2FA93F29F5544B0009F39F /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA93E29F5544B0009F39F /* HomeVC.swift */; };
 		CB2FA94129F554690009F39F /* WritePostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94029F554690009F39F /* WritePostVC.swift */; };
 		CB2FA94329F554750009F39F /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94229F554750009F39F /* MyPageVC.swift */; };
+		CB2FA94529F5AA5D0009F39F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB2FA94429F5AA5D0009F39F /* GoogleService-Info.plist */; };
 		CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CD29F055950057CBEA /* AppDelegate.swift */; };
 		CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CF29F055950057CBEA /* SceneDelegate.swift */; };
 		CBCD43D729F055970057CBEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD43D629F055970057CBEA /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		CB2FA93E29F5544B0009F39F /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		CB2FA94029F554690009F39F /* WritePostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostVC.swift; sourceTree = "<group>"; };
 		CB2FA94229F554750009F39F /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
+		CB2FA94429F5AA5D0009F39F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CBCD43CA29F055950057CBEA /* bamboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bamboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCD43CD29F055950057CBEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBCD43CF29F055950057CBEA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				CBCD43CF29F055950057CBEA /* SceneDelegate.swift */,
 				CBCD43D629F055970057CBEA /* Assets.xcassets */,
 				CBCD43D829F055970057CBEA /* LaunchScreen.storyboard */,
+				CB2FA94429F5AA5D0009F39F /* GoogleService-Info.plist */,
 				CBCD43DB29F055970057CBEA /* Info.plist */,
 			);
 			path = App;
@@ -330,6 +333,7 @@
 			files = (
 				CBCD43DA29F055970057CBEA /* LaunchScreen.storyboard in Resources */,
 				CBCD43D729F055970057CBEA /* Assets.xcassets in Resources */,
+				CB2FA94529F5AA5D0009F39F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
