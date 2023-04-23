@@ -16,6 +16,9 @@
 		CB2FA94129F554690009F39F /* WritePostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94029F554690009F39F /* WritePostVC.swift */; };
 		CB2FA94329F554750009F39F /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94229F554750009F39F /* MyPageVC.swift */; };
 		CB2FA94529F5AA5D0009F39F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB2FA94429F5AA5D0009F39F /* GoogleService-Info.plist */; };
+		CB2FA94729F5B7170009F39F /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94629F5B7170009F39F /* OnboardingVC.swift */; };
+		CB2FA94A29F5B7910009F39F /* BambooLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94929F5B7910009F39F /* BambooLabel.swift */; };
+		CB2FA94D29F5B8350009F39F /* LabelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94C29F5B8350009F39F /* LabelButton.swift */; };
 		CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CD29F055950057CBEA /* AppDelegate.swift */; };
 		CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CF29F055950057CBEA /* SceneDelegate.swift */; };
 		CBCD43D729F055970057CBEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD43D629F055970057CBEA /* Assets.xcassets */; };
@@ -58,6 +61,9 @@
 		CB2FA94029F554690009F39F /* WritePostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostVC.swift; sourceTree = "<group>"; };
 		CB2FA94229F554750009F39F /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
 		CB2FA94429F5AA5D0009F39F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB2FA94629F5B7170009F39F /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
+		CB2FA94929F5B7910009F39F /* BambooLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooLabel.swift; sourceTree = "<group>"; };
+		CB2FA94C29F5B8350009F39F /* LabelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelButton.swift; sourceTree = "<group>"; };
 		CBCD43CA29F055950057CBEA /* bamboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bamboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCD43CD29F055950057CBEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBCD43CF29F055950057CBEA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +149,8 @@
 		CB2FA93C29F550910009F39F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CB2FA94B29F5B8260009F39F /* Buttons */,
+				CB2FA94829F5B7660009F39F /* Labels */,
 				CB2FA93D29F550990009F39F /* Controllers */,
 			);
 			path = Views;
@@ -155,8 +163,25 @@
 				CB2FA93E29F5544B0009F39F /* HomeVC.swift */,
 				CB2FA94029F554690009F39F /* WritePostVC.swift */,
 				CB2FA94229F554750009F39F /* MyPageVC.swift */,
+				CB2FA94629F5B7170009F39F /* OnboardingVC.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CB2FA94829F5B7660009F39F /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				CB2FA94929F5B7910009F39F /* BambooLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
+		CB2FA94B29F5B8260009F39F /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				CB2FA94C29F5B8350009F39F /* LabelButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		CBCD43C129F055950057CBEA = {
@@ -462,12 +487,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBCD43FE29F058400057CBEA /* RootTabBarController.swift in Sources */,
+				CB2FA94729F5B7170009F39F /* OnboardingVC.swift in Sources */,
 				CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */,
 				CB2FA94129F554690009F39F /* WritePostVC.swift in Sources */,
 				CB2FA93B29F54B870009F39F /* UIColor+Ext.swift in Sources */,
 				CB2FA93F29F5544B0009F39F /* HomeVC.swift in Sources */,
 				CB2FA94329F554750009F39F /* MyPageVC.swift in Sources */,
 				CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */,
+				CB2FA94A29F5B7910009F39F /* BambooLabel.swift in Sources */,
+				CB2FA94D29F5B8350009F39F /* LabelButton.swift in Sources */,
 				CB2FA93829F54B450009F39F /* UIHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

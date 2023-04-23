@@ -11,7 +11,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         
-        let rootVC = RootTabBarController()
+//        let rootVC = RootTabBarController()
+        let rootVC = OnboardingVC()
         let navVC = UINavigationController(rootViewController: rootVC)
         
         window?.rootViewController = navVC
