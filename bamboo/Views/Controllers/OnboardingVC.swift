@@ -9,6 +9,7 @@ class OnboardingVC: UIViewController {
         super.viewDidLoad()
         configureLabels()
         configureUI()
+        configureButtonTarget()
     }
     
     
@@ -40,5 +41,18 @@ class OnboardingVC: UIViewController {
             welcomeTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             welcomeTitleLabel.bottomAnchor.constraint(equalTo: welcomeDescriptionLabel.topAnchor, constant: -35),
         ])
+    }
+    
+    
+    private func configureButtonTarget() {
+        startButton.addTarget(self, action: #selector(openLoginBottomSheet), for: .touchUpInside)
+    }
+    
+    
+    @objc func openLoginBottomSheet() {
+        let loginVC = LoginVC()
+        loginVC.modalPresentationStyle = .overCurrentContext
+        
+        present(loginVC, animated: false)
     }
 }

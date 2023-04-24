@@ -19,6 +19,8 @@
 		CB2FA94729F5B7170009F39F /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94629F5B7170009F39F /* OnboardingVC.swift */; };
 		CB2FA94A29F5B7910009F39F /* BambooLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94929F5B7910009F39F /* BambooLabel.swift */; };
 		CB2FA94D29F5B8350009F39F /* LabelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94C29F5B8350009F39F /* LabelButton.swift */; };
+		CB52566229F6D8550018E604 /* UserDefaults+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB52566129F6D8550018E604 /* UserDefaults+Ext.swift */; };
+		CB52566429F6DA270018E604 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB52566329F6DA270018E604 /* LoginVC.swift */; };
 		CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CD29F055950057CBEA /* AppDelegate.swift */; };
 		CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CF29F055950057CBEA /* SceneDelegate.swift */; };
 		CBCD43D729F055970057CBEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD43D629F055970057CBEA /* Assets.xcassets */; };
@@ -64,6 +66,8 @@
 		CB2FA94629F5B7170009F39F /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		CB2FA94929F5B7910009F39F /* BambooLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooLabel.swift; sourceTree = "<group>"; };
 		CB2FA94C29F5B8350009F39F /* LabelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelButton.swift; sourceTree = "<group>"; };
+		CB52566129F6D8550018E604 /* UserDefaults+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Ext.swift"; sourceTree = "<group>"; };
+		CB52566329F6DA270018E604 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		CBCD43CA29F055950057CBEA /* bamboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bamboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCD43CD29F055950057CBEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBCD43CF29F055950057CBEA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				CB2FA93A29F54B870009F39F /* UIColor+Ext.swift */,
+				CB52566129F6D8550018E604 /* UserDefaults+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 				CB2FA94029F554690009F39F /* WritePostVC.swift */,
 				CB2FA94229F554750009F39F /* MyPageVC.swift */,
 				CB2FA94629F5B7170009F39F /* OnboardingVC.swift */,
+				CB52566329F6DA270018E604 /* LoginVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -494,6 +500,8 @@
 				CB2FA93F29F5544B0009F39F /* HomeVC.swift in Sources */,
 				CB2FA94329F554750009F39F /* MyPageVC.swift in Sources */,
 				CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */,
+				CB52566229F6D8550018E604 /* UserDefaults+Ext.swift in Sources */,
+				CB52566429F6DA270018E604 /* LoginVC.swift in Sources */,
 				CB2FA94A29F5B7910009F39F /* BambooLabel.swift in Sources */,
 				CB2FA94D29F5B8350009F39F /* LabelButton.swift in Sources */,
 				CB2FA93829F54B450009F39F /* UIHelper.swift in Sources */,
