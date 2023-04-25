@@ -22,6 +22,9 @@
 		CB52566229F6D8550018E604 /* UserDefaults+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB52566129F6D8550018E604 /* UserDefaults+Ext.swift */; };
 		CB52566429F6DA270018E604 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB52566329F6DA270018E604 /* LoginVC.swift */; };
 		CBA1C05C29F7F7290098723E /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA1C05B29F7F7290098723E /* AuthButton.swift */; };
+		CBA1C05E29F817E50098723E /* KakaoAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA1C05D29F817E50098723E /* KakaoAuthButton.swift */; };
+		CBA1C06029F818410098723E /* GoogleAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA1C05F29F818410098723E /* GoogleAuthButton.swift */; };
+		CBA1C06229F818530098723E /* AppleAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA1C06129F818530098723E /* AppleAuthButton.swift */; };
 		CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CD29F055950057CBEA /* AppDelegate.swift */; };
 		CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CF29F055950057CBEA /* SceneDelegate.swift */; };
 		CBCD43D729F055970057CBEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD43D629F055970057CBEA /* Assets.xcassets */; };
@@ -70,6 +73,9 @@
 		CB52566129F6D8550018E604 /* UserDefaults+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Ext.swift"; sourceTree = "<group>"; };
 		CB52566329F6DA270018E604 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		CBA1C05B29F7F7290098723E /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
+		CBA1C05D29F817E50098723E /* KakaoAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthButton.swift; sourceTree = "<group>"; };
+		CBA1C05F29F818410098723E /* GoogleAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthButton.swift; sourceTree = "<group>"; };
+		CBA1C06129F818530098723E /* AppleAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthButton.swift; sourceTree = "<group>"; };
 		CBCD43CA29F055950057CBEA /* bamboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bamboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCD43CD29F055950057CBEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBCD43CF29F055950057CBEA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +195,9 @@
 			children = (
 				CB2FA94C29F5B8350009F39F /* LabelButton.swift */,
 				CBA1C05B29F7F7290098723E /* AuthButton.swift */,
+				CBA1C05D29F817E50098723E /* KakaoAuthButton.swift */,
+				CBA1C05F29F818410098723E /* GoogleAuthButton.swift */,
+				CBA1C06129F818530098723E /* AppleAuthButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -497,6 +506,7 @@
 			files = (
 				CBCD43FE29F058400057CBEA /* RootTabBarController.swift in Sources */,
 				CBA1C05C29F7F7290098723E /* AuthButton.swift in Sources */,
+				CBA1C05E29F817E50098723E /* KakaoAuthButton.swift in Sources */,
 				CB2FA94729F5B7170009F39F /* OnboardingVC.swift in Sources */,
 				CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */,
 				CB2FA94129F554690009F39F /* WritePostVC.swift in Sources */,
@@ -506,7 +516,9 @@
 				CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */,
 				CB52566229F6D8550018E604 /* UserDefaults+Ext.swift in Sources */,
 				CB52566429F6DA270018E604 /* LoginVC.swift in Sources */,
+				CBA1C06029F818410098723E /* GoogleAuthButton.swift in Sources */,
 				CB2FA94A29F5B7910009F39F /* BambooLabel.swift in Sources */,
+				CBA1C06229F818530098723E /* AppleAuthButton.swift in Sources */,
 				CB2FA94D29F5B8350009F39F /* LabelButton.swift in Sources */,
 				CB2FA93829F54B450009F39F /* UIHelper.swift in Sources */,
 			);

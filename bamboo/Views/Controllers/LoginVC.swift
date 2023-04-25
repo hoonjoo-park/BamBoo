@@ -27,26 +27,9 @@ class LoginVC: UIViewController {
         return label
     }()
     
-    lazy var kakaoAuthButton: AuthButton = {
-        return createAuthButton(color: BambooColors.black,
-                                iconName: "kakaoIcon",
-                                labelText: "카카오 로그인",
-                                backgroundColor: BambooColors.kakaoYello)
-    }()
-    
-    lazy var googleAuthButton: AuthButton = {
-        return createAuthButton(color: BambooColors.black,
-                                iconName: "googleIcon",
-                                labelText: "구글 로그인",
-                                backgroundColor: BambooColors.white)
-    }()
-    
-    lazy var appleAuthButton: AuthButton = {
-        return createAuthButton(color: BambooColors.white,
-                                iconName: "appleIcon",
-                                labelText: "애플 로그인",
-                                backgroundColor: BambooColors.pureBlack)
-    }()
+    let kakaoAuthButton = KakaoAuthButton(fontSize: 14, weight: .medium, color: BambooColors.black, iconName: "kakaoIcon")
+    let googleAuthButton = GoogleAuthButton(fontSize: 14, weight: .medium, color: BambooColors.black, iconName: "googleIcon")
+    let appleAuthButton = AppleAuthButton(fontSize: 14, weight: .medium, color: BambooColors.white, iconName: "appleIcon")
     
     
     override func viewDidLoad() {
@@ -70,15 +53,6 @@ class LoginVC: UIViewController {
             button.topAnchor.constraint(equalTo: topAnchorView.bottomAnchor, constant: topAnchorConstant),
             button.heightAnchor.constraint(equalToConstant: 45)
         ])
-    }
-    
-    
-    private func createAuthButton(color: UIColor, iconName: String, labelText: String, backgroundColor: UIColor) -> AuthButton {
-        let button = AuthButton(fontSize: 14, weight: .medium, color: color, iconName: iconName)
-        button.buttonLabel.text = labelText
-        button.layer.cornerRadius = 22
-        button.backgroundColor = backgroundColor
-        return button
     }
     
     
