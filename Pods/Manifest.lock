@@ -89,6 +89,17 @@ PODS:
     - AppAuth/Core (~> 1.6)
     - GTMSessionFetcher/Core (< 4.0, >= 1.5)
   - GTMSessionFetcher/Core (3.1.1)
+  - KakaoSDKAuth (2.15.0):
+    - KakaoSDKCommon (= 2.15.0)
+  - KakaoSDKCommon (2.15.0):
+    - KakaoSDKCommon/Common (= 2.15.0)
+    - KakaoSDKCommon/Network (= 2.15.0)
+  - KakaoSDKCommon/Common (2.15.0)
+  - KakaoSDKCommon/Network (2.15.0):
+    - Alamofire (~> 5.1)
+    - KakaoSDKCommon/Common (= 2.15.0)
+  - KakaoSDKUser (2.15.0):
+    - KakaoSDKAuth (= 2.15.0)
   - Kingfisher (7.6.2)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
@@ -97,9 +108,31 @@ PODS:
   - nanopb/encode (2.30909.0)
   - ObjectMapper (3.5.3)
   - PromisesObjC (2.2.0)
+  - RxAlamofire (6.1.1):
+    - RxAlamofire/Core (= 6.1.1)
+  - RxAlamofire/Core (6.1.1):
+    - Alamofire (~> 5.4)
+    - RxSwift (~> 6.0)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
+  - RxKakaoSDKAuth (2.15.0):
+    - KakaoSDKAuth (= 2.15.0)
+    - RxKakaoSDKCommon (= 2.15.0)
+  - RxKakaoSDKCommon (2.15.0):
+    - RxKakaoSDKCommon/Common (= 2.15.0)
+    - RxKakaoSDKCommon/Network (= 2.15.0)
+  - RxKakaoSDKCommon/Common (2.15.0):
+    - KakaoSDKCommon/Common (= 2.15.0)
+    - RxCocoa
+    - RxSwift (~> 6.0)
+  - RxKakaoSDKCommon/Network (2.15.0):
+    - KakaoSDKCommon/Network (= 2.15.0)
+    - RxAlamofire (~> 6.0)
+    - RxKakaoSDKCommon/Common (= 2.15.0)
+  - RxKakaoSDKUser (2.15.0):
+    - KakaoSDKUser (= 2.15.0)
+    - RxKakaoSDKAuth (= 2.15.0)
   - RxRelay (6.5.0):
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
@@ -111,9 +144,15 @@ DEPENDENCIES:
   - FirebaseAnalytics
   - FirebaseAuth
   - GoogleSignIn
+  - KakaoSDKAuth
+  - KakaoSDKCommon
+  - KakaoSDKUser
   - Kingfisher (~> 7.0)
   - ObjectMapper (~> 3.5)
   - RxCocoa
+  - RxKakaoSDKAuth
+  - RxKakaoSDKCommon
+  - RxKakaoSDKUser
   - RxSwift
   - SnapKit (~> 5.6.0)
   - SwiftyJSON (~> 4.0)
@@ -133,11 +172,18 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
+    - KakaoSDKAuth
+    - KakaoSDKCommon
+    - KakaoSDKUser
     - Kingfisher
     - nanopb
     - ObjectMapper
     - PromisesObjC
+    - RxAlamofire
     - RxCocoa
+    - RxKakaoSDKAuth
+    - RxKakaoSDKCommon
+    - RxKakaoSDKUser
     - RxRelay
     - RxSwift
     - SnapKit
@@ -157,16 +203,23 @@ SPEC CHECKSUMS:
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
+  KakaoSDKAuth: 0fe5cf1756e8a9f66f8fc77826061aafa93034f3
+  KakaoSDKCommon: 89d863b7f34398e6fb93a0acb28a204908551a39
+  KakaoSDKUser: a997ca5c4c18ece2ab30646ff74841bc29d4399d
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
+  RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxKakaoSDKAuth: e7d0ac86282b29538a30d63b83793539344d2271
+  RxKakaoSDKCommon: 31411d8a4945bb347067fe80159210e9d175d7e6
+  RxKakaoSDKUser: 08a495ae92224487a6c19f3b7495ccfcdb1b183e
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 3c6ae3edf757262f5fddd3d426afd9fb1b26da3b
+PODFILE CHECKSUM: 7fa26c57bd4876d88f4a7348d0b14413445fc13d
 
 COCOAPODS: 1.12.0

@@ -15,6 +15,12 @@ target 'bamboo' do
   pod 'FirebaseAnalytics'
   pod 'FirebaseAuth'
   pod 'GoogleSignIn'
+  pod 'KakaoSDKCommon'
+  pod 'KakaoSDKAuth'
+  pod 'KakaoSDKUser'
+  pod 'RxKakaoSDKCommon'
+  pod 'RxKakaoSDKAuth'
+  pod 'RxKakaoSDKUser'
 
 
   target 'bambooTests' do
