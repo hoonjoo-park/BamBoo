@@ -14,8 +14,8 @@ class LabelButton: UIButton {
     }
     
     
-    convenience init(fontSize: CGFloat, weight: UIFont.Weight, color: UIColor) {
-        self.init(frame: .zero)
+    init(fontSize: CGFloat, weight: UIFont.Weight, color: UIColor) {
+        super.init(frame: .zero)
         buttonLabel = BambooLabel(fontSize: fontSize, weight: weight, color: color)
         configureUI()
     }

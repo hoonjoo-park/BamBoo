@@ -21,6 +21,33 @@ class LoginVC: UIViewController {
         return view
     }()
     
+    lazy var titleLabel: BambooLabel = {
+        let label = BambooLabel(fontSize: 20, weight: .semibold, color: BambooColors.white)
+        label.text = "로그인"
+        return label
+    }()
+    
+    lazy var kakaoAuthButton: AuthButton = {
+        return createAuthButton(color: BambooColors.black,
+                                iconName: "kakaoIcon",
+                                labelText: "카카오 로그인",
+                                backgroundColor: BambooColors.kakaoYello)
+    }()
+    
+    lazy var googleAuthButton: AuthButton = {
+        return createAuthButton(color: BambooColors.black,
+                                iconName: "googleIcon",
+                                labelText: "구글 로그인",
+                                backgroundColor: BambooColors.white)
+    }()
+    
+    lazy var appleAuthButton: AuthButton = {
+        return createAuthButton(color: BambooColors.white,
+                                iconName: "appleIcon",
+                                labelText: "애플 로그인",
+                                backgroundColor: BambooColors.pureBlack)
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +63,25 @@ class LoginVC: UIViewController {
     }
     
     
+    private func setAuthButtonConstraints(_ button: AuthButton, _ topAnchorView: UIView, _ topAnchorConstant: CGFloat) {
+        NSLayoutConstraint.activate([
+            button.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 45),
+            button.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -45),
+            button.topAnchor.constraint(equalTo: topAnchorView.bottomAnchor, constant: topAnchorConstant),
+            button.heightAnchor.constraint(equalToConstant: 45)
+        ])
+    }
+    
+    
+    private func createAuthButton(color: UIColor, iconName: String, labelText: String, backgroundColor: UIColor) -> AuthButton {
+        let button = AuthButton(fontSize: 14, weight: .medium, color: color, iconName: iconName)
+        button.buttonLabel.text = labelText
+        button.layer.cornerRadius = 22
+        button.backgroundColor = backgroundColor
+        return button
+    }
+    
+    
     private func configureUI() {
         view.backgroundColor = .clear
         
@@ -43,6 +89,14 @@ class LoginVC: UIViewController {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
+        
+        [titleLabel, kakaoAuthButton, googleAuthButton, appleAuthButton].forEach {
+            containerView.addSubview($0)
+        }
+        
+        setAuthButtonConstraints(kakaoAuthButton, titleLabel, 30)
+        setAuthButtonConstraints(googleAuthButton, kakaoAuthButton, 17)
+        setAuthButtonConstraints(appleAuthButton, googleAuthButton, 17)
         
         NSLayoutConstraint.activate([
             backdropView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -52,6 +106,9 @@ class LoginVC: UIViewController {
             
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 40),
+            titleLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
         ])
         
         containerViewHeightConstraint = containerView.heightAnchor.constraint(equalToConstant: defaultHeight)
@@ -84,6 +141,12 @@ class LoginVC: UIViewController {
     }
     
     
+    private func dismissBottomSheet() {
+        dismissContainerView()
+        dismissBackdropView()
+    }
+    
+    
     private func dismissContainerView() {
         UIView.animate(withDuration: 0.3) {
             self.containerViewBottomConstraint?.constant = self.defaultHeight
@@ -104,7 +167,6 @@ class LoginVC: UIViewController {
     
     
     @objc func handleTapBackdrop() {
-        dismissContainerView()
-        dismissBackdropView()
+        dismissBottomSheet()
     }
 }
