@@ -20,6 +20,6 @@ class AppleAuthButton: AuthButton {
     
     
     @objc func runAppleAuth() {
-        print("Apple Auth!!")
+        print("Apple Auth Button Tapped!")
     }
 }

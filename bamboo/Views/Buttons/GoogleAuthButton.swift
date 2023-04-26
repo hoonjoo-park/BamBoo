@@ -1,6 +1,12 @@
 import UIKit
 
+protocol GoogleAuthButtonDelegate: AnyObject {
+    func runGoogleAuth()
+}
+
 class GoogleAuthButton: AuthButton {
+    var delegate: GoogleAuthButtonDelegate!
+    
     override init(fontSize: CGFloat, weight: UIFont.Weight, color: UIColor, iconName: String) {
         super.init(fontSize: fontSize, weight: weight, color: color, iconName: iconName)
         configureUI()
@@ -15,11 +21,11 @@ class GoogleAuthButton: AuthButton {
         buttonLabel.text = "구글 로그인"
         backgroundColor = BambooColors.white
         
-        self.addTarget(self, action: #selector(runGoogleAuth), for: .touchUpInside)
+        self.addTarget(self, action: #selector(handleTapGoogleAuthButton), for: .touchUpInside)
     }
     
     
-    @objc func runGoogleAuth() {
-        print("Google Auth!!")
+    @objc func handleTapGoogleAuthButton() {
+        delegate.runGoogleAuth()
     }
 }

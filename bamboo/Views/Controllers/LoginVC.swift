@@ -1,4 +1,7 @@
 import UIKit
+import GoogleSignIn
+import FirebaseCore
+import FirebaseAuth
 
 class LoginVC: UIViewController {
     let maxBackdropAlpha = 0.6
@@ -35,6 +38,8 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        googleAuthButton.delegate = self
         configureUI()
         configureGestureHandler()
     }
@@ -142,5 +147,28 @@ class LoginVC: UIViewController {
     
     @objc func handleTapBackdrop() {
         dismissBottomSheet()
+    }
+}
+
+
+extension LoginVC: GoogleAuthButtonDelegate {
+    func runGoogleAuth() {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, err in
+            
+            if let error = err {
+                print("[Google Auth]", error)
+                return
+            }
+            
+            guard let user = result?.user,
+                  let idToken = user.idToken?.tokenString else { return }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+        }
     }
 }
