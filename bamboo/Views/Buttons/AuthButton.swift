@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 class AuthButton: LabelButton {
     private var iconView: UIImageView!
@@ -22,13 +23,14 @@ class AuthButton: LabelButton {
         guard let iconView = iconView else { return }
         
         addSubview(iconView)
+        layer.cornerRadius = 22
         iconView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            iconView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            iconView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-            iconView.widthAnchor.constraint(equalToConstant: 25),
-            iconView.heightAnchor.constraint(equalToConstant: 25),
-        ])
+        iconView.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(25)
+            $0.width.equalTo(25)
+            $0.height.equalTo(25)
+            $0.centerY.equalToSuperview()
+        }
     }
 }

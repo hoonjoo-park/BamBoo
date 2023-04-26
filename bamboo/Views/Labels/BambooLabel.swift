@@ -16,9 +16,9 @@ class BambooLabel: UILabel {
     convenience init(fontSize: CGFloat, weight: UIFont.Weight, color: UIColor) {
         self.init(frame: .zero)
         
-        lineBreakMode = .byTruncatingTail
         self.font = UIFont.systemFont(ofSize: fontSize, weight: weight)
         self.textColor = color
+        lineBreakMode = .byTruncatingTail
         configureLabel()
     }
     

@@ -11,6 +11,7 @@ class LoginVC: UIViewController {
         view.backgroundColor = BambooColors.navy
         view.layer.cornerRadius = 30
         view.clipsToBounds = true
+        
         return view
     }()
     
@@ -46,13 +47,12 @@ class LoginVC: UIViewController {
     }
     
     
-    private func setAuthButtonConstraints(_ button: AuthButton, _ topAnchorView: UIView, _ topAnchorConstant: CGFloat) {
-        NSLayoutConstraint.activate([
-            button.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 45),
-            button.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -45),
-            button.topAnchor.constraint(equalTo: topAnchorView.bottomAnchor, constant: topAnchorConstant),
-            button.heightAnchor.constraint(equalToConstant: 45)
-        ])
+    private func setAuthButtonConstraints(_ button: AuthButton, _ topAnchorView: UIView, _ topAnchorValue: CGFloat) {
+        button.snp.makeConstraints {
+            $0.horizontalEdges.equalTo(containerView).inset(45)
+            $0.top.equalTo(topAnchorView.snp.bottom).offset(topAnchorValue)
+            $0.height.equalTo(45)
+        }
     }
     
     
@@ -72,24 +72,20 @@ class LoginVC: UIViewController {
         setAuthButtonConstraints(googleAuthButton, kakaoAuthButton, 17)
         setAuthButtonConstraints(appleAuthButton, googleAuthButton, 17)
         
-        NSLayoutConstraint.activate([
-            backdropView.topAnchor.constraint(equalTo: view.topAnchor),
-            backdropView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            backdropView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backdropView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 40),
-            titleLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-        ])
+        backdropView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
         
-        containerViewHeightConstraint = containerView.heightAnchor.constraint(equalToConstant: defaultHeight)
-        containerViewBottomConstraint = containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: defaultHeight)
+        containerView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(defaultHeight)
+            $0.bottom.equalToSuperview().offset(defaultHeight)
+        }
         
-        containerViewHeightConstraint?.isActive = true
-        containerViewBottomConstraint?.isActive = true
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(containerView.snp.top).offset(40)
+            $0.centerX.equalToSuperview()
+        }
     }
     
     
@@ -101,7 +97,9 @@ class LoginVC: UIViewController {
     
     private func animatePresentContainer() {
         UIView.animate(withDuration: 0.3) {
-            self.containerViewBottomConstraint?.constant = 0
+            self.containerView.snp.updateConstraints {
+                $0.bottom.equalToSuperview().offset(0)
+            }
             self.view.layoutIfNeeded()
         }
     }
@@ -123,7 +121,9 @@ class LoginVC: UIViewController {
     
     private func dismissContainerView() {
         UIView.animate(withDuration: 0.3) {
-            self.containerViewBottomConstraint?.constant = self.defaultHeight
+            self.containerView.snp.updateConstraints {
+                $0.bottom.equalToSuperview().offset(self.defaultHeight)
+            }
             self.view.layoutIfNeeded()
         }
     }

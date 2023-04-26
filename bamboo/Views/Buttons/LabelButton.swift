@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 class LabelButton: UIButton {
     var buttonLabel = BambooLabel(fontSize: 14, weight: .bold, color: BambooColors.white)
@@ -25,9 +26,8 @@ class LabelButton: UIButton {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(buttonLabel)
         
-        NSLayoutConstraint.activate([
-            buttonLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            buttonLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-        ])
+        buttonLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
     }
 }

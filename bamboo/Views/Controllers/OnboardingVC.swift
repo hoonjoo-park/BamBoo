@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 class OnboardingVC: UIViewController {
     let welcomeTitleLabel = BambooLabel(fontSize: 24, weight: .bold, color: BambooColors.white)
@@ -28,19 +29,22 @@ class OnboardingVC: UIViewController {
         startButton.layer.cornerRadius = 25
         startButton.backgroundColor = BambooColors.green
         
-        NSLayoutConstraint.activate([
-            startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            startButton.widthAnchor.constraint(equalToConstant: 195),
-            startButton.heightAnchor.constraint(equalToConstant: 50),
-            startButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -75),
-            
-            welcomeDescriptionLabel.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -75),
-            welcomeDescriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
-            welcomeDescriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 45),
-            
-            welcomeTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            welcomeTitleLabel.bottomAnchor.constraint(equalTo: welcomeDescriptionLabel.topAnchor, constant: -35),
-        ])
+        startButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(194)
+            $0.height.equalTo(50)
+            $0.bottom.equalToSuperview().inset(75)
+        }
+        
+        welcomeDescriptionLabel.snp.makeConstraints {
+            $0.bottom.equalTo(startButton.snp.top).offset(-75)
+            $0.horizontalEdges.equalToSuperview().inset(45)
+        }
+        
+        welcomeTitleLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(welcomeDescriptionLabel.snp.top).offset(-35)
+        }
     }
     
     

@@ -8,7 +8,6 @@ class KakaoAuthButton: AuthButton {
     
     override init(fontSize: CGFloat, weight: UIFont.Weight, color: UIColor, iconName: String) {
         super.init(fontSize: fontSize, weight: weight, color: color, iconName: iconName)
-        
         configureUI()
     }
     
@@ -19,7 +18,6 @@ class KakaoAuthButton: AuthButton {
     
     private func configureUI() {
         buttonLabel.text = "카카오 로그인"
-        layer.cornerRadius = 22
         backgroundColor = BambooColors.kakaoYello
         
         self.addTarget(self, action: #selector(runKakaoAuth), for: .touchUpInside)

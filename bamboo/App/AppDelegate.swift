@@ -11,6 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         // MARK: Kakao Auth Settings
+        // KAKAO_API_KEY는 보안상의 이유로 환경변수로써 관리되고 있습니다.
         let kakaoAppKey = Bundle.main.object(forInfoDictionaryKey: "KAKAO_APP_KEY") as? String
         if let kakaoAppKeyValue = kakaoAppKey {
             RxKakaoSDK.initSDK(appKey: kakaoAppKeyValue)

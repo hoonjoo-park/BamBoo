@@ -3,7 +3,6 @@ import UIKit
 class AppleAuthButton: AuthButton {
     override init(fontSize: CGFloat, weight: UIFont.Weight, color: UIColor, iconName: String) {
         super.init(fontSize: fontSize, weight: weight, color: color, iconName: iconName)
-        
         configureUI()
     }
     
@@ -14,7 +13,6 @@ class AppleAuthButton: AuthButton {
     
     private func configureUI() {
         buttonLabel.text = "애플 로그인"
-        layer.cornerRadius = 22
         backgroundColor = BambooColors.pureBlack
         
         self.addTarget(self, action: #selector(runAppleAuth), for: .touchUpInside)
