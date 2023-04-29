@@ -157,6 +157,15 @@ extension LoginVC: AuthButtonDelegate {
     func authCompletion(accessToken: String) {
         dismissBottomSheet()
         UserDefaults.standard.setToken(token: accessToken)
+        
+        let rootTabBarController = RootTabBarController()
+        
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = rootTabBarController
+            window.makeKeyAndVisible()
+            
+            UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
+        }
     }
     
     func runGoogleAuth() {
