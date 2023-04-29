@@ -10,6 +10,7 @@
 		09E09F0EE01DD6C1F262FD1B /* Pods_bambooTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B66D56879D201C03E2D8F083 /* Pods_bambooTests.framework */; };
 		4B2D8D4407786DD0C11317CC /* Pods_bamboo_bambooUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08B22B52AA4B60F8BB535A55 /* Pods_bamboo_bambooUITests.framework */; };
 		7D39424284414EE361F7D3C7 /* Pods_bamboo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29A536DE793FF6AFAAA68404 /* Pods_bamboo.framework */; };
+		CB0CE11F29FD2204002BC460 /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0CE11E29FD2204002BC460 /* AuthHelper.swift */; };
 		CB2FA93829F54B450009F39F /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA93729F54B450009F39F /* UIHelper.swift */; };
 		CB2FA93B29F54B870009F39F /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA93A29F54B870009F39F /* UIColor+Ext.swift */; };
 		CB2FA93F29F5544B0009F39F /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA93E29F5544B0009F39F /* HomeVC.swift */; };
@@ -61,6 +62,7 @@
 		8FDE3B4D3C6647E0F4AA8BF1 /* Pods-bambooTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bambooTests.debug.xcconfig"; path = "Target Support Files/Pods-bambooTests/Pods-bambooTests.debug.xcconfig"; sourceTree = "<group>"; };
 		95AE51AAA8203FBE02B35919 /* Pods-bamboo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamboo.release.xcconfig"; path = "Target Support Files/Pods-bamboo/Pods-bamboo.release.xcconfig"; sourceTree = "<group>"; };
 		B66D56879D201C03E2D8F083 /* Pods_bambooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bambooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB0CE11E29FD2204002BC460 /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
 		CB2FA93729F54B450009F39F /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		CB2FA93A29F54B870009F39F /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		CB2FA93E29F5544B0009F39F /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				CB2FA93729F54B450009F39F /* UIHelper.swift */,
+				CB0CE11E29FD2204002BC460 /* AuthHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				CBA1C06229F818530098723E /* AppleAuthButton.swift in Sources */,
 				CB2FA94D29F5B8350009F39F /* LabelButton.swift in Sources */,
 				CB2FA93829F54B450009F39F /* UIHelper.swift in Sources */,
+				CB0CE11F29FD2204002BC460 /* AuthHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

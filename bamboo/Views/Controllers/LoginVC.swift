@@ -40,6 +40,8 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         
         googleAuthButton.delegate = self
+        kakaoAuthButton.delegate = self
+        appleAuthButton.delegate = self
         configureUI()
         configureGestureHandler()
     }
@@ -151,7 +153,12 @@ class LoginVC: UIViewController {
 }
 
 
-extension LoginVC: GoogleAuthButtonDelegate {
+extension LoginVC: AuthButtonDelegate {
+    func authCompletion(accessToken: String) {
+        dismissBottomSheet()
+        UserDefaults.standard.setToken(token: accessToken)
+    }
+    
     func runGoogleAuth() {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         

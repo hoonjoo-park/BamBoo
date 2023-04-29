@@ -27,29 +27,35 @@ class KakaoAuthButton: AuthButton {
     @objc func runKakaoAuth() {
         if (UserApi.isKakaoTalkLoginAvailable()) {
             UserApi.shared.rx.loginWithKakaoTalk()
-                .subscribe(onNext:{ (oauthToken) in
+                .subscribe(onNext:{ [unowned self] oauthToken in
                     _ = oauthToken
                     let accessToken = oauthToken.accessToken
-                    
+                    self.handleAuth(accessToken)
                 }, onError: {error in
-                    print(error)
+                    print("runKakaoAuth error:\(error)")
                 })
                 .disposed(by: disposeBag)
         } else {
             UserApi.shared.rx.loginWithKakaoAccount()
-                .subscribe(onNext:{ (oauthToken) in
+                .subscribe(onNext:{ [unowned self] oauthToken in
                     _ = oauthToken
                     let accessToken = oauthToken.accessToken
-                    
+                    self.handleAuth(accessToken)
                 }, onError: {error in
-                    print(error)
+                    print("runKakaoAuth error:\(error)")
                 })
                 .disposed(by: disposeBag)
         }
     }
     
     
-    private func handleAuth() {
-        // TODO: 기존 회원인지 아닌지 체크 후 회원이면 로그인, 그렇지 않을 경우 회원가입 자동으로 시키는 백엔드 로직 구현 및 연동
+    private func handleAuth(_ accessToken: String){
+        postOAuth(accessToken, provider: "kakao") { token in
+            if let token = token {
+                self.delegate?.authCompletion(accessToken: token)
+            } else {
+                print("[postOAuth] Failed to receive token")
+            }
+        }
     }
 }

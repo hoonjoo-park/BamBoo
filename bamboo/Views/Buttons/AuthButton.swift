@@ -1,8 +1,15 @@
 import UIKit
 import SnapKit
 
+protocol AuthButtonDelegate: AnyObject {
+    func authCompletion(accessToken: String)
+    func runGoogleAuth()
+}
+
 class AuthButton: LabelButton {
     private var iconView: UIImageView!
+    
+    var delegate: AuthButtonDelegate!
     
     init(fontSize: CGFloat, weight: UIFont.Weight, color: UIColor, iconName: String) {
         super.init(fontSize: fontSize, weight: weight, color: color)

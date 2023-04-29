@@ -5,8 +5,6 @@ protocol GoogleAuthButtonDelegate: AnyObject {
 }
 
 class GoogleAuthButton: AuthButton {
-    var delegate: GoogleAuthButtonDelegate!
-    
     override init(fontSize: CGFloat, weight: UIFont.Weight, color: UIColor, iconName: String) {
         super.init(fontSize: fontSize, weight: weight, color: color, iconName: iconName)
         configureUI()
