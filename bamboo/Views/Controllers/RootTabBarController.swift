@@ -16,7 +16,7 @@ class RootTabBarController: UITabBarController {
         let homeVC = HomeVC()
         let tabBarImage: UIImage!
         
-        tabBarImage = UIImage(systemName: "house")
+        tabBarImage = UIImage(systemName: "house")?.withBaselineOffset(fromBottom: 15)
         homeVC.tabBarItem = UITabBarItem(title: "", image: tabBarImage, tag: 0)
         
         return UINavigationController(rootViewController: homeVC)
@@ -26,8 +26,8 @@ class RootTabBarController: UITabBarController {
         let writePostVC = WritePostVC()
         let tabBarImage: UIImage!
 
-        tabBarImage = UIImage(systemName: "plus.circle")
-        tabBarImage.withTintColor(BambooColors.green)
+        tabBarImage = UIImage(systemName: "plus.circle")?.withTintColor(BambooColors.green, renderingMode: .alwaysOriginal)
+                                                        .withBaselineOffset(fromBottom: 15)
         writePostVC.tabBarItem = UITabBarItem(title: "", image: tabBarImage, tag: 1)
         
         return UINavigationController(rootViewController: writePostVC)
@@ -37,7 +37,7 @@ class RootTabBarController: UITabBarController {
         let myPageVC = MyPageVC()
         let tabBarImage: UIImage!
         
-        tabBarImage = UIImage(systemName: "person")
+        tabBarImage = UIImage(systemName: "person")?.withBaselineOffset(fromBottom: 15)
         myPageVC.tabBarItem = UITabBarItem(title: "", image: tabBarImage, tag: 2)
         
         return UINavigationController(rootViewController: myPageVC)
