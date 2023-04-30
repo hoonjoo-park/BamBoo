@@ -22,6 +22,7 @@
 		CB2FA94D29F5B8350009F39F /* LabelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94C29F5B8350009F39F /* LabelButton.swift */; };
 		CB52566229F6D8550018E604 /* UserDefaults+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB52566129F6D8550018E604 /* UserDefaults+Ext.swift */; };
 		CB52566429F6DA270018E604 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB52566329F6DA270018E604 /* LoginVC.swift */; };
+		CB87F49029FE48730025B67A /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */; };
 		CBA1C05C29F7F7290098723E /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA1C05B29F7F7290098723E /* AuthButton.swift */; };
 		CBA1C05E29F817E50098723E /* KakaoAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA1C05D29F817E50098723E /* KakaoAuthButton.swift */; };
 		CBA1C06029F818410098723E /* GoogleAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA1C05F29F818410098723E /* GoogleAuthButton.swift */; };
@@ -74,6 +75,7 @@
 		CB2FA94C29F5B8350009F39F /* LabelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelButton.swift; sourceTree = "<group>"; };
 		CB52566129F6D8550018E604 /* UserDefaults+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Ext.swift"; sourceTree = "<group>"; };
 		CB52566329F6DA270018E604 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
 		CBA1C05B29F7F7290098723E /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		CBA1C05D29F817E50098723E /* KakaoAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthButton.swift; sourceTree = "<group>"; };
 		CBA1C05F29F818410098723E /* GoogleAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthButton.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				CB2FA94B29F5B8260009F39F /* Buttons */,
 				CB2FA94829F5B7660009F39F /* Labels */,
 				CB2FA93D29F550990009F39F /* Controllers */,
+				CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				CB2FA94129F554690009F39F /* WritePostVC.swift in Sources */,
 				CB2FA93B29F54B870009F39F /* UIColor+Ext.swift in Sources */,
 				CB2FA93F29F5544B0009F39F /* HomeVC.swift in Sources */,
+				CB87F49029FE48730025B67A /* MyPageTableViewCell.swift in Sources */,
 				CB2FA94329F554750009F39F /* MyPageVC.swift in Sources */,
 				CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */,
 				CB52566229F6D8550018E604 /* UserDefaults+Ext.swift in Sources */,

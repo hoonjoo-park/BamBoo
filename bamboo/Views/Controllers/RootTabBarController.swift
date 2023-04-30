@@ -22,6 +22,7 @@ class RootTabBarController: UITabBarController {
         return UINavigationController(rootViewController: homeVC)
     }
     
+    
     private func createWritePostVC() -> UINavigationController {
         let writePostVC = WritePostVC()
         let tabBarImage: UIImage!
@@ -32,6 +33,7 @@ class RootTabBarController: UITabBarController {
         
         return UINavigationController(rootViewController: writePostVC)
     }
+    
     
     private func createMyPageVC() -> UINavigationController {
         let myPageVC = MyPageVC()
