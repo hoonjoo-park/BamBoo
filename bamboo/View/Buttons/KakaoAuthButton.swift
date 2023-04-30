@@ -50,7 +50,7 @@ class KakaoAuthButton: AuthButton {
     
     
     private func handleAuth(_ accessToken: String){
-        postOAuth(accessToken, provider: "kakao") { token in
+        NetworkManager.shared.postOAuth(accessToken, provider: "kakao") { token in
             if let token = token {
                 self.delegate?.authCompletion(accessToken: token)
             } else {

@@ -1,8 +1,20 @@
 import UIKit
+import RxSwift
 
 class RootTabBarController: UITabBarController {
+    let userVM = UserViewModel()
+    let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NetworkManager.shared.fetchUser()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] user in
+                self?.userVM.updateUser(user)
+            }, onError: { error in
+                print("[Fetch User Error], \(error)")
+            }).disposed(by: disposeBag)
         
         UITabBar.appearance().tintColor = BambooColors.white
         UITabBar.appearance().unselectedItemTintColor = BambooColors.gray
