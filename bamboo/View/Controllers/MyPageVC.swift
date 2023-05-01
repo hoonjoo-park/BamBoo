@@ -5,11 +5,13 @@ class MyPageVC: UIViewController {
     private let tableView = UITableView(frame: .zero)
     private let headerView = UIView()
     private let listTitles = ["채팅", "로그아웃", "회원 탈퇴", "버전 정보"]
+    let userVM = UserViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = BambooColors.black
+        navigationController?.isNavigationBarHidden = true
         
         configureSubViews()
         configureHeaderView()
@@ -18,18 +20,61 @@ class MyPageVC: UIViewController {
     
     
     private func configureSubViews() {
-        [headerView, tableView].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview($0)
-        }
+        view.addSubview(tableView)
+//        [headerView, tableView].forEach {
+//            view.addSubview($0)
+//        }
     }
     
     
     private func configureHeaderView() {
-        headerView.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview()
+        let profileImage = UIImageView(image: UIImage(named: "panda"))
+        let usernameLabel = BambooLabel(fontSize: 18, weight: .semibold, color: BambooColors.white)
+        let profileEditButton = UIButton()
+        let editIcon = UIImageView(image: UIImage(systemName: "square.and.pencil"))
+        let editLabel = BambooLabel(fontSize: 14, weight: .medium, color: BambooColors.gray)
+        
+        headerView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 70)
+        editIcon.tintColor = BambooColors.gray
+        profileImage.layer.cornerRadius = 20
+        profileImage.clipsToBounds = true
+        
+        [profileImage, usernameLabel, profileEditButton].forEach {
+            headerView.addSubview($0)
+        }
+        
+        [editIcon, editLabel].forEach {
+            profileEditButton.addSubview($0)
+        }
+        
+        profileImage.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.height.equalTo(100)
+            make.leading.equalToSuperview().inset(25)
+            make.width.height.equalTo(40)
+        }
+        
+        usernameLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(profileImage.snp.centerY)
+            make.leading.equalTo(profileImage.snp.trailing).offset(15)
+        }
+        
+        profileEditButton.snp.makeConstraints { make in
+            make.centerY.equalTo(usernameLabel.snp.centerY)
+            make.width.equalTo(100)
+            make.trailing.equalToSuperview().inset(25)
+        }
+        
+        
+        
+        editIcon.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview()
+        }
+        
+        editLabel.text = "프로필 수정"
+        editLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(editIcon.snp.trailing).offset(7)
         }
     }
     
@@ -37,14 +82,18 @@ class MyPageVC: UIViewController {
     private func configureTableView() {
         tableView.backgroundColor = BambooColors.black
         tableView.separatorColor = BambooColors.gray
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.bounces = false
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableHeaderView = headerView
+        tableView.contentInsetAdjustmentBehavior = .never
         tableView.register(MyPageTableViewCell.self, forCellReuseIdentifier: MyPageTableViewCell.reuseId)
         
         tableView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.top.equalTo(headerView.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
@@ -93,7 +142,6 @@ extension MyPageVC: UITableViewDelegate, UITableViewDataSource {
             break
         default:
             break
-            
         }
     }
 }
