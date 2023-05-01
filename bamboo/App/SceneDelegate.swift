@@ -14,17 +14,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         
         let token = UserDefaults.standard.getToken()
-        var rootVC: UIViewController
         
         if token != nil {
-            rootVC = RootTabBarController()
+            let rootTabBarController = RootTabBarController()
+            window?.rootViewController = rootTabBarController
         } else {
-            rootVC = OnboardingVC()
+            let onboardingVC = OnboardingVC()
+            let navVC = UINavigationController(rootViewController: onboardingVC)
+            window?.rootViewController = navVC
         }
         
-        let navVC = UINavigationController(rootViewController: rootVC)
-        
-        window?.rootViewController = navVC
         window?.makeKeyAndVisible()
     }
     

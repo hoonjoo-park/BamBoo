@@ -14,12 +14,12 @@ class MyPageVC: UIViewController {
     let editIcon = UIImageView(image: UIImage(systemName: "square.and.pencil"))
     let editLabel = BambooLabel(fontSize: 14, weight: .medium, color: BambooColors.gray)
     
-    let userVM: UserViewModel!
+    var userVM: UserViewModel!
     let disposeBag = DisposeBag()
     
     init(userVM: UserViewModel) {
-        self.userVM = userVM
         super.init(nibName: nil, bundle: nil)
+        self.userVM = userVM
     }
     
     
@@ -46,7 +46,7 @@ class MyPageVC: UIViewController {
     
     
     private func configureHeaderView() {
-        headerView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 70)
+        headerView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 100)
         editIcon.tintColor = BambooColors.gray
         profileImage.layer.cornerRadius = 20
         profileImage.clipsToBounds = true
@@ -60,18 +60,19 @@ class MyPageVC: UIViewController {
         }
         
         profileImage.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.centerY.equalToSuperview()
             make.leading.equalToSuperview().inset(25)
             make.width.height.equalTo(40)
         }
         
         usernameLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(profileImage.snp.centerY)
+            make.centerY.equalToSuperview()
             make.leading.equalTo(profileImage.snp.trailing).offset(15)
         }
         
+        profileEditButton.addTarget(self, action: #selector(handleTapEditButton), for: .touchUpInside)
         profileEditButton.snp.makeConstraints { make in
-            make.centerY.equalTo(usernameLabel.snp.centerY)
+            make.centerY.equalToSuperview()
             make.width.equalTo(100)
             make.trailing.equalToSuperview().inset(25)
         }
@@ -168,5 +169,12 @@ extension MyPageVC: UITableViewDelegate, UITableViewDataSource {
         default:
             break
         }
+    }
+    
+    
+    @objc private func handleTapEditButton() {
+        let editProfileVC = EditProfileVC(userVM: userVM)
+        editProfileVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(editProfileVC, animated: true)
     }
 }
