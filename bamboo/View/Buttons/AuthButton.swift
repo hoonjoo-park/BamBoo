@@ -31,7 +31,6 @@ class AuthButton: LabelButton {
         
         addSubview(iconView)
         layer.cornerRadius = 22
-        iconView.translatesAutoresizingMaskIntoConstraints = false
         
         iconView.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(25)

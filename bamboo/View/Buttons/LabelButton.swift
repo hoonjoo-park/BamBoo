@@ -23,7 +23,6 @@ class LabelButton: UIButton {
     
     
     private func configureUI() {
-        translatesAutoresizingMaskIntoConstraints = false
         addSubview(buttonLabel)
         
         buttonLabel.snp.makeConstraints {

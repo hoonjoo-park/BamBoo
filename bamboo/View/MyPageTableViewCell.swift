@@ -57,7 +57,6 @@ class MyPageTableViewCell: UITableViewCell {
         listIcon.tintColor = BambooColors.white
         
         [listIcon, titleLabel].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0)
         }
         

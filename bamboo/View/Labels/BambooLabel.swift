@@ -4,7 +4,6 @@ class BambooLabel: UILabel {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureLabel()
     }
     
     
@@ -19,12 +18,6 @@ class BambooLabel: UILabel {
         self.font = UIFont.systemFont(ofSize: fontSize, weight: weight)
         self.textColor = color
         lineBreakMode = .byTruncatingTail
-        configureLabel()
-    }
-    
-    
-    func configureLabel() {
-        translatesAutoresizingMaskIntoConstraints = false
     }
 
 }

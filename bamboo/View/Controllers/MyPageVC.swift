@@ -21,9 +21,6 @@ class MyPageVC: UIViewController {
     
     private func configureSubViews() {
         view.addSubview(tableView)
-//        [headerView, tableView].forEach {
-//            view.addSubview($0)
-//        }
     }
     
     

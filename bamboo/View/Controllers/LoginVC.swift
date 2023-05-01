@@ -68,7 +68,6 @@ class LoginVC: UIViewController {
         
         [backdropView, containerView].forEach {
             view.addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
         [titleLabel, kakaoAuthButton, googleAuthButton, appleAuthButton].forEach {
