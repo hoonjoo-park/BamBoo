@@ -1,36 +1,51 @@
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
+import Kingfisher
 
 class MyPageVC: UIViewController {
     private let tableView = UITableView(frame: .zero)
     private let headerView = UIView()
     private let listTitles = ["채팅", "로그아웃", "회원 탈퇴", "버전 정보"]
-    let userVM = UserViewModel()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = BambooColors.black
-        navigationController?.isNavigationBarHidden = true
-        
-        configureSubViews()
-        configureHeaderView()
-        configureTableView()
+    let profileImage = UIImageView(image: UIImage(named: "panda"))
+    let usernameLabel = BambooLabel(fontSize: 18, weight: .semibold, color: BambooColors.white)
+    let profileEditButton = UIButton()
+    let editIcon = UIImageView(image: UIImage(systemName: "square.and.pencil"))
+    let editLabel = BambooLabel(fontSize: 14, weight: .medium, color: BambooColors.gray)
+    
+    let userVM: UserViewModel!
+    let disposeBag = DisposeBag()
+    
+    init(userVM: UserViewModel) {
+        self.userVM = userVM
+        super.init(nibName: nil, bundle: nil)
     }
     
     
-    private func configureSubViews() {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configureViewController()
+        configureHeaderView()
+        configureTableView()
+        bindUserVM()
+    }
+    
+    
+    private func configureViewController() {
+        view.backgroundColor = BambooColors.black
+        navigationController?.isNavigationBarHidden = true
         view.addSubview(tableView)
     }
     
     
     private func configureHeaderView() {
-        let profileImage = UIImageView(image: UIImage(named: "panda"))
-        let usernameLabel = BambooLabel(fontSize: 18, weight: .semibold, color: BambooColors.white)
-        let profileEditButton = UIButton()
-        let editIcon = UIImageView(image: UIImage(systemName: "square.and.pencil"))
-        let editLabel = BambooLabel(fontSize: 14, weight: .medium, color: BambooColors.gray)
-        
         headerView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 70)
         editIcon.tintColor = BambooColors.gray
         profileImage.layer.cornerRadius = 20
@@ -60,8 +75,6 @@ class MyPageVC: UIViewController {
             make.width.equalTo(100)
             make.trailing.equalToSuperview().inset(25)
         }
-        
-        
         
         editIcon.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
@@ -93,7 +106,22 @@ class MyPageVC: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide)
         }
     }
+    
+    private func bindUserVM() {
+        userVM.user
+            .subscribe(onNext: {  [weak self] user in
+                if let user = user {
+                    if let profileImage = user.profile.profileImage,
+                       let profileImageUrl = URL(string: profileImage) {
+                        self?.profileImage.kf.setImage(with: profileImageUrl)
+                    }
+                    
+                    self?.usernameLabel.text = user.profile.username
+                }
+            }).disposed(by: disposeBag)
+    }
 }
+
 
 extension MyPageVC: UITableViewDelegate, UITableViewDataSource {
     

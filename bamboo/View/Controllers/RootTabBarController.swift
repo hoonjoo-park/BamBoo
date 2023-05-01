@@ -48,7 +48,7 @@ class RootTabBarController: UITabBarController {
     
     
     private func createMyPageVC() -> UINavigationController {
-        let myPageVC = MyPageVC()
+        let myPageVC = MyPageVC(userVM: userVM)
         let tabBarImage: UIImage!
         
         tabBarImage = UIImage(systemName: "person")?.withBaselineOffset(fromBottom: 15)
