@@ -6,11 +6,11 @@ import Kingfisher
 
 class EditProfileVC: UIViewController {
     let profileImageButton = UIButton()
-    let profileImageTitleLabel = BambooLabel(fontSize: 16, weight: .medium, color: BambooColors.gray)
+    let profileImageTitleLabel = BambooLabel(fontSize: 16, weight: .semibold, color: BambooColors.gray)
     let profileImageView = UIImageView()
     let profileImageDescriptionLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
-    let usernameTitleLabel = BambooLabel(fontSize: 16, weight: .medium, color: BambooColors.gray)
-    let usernameInput = UIInputView(frame: .zero, inputViewStyle: .keyboard)
+    let usernameTitleLabel = BambooLabel(fontSize: 16, weight: .semibold, color: BambooColors.gray)
+    let usernameInput = UITextField()
     let saveButton = LabelButton(fontSize: 14, weight: .semibold, color: BambooColors.white)
     
     var userVM: UserViewModel!
@@ -53,6 +53,16 @@ class EditProfileVC: UIViewController {
     }
     
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let borderBottom = CALayer()
+        borderBottom.frame = CGRect(x: 0, y: usernameInput.frame.size.height, width: usernameInput.frame.size.width, height: 1)
+        borderBottom.backgroundColor = BambooColors.darkGray.cgColor
+        usernameInput.layer.addSublayer(borderBottom)
+    }
+    
+    
     private func configureViewController() {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
@@ -67,10 +77,13 @@ class EditProfileVC: UIViewController {
             view.addSubview($0)
         }
         
+        profileImageView.layer.cornerRadius = 37.5
+        profileImageView.clipsToBounds = true
         profileImageTitleLabel.text = "프로필 사진 수정"
         profileImageDescriptionLabel.text = "수정을 원하시면, 프로필 사진을 터치 하세요"
         usernameTitleLabel.text = "닉네임 수정"
         saveButton.buttonLabel.text = "변경사항 저장"
+        usernameInput.placeholder = "닉네임을 입력해 주세요"
         saveButton.backgroundColor = BambooColors.green
         saveButton.layer.cornerRadius = 8
         
@@ -116,6 +129,8 @@ class EditProfileVC: UIViewController {
                    let profileImageUrl = URL(string: profileImage) {
                     self?.profileImageView.kf.setImage(with: profileImageUrl)
                 }
+                
+                self?.usernameInput.text = user.profile.username
             }
         }).disposed(by: disposeBag)
     }
