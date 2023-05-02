@@ -3,9 +3,9 @@ import RxSwift
 import RxCocoa
 import SnapKit
 import Kingfisher
+import Photos
 
 class EditProfileVC: UIViewController {
-    let profileImageButton = UIButton()
     let profileImageTitleLabel = BambooLabel(fontSize: 16, weight: .semibold, color: BambooColors.gray)
     let profileImageView = UIImageView()
     let profileImageDescriptionLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
@@ -77,6 +77,10 @@ class EditProfileVC: UIViewController {
             view.addSubview($0)
         }
         
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped))
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(tapGestureRecognizer)
+        
         profileImageView.layer.cornerRadius = 37.5
         profileImageView.clipsToBounds = true
         profileImageTitleLabel.text = "프로필 사진 수정"
@@ -134,4 +138,55 @@ class EditProfileVC: UIViewController {
             }
         }).disposed(by: disposeBag)
     }
+    
+    @objc private func handleProfileImageTapped() {
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        
+        switch photoAuthorizationStatus {
+        case .authorized:
+            presentImagePickerController()
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { [weak self] status in
+                DispatchQueue.main.async {
+                    if status == .authorized {
+                        self?.presentImagePickerController()
+                    } else {
+                        self?.presentPhotoLibraryDeniedAlert(message: "사진첩 접근 권한이 차단되었습니다.")
+                    }
+                }
+            }
+        case .denied, .restricted:
+            presentPhotoLibraryDeniedAlert(message: "사진첩 접근 권한 허용을 원하신다면, '설정 -> 뱀부 -> 사진 접근권한 변경' 절차를 따라 주세요.")
+            break
+        default:
+            break
+        }
+    }
+
+    private func presentImagePickerController() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    private func presentPhotoLibraryDeniedAlert(message: String) {
+        let alert = UIAlertController(title: "사진첩 접근 불가", message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "확인", style: .default))
+        
+        present(alert, animated: true, completion: nil)
+    }
+}
+
+
+extension EditProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
 }

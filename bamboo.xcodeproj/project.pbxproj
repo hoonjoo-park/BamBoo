@@ -10,12 +10,12 @@
 		09E09F0EE01DD6C1F262FD1B /* Pods_bambooTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B66D56879D201C03E2D8F083 /* Pods_bambooTests.framework */; };
 		4B2D8D4407786DD0C11317CC /* Pods_bamboo_bambooUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08B22B52AA4B60F8BB535A55 /* Pods_bamboo_bambooUITests.framework */; };
 		7D39424284414EE361F7D3C7 /* Pods_bamboo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29A536DE793FF6AFAAA68404 /* Pods_bamboo.framework */; };
+		CB0B4F532A012E3C00C75735 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB0B4F522A012E3C00C75735 /* GoogleService-Info.plist */; };
 		CB2FA93829F54B450009F39F /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA93729F54B450009F39F /* UIHelper.swift */; };
 		CB2FA93B29F54B870009F39F /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA93A29F54B870009F39F /* UIColor+Ext.swift */; };
 		CB2FA93F29F5544B0009F39F /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA93E29F5544B0009F39F /* HomeVC.swift */; };
 		CB2FA94129F554690009F39F /* WritePostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94029F554690009F39F /* WritePostVC.swift */; };
 		CB2FA94329F554750009F39F /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94229F554750009F39F /* MyPageVC.swift */; };
-		CB2FA94529F5AA5D0009F39F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB2FA94429F5AA5D0009F39F /* GoogleService-Info.plist */; };
 		CB2FA94729F5B7170009F39F /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94629F5B7170009F39F /* OnboardingVC.swift */; };
 		CB2FA94A29F5B7910009F39F /* BambooLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94929F5B7910009F39F /* BambooLabel.swift */; };
 		CB2FA94D29F5B8350009F39F /* LabelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94C29F5B8350009F39F /* LabelButton.swift */; };
@@ -66,12 +66,12 @@
 		8FDE3B4D3C6647E0F4AA8BF1 /* Pods-bambooTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bambooTests.debug.xcconfig"; path = "Target Support Files/Pods-bambooTests/Pods-bambooTests.debug.xcconfig"; sourceTree = "<group>"; };
 		95AE51AAA8203FBE02B35919 /* Pods-bamboo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamboo.release.xcconfig"; path = "Target Support Files/Pods-bamboo/Pods-bamboo.release.xcconfig"; sourceTree = "<group>"; };
 		B66D56879D201C03E2D8F083 /* Pods_bambooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bambooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB0B4F522A012E3C00C75735 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB2FA93729F54B450009F39F /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		CB2FA93A29F54B870009F39F /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		CB2FA93E29F5544B0009F39F /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		CB2FA94029F554690009F39F /* WritePostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostVC.swift; sourceTree = "<group>"; };
 		CB2FA94229F554750009F39F /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
-		CB2FA94429F5AA5D0009F39F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB2FA94629F5B7170009F39F /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		CB2FA94929F5B7910009F39F /* BambooLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooLabel.swift; sourceTree = "<group>"; };
 		CB2FA94C29F5B8350009F39F /* LabelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelButton.swift; sourceTree = "<group>"; };
@@ -291,7 +291,7 @@
 				CBCD43CF29F055950057CBEA /* SceneDelegate.swift */,
 				CBCD43D629F055970057CBEA /* Assets.xcassets */,
 				CBCD43D829F055970057CBEA /* LaunchScreen.storyboard */,
-				CB2FA94429F5AA5D0009F39F /* GoogleService-Info.plist */,
+				CB0B4F522A012E3C00C75735 /* GoogleService-Info.plist */,
 				CBCD43DB29F055970057CBEA /* Info.plist */,
 				CBA1C06529F842CE0098723E /* env.xcconfig */,
 			);
@@ -408,8 +408,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBCD43DA29F055970057CBEA /* LaunchScreen.storyboard in Resources */,
+				CB0B4F532A012E3C00C75735 /* GoogleService-Info.plist in Resources */,
 				CBCD43D729F055970057CBEA /* Assets.xcassets in Resources */,
-				CB2FA94529F5AA5D0009F39F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
