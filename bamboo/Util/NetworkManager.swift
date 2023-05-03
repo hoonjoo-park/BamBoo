@@ -2,6 +2,7 @@ import Foundation
 import Alamofire
 import RxAlamofire
 import RxSwift
+import RxCocoa
 
 struct OAuthResponse: Codable {
     let token: String
@@ -21,14 +22,14 @@ class NetworkManager {
         
         AF.request(urlString, method: .post, parameters: params, encoding: JSONEncoding.default)
             .validate()
-            .response { response in
+            .response { [weak self] response in
                 switch response.result {
                 case .success(let value):
                     if let data = value {
-                        let decoder = JSONDecoder()
                         do {
-                            let oauthResponse = try decoder.decode(OAuthResponse.self, from: data)
-                            completion(oauthResponse.token)
+                            if let oauthResponse = try self?.decoder.decode(OAuthResponse.self, from: data) {
+                                completion(oauthResponse.token)
+                            }
                         } catch {
                             print("OAuth Error: Decoding failed: \(error)")
                             completion(nil)
@@ -65,5 +66,38 @@ class NetworkManager {
                     throw NSError(domain: "Failed to fetch user", code: response.statusCode, userInfo: nil)
                 }
             }
+    }
+    
+    
+    func putUser(profileImage: Data, username: String) {
+        let urlString = "\(baseUrl)/user/me"
+        let token = UserDefaults.standard.getToken()
+        
+        guard let token = token else { return }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)"
+        ]
+        
+        AF.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(profileImage, withName: "profileImage", fileName: "image.jpg", mimeType: "image/*")
+            if let data = username.data(using: .utf8) {
+                multipartFormData.append(data, withName: "username")
+            }
+        }, to: urlString, method: .put, headers: headers)
+        .response { response in
+            switch response.result {
+            case .success(let value):
+                print("Success: \(value)")
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    
+    
+    func deleteUser(userId: Int) {
+        print(userId)
     }
 }

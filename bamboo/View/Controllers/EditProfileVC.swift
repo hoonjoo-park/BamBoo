@@ -91,6 +91,8 @@ class EditProfileVC: UIViewController {
         saveButton.backgroundColor = BambooColors.green
         saveButton.layer.cornerRadius = 8
         
+        saveButton.addTarget(self, action: #selector(handleSaveButtonTapped), for: .touchUpInside)
+        
         profileImageTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.leading.equalToSuperview().inset(25)
@@ -162,7 +164,8 @@ class EditProfileVC: UIViewController {
             break
         }
     }
-
+    
+    
     private func presentImagePickerController() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -171,6 +174,7 @@ class EditProfileVC: UIViewController {
         present(imagePickerController, animated: true, completion: nil)
     }
     
+    
     private func presentPhotoLibraryDeniedAlert(message: String) {
         let alert = UIAlertController(title: "사진첩 접근 불가", message: message, preferredStyle: .alert)
         
@@ -178,15 +182,40 @@ class EditProfileVC: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    
+    
+    @objc private func handleSaveButtonTapped() {
+        let confirm = UIAlertController(title: "저장하시겠습니까?", message: "확인 버튼을 누르시면 변경 사항이 저장됩니다.", preferredStyle: .alert)
+        
+        confirm.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] action in
+            guard let username = self?.usernameInput.text,
+                  let image = self?.profileImageView.image,
+                  let imageData = image.jpegData(compressionQuality: 1.0) else { return }
+            
+            NetworkManager.shared.putUser(profileImage: imageData, username: username)
+        })
+        
+        confirm.addAction(UIAlertAction(title: "취소", style: .destructive))
+        
+        present(confirm, animated: true)
+    }
 }
 
 
 extension EditProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let editedImage = info[.editedImage] as? UIImage {
+            profileImageView.image = editedImage
+        } else if let originalImage = info[.originalImage] as? UIImage {
+            profileImageView.image = originalImage
+        }
+        
         dismiss(animated: true, completion: nil)
     }
     
     
-    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
 }

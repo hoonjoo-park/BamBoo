@@ -149,6 +149,7 @@ extension MyPageVC: UITableViewDelegate, UITableViewDataSource {
             break
         case 1:
             let alert = UIAlertController(title: "로그아웃", message: "로그아웃 하시겠습니까?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "취소", style: .destructive))
             alert.addAction(UIAlertAction(title: "확인", style: .default) { action in
                 UserDefaults.standard.removeToken()
                 
@@ -160,7 +161,6 @@ extension MyPageVC: UITableViewDelegate, UITableViewDataSource {
                     UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
                 }
             })
-            alert.addAction(UIAlertAction(title: "취소", style: .destructive))
             
             self.present(alert, animated: true, completion: nil)
             break
