@@ -69,7 +69,7 @@ class NetworkManager {
     }
     
     
-    func putUser(profileImage: Data, username: String) {
+    func putUser(profileImage: Data, username: String, completion: @escaping (UserProfile?) -> Void) {
         let urlString = "\(baseUrl)/user/me"
         let token = UserDefaults.standard.getToken()
         
@@ -80,17 +80,27 @@ class NetworkManager {
         ]
         
         AF.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(profileImage, withName: "profileImage", fileName: "image.jpg", mimeType: "image/*")
+            multipartFormData.append(profileImage, withName: "profileImage", fileName: "profile-image.jpg", mimeType: "image/*")
             if let data = username.data(using: .utf8) {
                 multipartFormData.append(data, withName: "username")
             }
         }, to: urlString, method: .put, headers: headers)
-        .response { response in
+        .response { [weak self] response in
             switch response.result {
             case .success(let value):
-                print("Success: \(value)")
+                if let data = value {
+                    do {
+                        if let profile = try self?.decoder.decode(UserProfile.self, from: data) {
+                            completion(profile)
+                        }
+                    } catch {
+                        print("Put User Error: Decoding failed: \(error)")
+                        completion(nil)
+                    }
+                }
             case .failure(let error):
                 print("Error: \(error)")
+                completion(nil)
             }
         }
     }

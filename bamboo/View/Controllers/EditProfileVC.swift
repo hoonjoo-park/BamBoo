@@ -192,7 +192,12 @@ class EditProfileVC: UIViewController {
                   let image = self?.profileImageView.image,
                   let imageData = image.jpegData(compressionQuality: 1.0) else { return }
             
-            NetworkManager.shared.putUser(profileImage: imageData, username: username)
+            NetworkManager.shared.putUser(profileImage: imageData, username: username) { profile in
+                guard let profile = profile else { return }
+                
+                self?.userVM.updateProfile(profile)
+                self?.navigationController?.popViewController(animated: true)
+            }
         })
         
         confirm.addAction(UIAlertAction(title: "취소", style: .destructive))
