@@ -7,6 +7,8 @@ class WritePostVC: UIViewController {
     let arrowDownIcon = UIImageView(image: UIImage(systemName: "chevron.down"))
     let titleInput = UITextField()
     let contentInput = UITextView()
+    let titleInputPlaceHolder = "제목을 입력해 주세요"
+    let contentInputPlaceholderText = "본문 내용을 입력해 주세요"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +53,7 @@ class WritePostVC: UIViewController {
         titleInput.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         contentInput.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         titleInput.textColor = BambooColors.white
-        titleInput.attributedPlaceholder = NSAttributedString(string: "제목을 입력해 주세요",
+        titleInput.attributedPlaceholder = NSAttributedString(string: titleInputPlaceHolder,
                                                               attributes: [NSAttributedString.Key.foregroundColor: BambooColors.gray])
         contentInput.textColor = BambooColors.white
         contentInput.backgroundColor = .clear
@@ -97,14 +99,29 @@ class WritePostVC: UIViewController {
     
     
     private func configureContentInput() {
-        contentInput.text = "본문 내용을 입력해 주세요"
+        contentInput.text = contentInputPlaceholderText
         contentInput.textColor = BambooColors.gray
     }
     
     
     @objc func closeButtonTapped() {
-        dismiss(animated: true, completion: nil)
+        let isTitleEmpty = titleInput.text?.isEmpty ?? true || titleInput.text == titleInputPlaceHolder
+        let isContentEmpty = contentInput.text.isEmpty || contentInput.text == contentInputPlaceholderText
+        
+        if isTitleEmpty && isContentEmpty {
+            dismiss(animated: true, completion: nil)
+        } else {
+            let confirm = UIAlertController(title: "입력 내용이 사라집니다", message: "정말 페이지에서 나가시겠습니까?", preferredStyle: .alert)
+            
+            confirm.addAction(UIAlertAction(title: "나가기", style: .destructive) { [weak self] action in
+                self?.dismiss(animated: true, completion: nil)
+            })
+            confirm.addAction(UIAlertAction(title: "취소", style: .cancel))
+            
+            present(confirm, animated: true, completion: nil)
+        }
     }
+    
     
     
     @objc func postButtonTapped() {
@@ -115,15 +132,16 @@ class WritePostVC: UIViewController {
 
 extension WritePostVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "본문 내용을 입력해 주세요" {
+        if textView.text == contentInputPlaceholderText {
             textView.text = ""
             textView.textColor = BambooColors.white
         }
     }
-
+    
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "본문 내용을 입력해 주세요"
+            textView.text = contentInputPlaceholderText
             textView.textColor = BambooColors.gray
         }
     }
