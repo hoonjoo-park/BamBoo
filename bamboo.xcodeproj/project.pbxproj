@@ -23,6 +23,7 @@
 		CB52566429F6DA270018E604 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB52566329F6DA270018E604 /* LoginVC.swift */; };
 		CB586FA12A04FC3000827590 /* UnregisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB586FA02A04FC3000827590 /* UnregisterVC.swift */; };
 		CB586FA32A0512A000827590 /* PressableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB586FA22A0512A000827590 /* PressableButton.swift */; };
+		CB586FA62A05146F00827590 /* PressableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB586FA52A05146F00827590 /* PressableTableViewCell.swift */; };
 		CB87F49029FE48730025B67A /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */; };
 		CB87F49229FE66A00025B67A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB87F49129FE66A00025B67A /* NetworkManager.swift */; };
 		CB87F49629FE6A050025B67A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB87F49529FE6A050025B67A /* User.swift */; };
@@ -81,6 +82,7 @@
 		CB52566329F6DA270018E604 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		CB586FA02A04FC3000827590 /* UnregisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnregisterVC.swift; sourceTree = "<group>"; };
 		CB586FA22A0512A000827590 /* PressableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressableButton.swift; sourceTree = "<group>"; };
+		CB586FA52A05146F00827590 /* PressableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressableTableViewCell.swift; sourceTree = "<group>"; };
 		CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
 		CB87F49129FE66A00025B67A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CB87F49529FE6A050025B67A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -179,9 +181,9 @@
 			isa = PBXGroup;
 			children = (
 				CB2FA94B29F5B8260009F39F /* Buttons */,
+				CB586FA42A05144800827590 /* Cells */,
 				CB2FA94829F5B7660009F39F /* Labels */,
 				CB2FA93D29F550990009F39F /* Controllers */,
-				CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -220,6 +222,15 @@
 				CBA1C06129F818530098723E /* AppleAuthButton.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		CB586FA42A05144800827590 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */,
+				CB586FA52A05146F00827590 /* PressableTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		CB87F49329FE69DC0025B67A /* Model */ = {
@@ -553,6 +564,7 @@
 				CB2FA94129F554690009F39F /* WritePostVC.swift in Sources */,
 				CB2FA93B29F54B870009F39F /* UIColor+Ext.swift in Sources */,
 				CB2FA93F29F5544B0009F39F /* HomeVC.swift in Sources */,
+				CB586FA62A05146F00827590 /* PressableTableViewCell.swift in Sources */,
 				CB87F49629FE6A050025B67A /* User.swift in Sources */,
 				CB87F49A29FFCEB00025B67A /* EditProfileVC.swift in Sources */,
 				CB87F49029FE48730025B67A /* MyPageTableViewCell.swift in Sources */,

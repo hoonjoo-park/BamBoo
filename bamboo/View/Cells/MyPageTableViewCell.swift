@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class MyPageTableViewCell: UITableViewCell {
+class MyPageTableViewCell: PressableTableViewCell {
     static let reuseId = "myPageCell"
     let titleLabel = BambooLabel(fontSize: 16, weight: .medium, color: BambooColors.white)
     var listIcon = UIImageView()
@@ -53,7 +53,8 @@ class MyPageTableViewCell: UITableViewCell {
     private func configureUI() {
         let padding: CGFloat = 25
         
-        backgroundColor = BambooColors.black
+        selectionStyle = .none
+        backgroundColor = .clear
         listIcon.tintColor = BambooColors.white
         
         [listIcon, titleLabel].forEach {
