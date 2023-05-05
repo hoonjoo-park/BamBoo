@@ -21,6 +21,7 @@
 		CB2FA94D29F5B8350009F39F /* LabelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA94C29F5B8350009F39F /* LabelButton.swift */; };
 		CB52566229F6D8550018E604 /* UserDefaults+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB52566129F6D8550018E604 /* UserDefaults+Ext.swift */; };
 		CB52566429F6DA270018E604 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB52566329F6DA270018E604 /* LoginVC.swift */; };
+		CB586FA12A04FC3000827590 /* UnregisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB586FA02A04FC3000827590 /* UnregisterVC.swift */; };
 		CB87F49029FE48730025B67A /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */; };
 		CB87F49229FE66A00025B67A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB87F49129FE66A00025B67A /* NetworkManager.swift */; };
 		CB87F49629FE6A050025B67A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB87F49529FE6A050025B67A /* User.swift */; };
@@ -77,6 +78,7 @@
 		CB2FA94C29F5B8350009F39F /* LabelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelButton.swift; sourceTree = "<group>"; };
 		CB52566129F6D8550018E604 /* UserDefaults+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Ext.swift"; sourceTree = "<group>"; };
 		CB52566329F6DA270018E604 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		CB586FA02A04FC3000827590 /* UnregisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnregisterVC.swift; sourceTree = "<group>"; };
 		CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
 		CB87F49129FE66A00025B67A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CB87F49529FE6A050025B67A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				CB2FA94629F5B7170009F39F /* OnboardingVC.swift */,
 				CB52566329F6DA270018E604 /* LoginVC.swift */,
 				CB87F49929FFCEB00025B67A /* EditProfileVC.swift */,
+				CB586FA02A04FC3000827590 /* UnregisterVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				CBA1C05E29F817E50098723E /* KakaoAuthButton.swift in Sources */,
 				CB2FA94729F5B7170009F39F /* OnboardingVC.swift in Sources */,
 				CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */,
+				CB586FA12A04FC3000827590 /* UnregisterVC.swift in Sources */,
 				CB2FA94129F554690009F39F /* WritePostVC.swift in Sources */,
 				CB2FA93B29F54B870009F39F /* UIColor+Ext.swift in Sources */,
 				CB2FA93F29F5544B0009F39F /* HomeVC.swift in Sources */,

@@ -141,6 +141,7 @@ class EditProfileVC: UIViewController {
         }).disposed(by: disposeBag)
     }
     
+    
     @objc private func handleProfileImageTapped() {
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
         

@@ -9,4 +9,5 @@ enum BambooColors {
     static let gray = UIColor(r: 138, g: 138, b: 140, a: 1)
     static let darkGray = UIColor(r: 90, g: 90, b: 90, a: 1)
     static let kakaoYello = UIColor(r: 254, g: 225, b: 2, a: 1)
+    static let pink = UIColor(r: 242, g: 78, b: 117, a: 1)
 }
