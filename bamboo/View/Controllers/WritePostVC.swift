@@ -6,12 +6,13 @@ class WritePostVC: UIViewController {
     let locationButtonPlaceHolder = BambooLabel(fontSize: 16, weight: .semibold, color: BambooColors.white)
     let arrowDownIcon = UIImageView(image: UIImage(systemName: "chevron.down"))
     let titleInput = UITextField()
-    let contentInput = UITextField()
-
+    let contentInput = UITextView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
         configureUI()
+        configureContentInput()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,7 +36,9 @@ class WritePostVC: UIViewController {
         let backButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(closeButtonTapped))
         let postButton = UIBarButtonItem(title: "등록", style: .plain, target: self, action: #selector(postButtonTapped))
         
+        contentInput.delegate = self
         view.backgroundColor = BambooColors.black
+        backButton.tintColor = BambooColors.gray
         postButton.tintColor = BambooColors.green
         navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = postButton
@@ -43,11 +46,17 @@ class WritePostVC: UIViewController {
     
     
     private func configureUI() {
-        titleInput.placeholder = "제목을 입력해 주세요"
-        contentInput.placeholder = "본문 내용을 입력해 주세요"
         locationButtonPlaceHolder.text = "위치를 선택해 주세요"
         arrowDownIcon.tintColor = BambooColors.gray
-        
+        titleInput.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        contentInput.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        titleInput.textColor = BambooColors.white
+        titleInput.attributedPlaceholder = NSAttributedString(string: "제목을 입력해 주세요",
+                                                              attributes: [NSAttributedString.Key.foregroundColor: BambooColors.gray])
+        contentInput.textColor = BambooColors.white
+        contentInput.backgroundColor = .clear
+        contentInput.isScrollEnabled = true
+        contentInput.showsVerticalScrollIndicator = true
         
         [locationButton, titleInput, contentInput].forEach {
             view.addSubview($0)
@@ -76,12 +85,20 @@ class WritePostVC: UIViewController {
         titleInput.snp.makeConstraints { make in
             make.top.equalTo(locationButton.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(15)
+            make.height.equalTo(20)
         }
         
         contentInput.snp.makeConstraints { make in
             make.top.equalTo(titleInput.snp.bottom).offset(30)
-            make.horizontalEdges.equalToSuperview().inset(15)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.horizontalEdges.equalToSuperview().inset(10)
         }
+    }
+    
+    
+    private func configureContentInput() {
+        contentInput.text = "본문 내용을 입력해 주세요"
+        contentInput.textColor = BambooColors.gray
     }
     
     
@@ -92,5 +109,22 @@ class WritePostVC: UIViewController {
     
     @objc func postButtonTapped() {
         print("post button tapped!")
+    }
+}
+
+
+extension WritePostVC: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "본문 내용을 입력해 주세요" {
+            textView.text = ""
+            textView.textColor = BambooColors.white
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "본문 내용을 입력해 주세요"
+            textView.textColor = BambooColors.gray
+        }
     }
 }
