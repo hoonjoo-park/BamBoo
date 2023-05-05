@@ -16,17 +16,12 @@ class RootTabBarController: UITabBarController {
                 print("[Fetch User Error], \(error)")
             }).disposed(by: disposeBag)
         
+        delegate = self
         UITabBar.appearance().tintColor = BambooColors.white
         UITabBar.appearance().unselectedItemTintColor = BambooColors.gray
         UITabBar.appearance().backgroundColor = BambooColors.navy
         
-        viewControllers = [createHomeVC(), createWritePostVC(), createMyPageVC()]
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
+        viewControllers = [createHomeVC(), createDummySecondVC(), createMyPageVC()]
     }
     
     
@@ -41,15 +36,15 @@ class RootTabBarController: UITabBarController {
     }
     
     
-    private func createWritePostVC() -> UINavigationController {
-        let writePostVC = WritePostVC()
+    private func createDummySecondVC() -> UIViewController {
+        let dummyVC = UIViewController()
         let tabBarImage: UIImage!
-
-        tabBarImage = UIImage(systemName: "plus.circle")?.withTintColor(BambooColors.green, renderingMode: .alwaysOriginal)
-                                                        .withBaselineOffset(fromBottom: 15)
-        writePostVC.tabBarItem = UITabBarItem(title: "", image: tabBarImage, tag: 1)
         
-        return UINavigationController(rootViewController: writePostVC)
+        tabBarImage = UIImage(systemName: "plus.circle")?.withTintColor(BambooColors.green, renderingMode: .alwaysOriginal)
+            .withBaselineOffset(fromBottom: 15)
+        dummyVC.tabBarItem = UITabBarItem(title: "", image: tabBarImage, tag: 1)
+        
+        return dummyVC
     }
     
     
@@ -62,5 +57,26 @@ class RootTabBarController: UITabBarController {
         
         return UINavigationController(rootViewController: myPageVC)
     }
+    
+    
+    private func presentWritePostVC() {
+        let writePostVC = WritePostVC()
+        let navigationController = UINavigationController(rootViewController: writePostVC)
+        
+        navigationController.modalPresentationStyle = .fullScreen
+        navigationController.modalTransitionStyle = .coverVertical
+        
+        present(navigationController, animated: true, completion: nil)
+    }
 }
 
+
+extension RootTabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if viewController == viewControllers?[1] {
+            presentWritePostVC()
+            return false
+        }
+        return true
+    }
+}
