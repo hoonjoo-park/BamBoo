@@ -50,10 +50,7 @@ class EditProfileVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let borderBottom = CALayer()
-        borderBottom.frame = CGRect(x: 0, y: usernameInput.frame.size.height, width: usernameInput.frame.size.width, height: 1)
-        borderBottom.backgroundColor = BambooColors.darkGray.cgColor
-        usernameInput.layer.addSublayer(borderBottom)
+        makeborderBottom(superView: usernameInput, height: 1, color: BambooColors.darkGray.cgColor)
     }
     
     

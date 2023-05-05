@@ -11,3 +11,11 @@ enum BambooColors {
     static let kakaoYello = UIColor(r: 254, g: 225, b: 2, a: 1)
     static let pink = UIColor(r: 242, g: 78, b: 117, a: 1)
 }
+
+
+func makeborderBottom(superView: UIView, height: CGFloat, color: CGColor) {
+    let borderBottom = CALayer()
+    borderBottom.frame = CGRect(x: 0, y: superView.frame.size.height, width: superView.frame.size.width, height: height)
+    borderBottom.backgroundColor = color
+    superView.layer.addSublayer(borderBottom)
+}
