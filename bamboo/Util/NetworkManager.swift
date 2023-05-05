@@ -99,7 +99,7 @@ class NetworkManager {
                     }
                 }
             case .failure(let error):
-                print("Error: \(error)")
+                print("Put User Error: \(error)")
                 completion(nil)
             }
         }
@@ -107,7 +107,25 @@ class NetworkManager {
     
     
     
-    func deleteUser(userId: Int) {
-        print(userId)
+    func deleteUser(completion: @escaping () -> Void) {
+        let urlString = "\(baseUrl)/user/me"
+        let token = UserDefaults.standard.getToken()
+        
+        guard let token = token else { return }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)"
+        ]
+        
+        _ = AF.request(urlString, method: .delete, headers: headers).response { response in
+            switch response.result {
+            case .success(_):
+                completion()
+                break
+            case .failure(let error):
+                print("Delete User Error: \(error)")
+                break
+            }
+        }
     }
 }

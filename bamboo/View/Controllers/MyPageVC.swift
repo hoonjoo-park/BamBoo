@@ -153,14 +153,6 @@ extension MyPageVC: UITableViewDelegate, UITableViewDataSource {
             alert.addAction(UIAlertAction(title: "취소", style: .destructive))
             alert.addAction(UIAlertAction(title: "확인", style: .default) { action in
                 UserDefaults.standard.removeToken()
-                
-                let onboardingVC = OnboardingVC()
-                if let window = UIApplication.shared.windows.first {
-                    window.rootViewController = onboardingVC
-                    window.makeKeyAndVisible()
-                    
-                    UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
-                }
             })
             
             self.present(alert, animated: true, completion: nil)

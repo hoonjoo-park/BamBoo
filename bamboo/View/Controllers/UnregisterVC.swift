@@ -92,7 +92,7 @@ class UnregisterVC: UIViewController {
         let alert = UIAlertController(title: "회원 탈퇴", message: "정말 탈퇴하시겠습니까?", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "확인", style: .destructive) { [weak self] action in
-            // TODO: 회원 탈퇴 로직 구현 필요
+            self?.unregisterUser()
         })
         
         alert.addAction(UIAlertAction(title: "취소", style: .cancel))
@@ -102,6 +102,8 @@ class UnregisterVC: UIViewController {
     
     
     private func unregisterUser() {
-        
+        NetworkManager.shared.deleteUser {
+            UserDefaults.standard.removeToken()
+        }
     }
 }
