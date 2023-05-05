@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class LabelButton: UIButton {
+class LabelButton: PressableButton {
     var buttonLabel = BambooLabel(fontSize: 14, weight: .bold, color: BambooColors.white)
     
     override init(frame: CGRect) {
