@@ -146,7 +146,8 @@ extension MyPageVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            // TODO: 채팅 스크린으로의 이동 로직 구현 필요
+            let chatVC = ChatVC(userVM: self.userVM)
+            navigationController?.pushViewController(chatVC, animated: true)
             break
         case 1:
             let alert = UIAlertController(title: "로그아웃", message: "로그아웃 하시겠습니까?", preferredStyle: .alert)
@@ -159,7 +160,6 @@ extension MyPageVC: UITableViewDelegate, UITableViewDataSource {
             break
         case 2:
             let unregisterVC = UnregisterVC(userVM: userVM)
-            
             self.navigationController?.pushViewController(unregisterVC, animated: true)
             break
         default:

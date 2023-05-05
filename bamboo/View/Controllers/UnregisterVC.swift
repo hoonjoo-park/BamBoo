@@ -38,12 +38,6 @@ class UnregisterVC: UIViewController {
     }
     
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.isNavigationBarHidden = true
-    }
-    
-    
     private func configureViewController() {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         

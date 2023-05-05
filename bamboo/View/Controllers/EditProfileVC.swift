@@ -47,12 +47,6 @@ class EditProfileVC: UIViewController {
     }
     
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.isNavigationBarHidden = true
-    }
-    
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         

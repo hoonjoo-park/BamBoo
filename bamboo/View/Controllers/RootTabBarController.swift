@@ -24,6 +24,12 @@ class RootTabBarController: UITabBarController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    
     private func createHomeVC() -> UINavigationController {
         let homeVC = HomeVC()
         let tabBarImage: UIImage!
