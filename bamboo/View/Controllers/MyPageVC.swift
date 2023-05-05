@@ -38,6 +38,12 @@ class MyPageVC: UIViewController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    
     private func configureViewController() {
         view.backgroundColor = BambooColors.black
         navigationController?.isNavigationBarHidden = true
@@ -170,7 +176,6 @@ extension MyPageVC: UITableViewDelegate, UITableViewDataSource {
     
     @objc private func handleTapEditButton() {
         let editProfileVC = EditProfileVC(userVM: userVM)
-        editProfileVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(editProfileVC, animated: true)
     }
 }

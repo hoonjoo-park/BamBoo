@@ -128,6 +128,8 @@ class EditProfileVC: UIViewController {
                 if let profileImage = user.profile.profileImage,
                    let profileImageUrl = URL(string: profileImage) {
                     self?.profileImageView.kf.setImage(with: profileImageUrl)
+                } else {
+                    self?.profileImageView.image = UIImage(named: "panda")
                 }
                 
                 self?.usernameInput.text = user.profile.username
