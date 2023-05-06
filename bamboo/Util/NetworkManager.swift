@@ -31,14 +31,14 @@ class NetworkManager {
                                 completion(oauthResponse.token)
                             }
                         } catch {
-                            print("OAuth Error: Decoding failed: \(error)")
+                            print("OAuth Error: Decoding failed: \(error.localizedDescription)")
                             completion(nil)
                         }
                     } else {
                         completion(nil)
                     }
                 case .failure(let error):
-                    print("OAuth Error:", error)
+                    print("OAuth Error:", error.localizedDescription)
                     completion(nil)
                 }
             }
@@ -94,12 +94,12 @@ class NetworkManager {
                             completion(profile)
                         }
                     } catch {
-                        print("Put User Error: Decoding failed: \(error)")
+                        print("Put User Error: Decoding failed: \(error.localizedDescription)")
                         completion(nil)
                     }
                 }
             case .failure(let error):
-                print("Put User Error: \(error)")
+                print("Put User Error: \(error.localizedDescription)")
                 completion(nil)
             }
         }
@@ -127,5 +127,41 @@ class NetworkManager {
                 break
             }
         }
+    }
+    
+    
+    func postArticle(locationId: Int, title: String, content: String , completion: @escaping (Article?) -> Void) {
+        let urlString = "\(baseUrl)/post"
+        let token = UserDefaults.standard.getToken()
+        
+        guard let token = token else { return }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)"
+        ]
+        let params: [String: String] = [
+            "locationId": "\(locationId)",
+            "title" : title,
+            "content" : content,
+        ]
+        
+        AF.request(urlString, method: .post, parameters: params, headers: headers)
+            .validate()
+            .response { [weak self] response in
+                switch response.result {
+                case .success(let value):
+                    if let data = value {
+                        do {
+                            let decodedData = try? self?.decoder.decode(Article.self, from: data)
+                            completion(decodedData)
+                        }
+                    }
+                    break
+                case .failure(let error):
+                    print("Add Post Error:", error.localizedDescription)
+                    break
+                }
+            }
+        
     }
 }

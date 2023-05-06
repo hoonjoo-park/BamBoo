@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class WritePostVC: UIViewController {
+class WriteArticleVC: UIViewController {
     let locationButton = PressableButton()
     let locationButtonPlaceHolder = BambooLabel(fontSize: 16, weight: .semibold, color: BambooColors.white)
     let arrowDownIcon = UIImageView(image: UIImage(systemName: "chevron.down"))
@@ -130,7 +130,7 @@ class WritePostVC: UIViewController {
 }
 
 
-extension WritePostVC: UITextViewDelegate {
+extension WriteArticleVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == contentInputPlaceholderText {
             textView.text = ""

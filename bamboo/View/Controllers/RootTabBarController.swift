@@ -59,9 +59,9 @@ class RootTabBarController: UITabBarController {
     }
     
     
-    private func presentWritePostVC() {
-        let writePostVC = WritePostVC()
-        let navigationController = UINavigationController(rootViewController: writePostVC)
+    private func presentWriteArticleVC() {
+        let writeArticleVC = WriteArticleVC()
+        let navigationController = UINavigationController(rootViewController: writeArticleVC)
         
         navigationController.modalPresentationStyle = .fullScreen
         navigationController.modalTransitionStyle = .coverVertical
@@ -74,7 +74,7 @@ class RootTabBarController: UITabBarController {
 extension RootTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController == viewControllers?[1] {
-            presentWritePostVC()
+            presentWriteArticleVC()
             return false
         }
         return true
