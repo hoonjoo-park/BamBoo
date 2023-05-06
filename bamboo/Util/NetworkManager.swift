@@ -130,7 +130,7 @@ class NetworkManager {
     }
     
     
-    func postArticle(locationId: Int, title: String, content: String , completion: @escaping (Article?) -> Void) {
+    func postArticle(cityId: Int, districtId: Int?, title: String, content: String , completion: @escaping (Article?) -> Void) {
         let urlString = "\(baseUrl)/post"
         let token = UserDefaults.standard.getToken()
         
@@ -139,11 +139,15 @@ class NetworkManager {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(token)"
         ]
-        let params: [String: String] = [
-            "locationId": "\(locationId)",
+        var params: [String: Any] = [
+            "cityId": cityId,
             "title" : title,
             "content" : content,
         ]
+        
+        if let districtId = districtId {
+            params["districtId"] = districtId
+        }
         
         AF.request(urlString, method: .post, parameters: params, headers: headers)
             .validate()
@@ -158,7 +162,7 @@ class NetworkManager {
                     }
                     break
                 case .failure(let error):
-                    print("Add Post Error:", error.localizedDescription)
+                    print("Post Article Error:", error.localizedDescription)
                     break
                 }
             }
