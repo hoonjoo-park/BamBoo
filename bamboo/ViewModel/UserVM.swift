@@ -1,6 +1,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 class UserViewModel {
     private let userSubject = BehaviorSubject<User?>(value: nil)
@@ -14,7 +15,9 @@ class UserViewModel {
     
     
     func updateProfile(_ profile: UserProfile) {
-        guard let currentUser = try? userSubject.value() else { return }
+        guard let currentUser = try? userSubject.value(), let profileImage = profile.profileImage else { return }
+        
+        KingfisherManager.shared.cache.removeImage(forKey: profileImage)
         
         let updatedUser = User(
             id: currentUser.id,
@@ -23,10 +26,10 @@ class UserViewModel {
             createdAt: currentUser.createdAt,
             profile: UserProfile(
                 username: profile.username,
-                profileImage: profile.profileImage
+                profileImage: profileImage
             )
         )
         
-        userSubject.onNext(updatedUser)
+        updateUser(updatedUser)
     }
 }

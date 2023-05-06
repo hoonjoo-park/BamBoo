@@ -116,7 +116,7 @@ class MyPageVC: UIViewController {
     
     private func bindUserVM() {
         userVM.user
-            .subscribe(onNext: {  [weak self] user in
+            .subscribe(onNext: { [weak self] user in
                 if let user = user {
                     if let profileImage = user.profile.profileImage,
                        let profileImageUrl = URL(string: profileImage) {
