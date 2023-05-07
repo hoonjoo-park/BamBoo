@@ -125,7 +125,17 @@ class WriteArticleVC: UIViewController {
     
     
     @objc func postButtonTapped() {
-        print("post button tapped!")
+        let cityId = 1
+        let districtId = 1
+        
+        guard let title = titleInput.text, let content = contentInput.text else {
+            // TODO: 토스트 메시지로 위치, 제목, 본문 내용 등의 내용 입력이 필수임을 알리는 로직 구현 필요
+            return
+        }
+        
+        NetworkManager.shared.postArticle(cityId: cityId, districtId: districtId, title: title, content: content) { [weak self] article in
+            // TODO: ArticleVM 업데이트 로직 구현 필요
+        }
     }
 }
 
