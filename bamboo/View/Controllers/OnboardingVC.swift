@@ -54,7 +54,7 @@ class OnboardingVC: UIViewController {
     
     
     @objc func openLoginBottomSheet() {
-        let loginVC = LoginVC()
+        let loginVC = LoginVC(title:"로그인", height: nil)
         loginVC.modalPresentationStyle = .overCurrentContext
         
         present(loginVC, animated: false)

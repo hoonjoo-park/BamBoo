@@ -68,6 +68,7 @@ class WriteArticleVC: UIViewController {
             locationButton.addSubview($0)
         }
         
+        locationButton.addTarget(self, action: #selector(handleTapLoactionButton), for: .touchUpInside)
         locationButton.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide)
@@ -122,6 +123,11 @@ class WriteArticleVC: UIViewController {
         }
     }
     
+    
+    @objc func handleTapLoactionButton() {
+        let locationVC = LocationVC(fromVC: "WriteArticleVC")
+        locationVC.modalPresentationStyle = .overCurrentContext
+    }
     
     
     @objc func postButtonTapped() {

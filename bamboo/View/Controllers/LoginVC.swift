@@ -3,34 +3,7 @@ import GoogleSignIn
 import FirebaseCore
 import FirebaseAuth
 
-class LoginVC: UIViewController {
-    let maxBackdropAlpha = 0.6
-    let defaultHeight: CGFloat = 315
-    var containerViewHeightConstraint: NSLayoutConstraint?
-    var containerViewBottomConstraint: NSLayoutConstraint?
-    
-    lazy var containerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = BambooColors.navy
-        view.layer.cornerRadius = 30
-        view.clipsToBounds = true
-        
-        return view
-    }()
-    
-    lazy var backdropView: UIView = {
-        let view = UIView()
-        view.backgroundColor = BambooColors.black
-        view.alpha = maxBackdropAlpha
-        return view
-    }()
-    
-    lazy var titleLabel: BambooLabel = {
-        let label = BambooLabel(fontSize: 20, weight: .semibold, color: BambooColors.white)
-        label.text = "로그인"
-        return label
-    }()
-    
+class LoginVC: BottomSheetVC {
     let kakaoAuthButton = KakaoAuthButton(fontSize: 14, weight: .medium, color: BambooColors.black, iconName: "kakaoIcon")
     let googleAuthButton = GoogleAuthButton(fontSize: 14, weight: .medium, color: BambooColors.black, iconName: "googleIcon")
     let appleAuthButton = AppleAuthButton(fontSize: 14, weight: .medium, color: BambooColors.white, iconName: "appleIcon")
@@ -43,14 +16,6 @@ class LoginVC: UIViewController {
         kakaoAuthButton.delegate = self
         appleAuthButton.delegate = self
         configureUI()
-        configureGestureHandler()
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        animatePresentContainer()
-        animatePresentBackdropView()
     }
     
     
@@ -92,62 +57,6 @@ class LoginVC: UIViewController {
             $0.top.equalTo(containerView.snp.top).offset(40)
             $0.centerX.equalToSuperview()
         }
-    }
-    
-    
-    private func configureGestureHandler() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapBackdrop))
-        backdropView.addGestureRecognizer(tapGesture)
-    }
-    
-    
-    private func animatePresentContainer() {
-        UIView.animate(withDuration: 0.3) {
-            self.containerView.snp.updateConstraints {
-                $0.bottom.equalToSuperview().offset(0)
-            }
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    
-    private func animatePresentBackdropView() {
-        backdropView.alpha = 0
-        UIView.animate(withDuration: 0.4) {
-            self.backdropView.alpha = self.maxBackdropAlpha
-        }
-    }
-    
-    
-    private func dismissBottomSheet() {
-        dismissContainerView()
-        dismissBackdropView()
-    }
-    
-    
-    private func dismissContainerView() {
-        UIView.animate(withDuration: 0.3) {
-            self.containerView.snp.updateConstraints {
-                $0.bottom.equalToSuperview().offset(self.defaultHeight)
-            }
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    
-    private func dismissBackdropView() {
-        backdropView.alpha = maxBackdropAlpha
-        
-        UIView.animate(withDuration: 0.4) {
-            self.backdropView.alpha = 0
-        } completion: { _ in
-            self.dismiss(animated: false)
-        }
-    }
-    
-    
-    @objc func handleTapBackdrop() {
-        dismissBottomSheet()
     }
 }
 
