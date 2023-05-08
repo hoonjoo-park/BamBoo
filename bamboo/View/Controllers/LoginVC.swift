@@ -29,34 +29,13 @@ class LoginVC: BottomSheetVC {
     
     
     private func configureUI() {
-        view.backgroundColor = .clear
-        
-        [backdropView, containerView].forEach {
-            view.addSubview($0)
-        }
-        
-        [titleLabel, kakaoAuthButton, googleAuthButton, appleAuthButton].forEach {
+        [kakaoAuthButton, googleAuthButton, appleAuthButton].forEach {
             containerView.addSubview($0)
         }
         
         setAuthButtonConstraints(kakaoAuthButton, titleLabel, 30)
         setAuthButtonConstraints(googleAuthButton, kakaoAuthButton, 17)
         setAuthButtonConstraints(appleAuthButton, googleAuthButton, 17)
-        
-        backdropView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        containerView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(defaultHeight)
-            $0.bottom.equalToSuperview().offset(defaultHeight)
-        }
-        
-        titleLabel.snp.makeConstraints {
-            $0.top.equalTo(containerView.snp.top).offset(40)
-            $0.centerX.equalToSuperview()
-        }
     }
 }
 

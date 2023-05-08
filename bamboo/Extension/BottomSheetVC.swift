@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 class BottomSheetVC: UIViewController {
     let maxBackdropAlpha = 0.6
@@ -42,8 +43,10 @@ class BottomSheetVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureGestureHandler()
         view.backgroundColor = .clear
+        
+        configureUI()
+        configureGestureHandler()
     }
     
     
@@ -51,6 +54,30 @@ class BottomSheetVC: UIViewController {
         super.viewDidAppear(animated)
         animatePresentContainer()
         animatePresentBackdropView()
+    }
+    
+    
+    private func configureUI() {
+        [backdropView, containerView].forEach {
+            view.addSubview($0)
+        }
+        
+        containerView.addSubview(titleLabel)
+        
+        backdropView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        containerView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(defaultHeight)
+            $0.bottom.equalToSuperview().offset(defaultHeight)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(containerView.snp.top).offset(40)
+            $0.centerX.equalToSuperview()
+        }
     }
     
     

@@ -127,6 +127,8 @@ class WriteArticleVC: UIViewController {
     @objc func handleTapLoactionButton() {
         let locationVC = LocationVC(fromVC: "WriteArticleVC")
         locationVC.modalPresentationStyle = .overCurrentContext
+        
+        present(locationVC, animated: false)
     }
     
     

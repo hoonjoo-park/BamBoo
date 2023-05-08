@@ -1,6 +1,6 @@
 import UIKit
 
-class LocationVC: UIViewController {
+class LocationVC: BottomSheetVC {
     var fromVC: String!
 
     override func viewDidLoad() {
@@ -9,17 +9,12 @@ class LocationVC: UIViewController {
     
     
     init(fromVC: String!) {
-        super.init(nibName: nil, bundle: nil)
+        super.init(title: "위치 설정", height: CGFloat(500))
         self.fromVC = fromVC
     }
     
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    private func configureViewController() {
-        view.backgroundColor = BambooColors.black
     }
 }
