@@ -16,6 +16,8 @@ class RootTabBarController: UITabBarController {
                 print("[Fetch User Error], \(error)")
             }).disposed(by: disposeBag)
         
+        LocationVM.shared.fetchLocations()
+        
         delegate = self
         UITabBar.appearance().tintColor = BambooColors.white
         UITabBar.appearance().unselectedItemTintColor = BambooColors.gray

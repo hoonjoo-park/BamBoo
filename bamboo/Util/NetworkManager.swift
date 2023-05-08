@@ -166,6 +166,27 @@ class NetworkManager {
                     break
                 }
             }
+    }
+    
+    
+    func fetchLocations() -> Observable<[City]> {
+        let urlString = "\(baseUrl)/location"
         
+        return RxAlamofire.requestData(.get, urlString)
+            .flatMap { [weak self] (response, data) -> Observable<[City]> in
+                if 200 ..< 300 ~= response.statusCode {
+                    do {
+                        if let cities = try self?.decoder.decode([City].self, from: data) {
+                            return Observable.just(cities)
+                        } else {
+                            return Observable.error(NSError(domain: "Fetch Locations Error", code: -1))
+                        }
+                    } catch {
+                        return Observable.error(error)
+                    }
+                } else {
+                    return Observable.error(NSError(domain: "Fetch Locations Error", code: response.statusCode))
+                }
+            }
     }
 }
