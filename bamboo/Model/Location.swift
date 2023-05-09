@@ -8,6 +8,6 @@ struct City: Codable {
 
 struct District: Codable {
     let id: Int
-    let city: City
+    let cityId: Int
     let name: String
 }
