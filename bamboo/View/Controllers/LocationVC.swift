@@ -3,6 +3,9 @@ import UIKit
 class LocationVC: BottomSheetVC {
     var fromVC: String!
     
+    let cityButton = LocationSelectButton(text: "도시 선택")
+    let districtButton = LocationSelectButton(text: "시/군/구 선택")
+    
     lazy var saveLocationButton: LabelButton = {
         let button = LabelButton(fontSize: 14, weight: .semibold, color: BambooColors.white)
         button.buttonLabel.text = "위치 선택 완료"
@@ -31,15 +34,27 @@ class LocationVC: BottomSheetVC {
     
     
     private func configureSubViews() {
-        [saveLocationButton].forEach {
+        [cityButton, districtButton, saveLocationButton].forEach {
             containerView.addSubview($0)
         }
         
         saveLocationButton.addTarget(self, action: #selector(handleTapSaveLocationButton), for: .touchUpInside)
         saveLocationButton.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(containerView).inset(25)
+            make.horizontalEdges.equalTo(containerView).inset(35)
             make.height.equalTo(45)
             make.bottom.equalTo(containerView.snp.bottom).inset(35)
+        }
+        
+        cityButton.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(containerView).inset(35)
+            make.top.equalTo(titleLabel.snp.bottom).offset(40)
+            make.height.equalTo(45)
+        }
+        
+        districtButton.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(containerView).inset(35)
+            make.top.equalTo(cityButton.snp.bottom).offset(15)
+            make.height.equalTo(45)
         }
     }
     
