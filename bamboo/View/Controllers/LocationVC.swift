@@ -24,7 +24,6 @@ class LocationVC: BottomSheetVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        configureGestureHandler()
         configureSubViews()
         setDataBinding()
     }
@@ -41,20 +40,15 @@ class LocationVC: BottomSheetVC {
     }
     
     
-    private func configureGestureHandler() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapContainerView))
-        tapGestureRecognizer.cancelsTouchesInView = false
-        containerView.addGestureRecognizer(tapGestureRecognizer)
-    }
-    
-    
     private func configureSubViews() {
         [cityButton, districtButton, saveLocationButton, cityTableView, districtTableView].forEach {
             containerView.addSubview($0)
         }
         
         cityTableView.isHidden = true
+        cityTableView.alpha = 0.0
         districtTableView.isHidden = true
+        districtTableView.alpha = 0.0
         
         saveLocationButton.addTarget(self, action: #selector(handleTapSaveLocationButton), for: .touchUpInside)
         saveLocationButton.snp.makeConstraints { make in
@@ -134,22 +128,39 @@ class LocationVC: BottomSheetVC {
     }
     
     
-    @objc private func handleTapContainerView() {
-        cityButton.isTapped = false
-        districtButton.isTapped = false
-        cityTableView.isHidden = true
-    }
-    
-    
     @objc private func handleTapCityButton() {
+        if !districtTableView.isHidden {
+            handleTapDistrictButton()
+        }
+        
         cityButton.isTapped = !cityButton.isTapped
-        cityTableView.isHidden = !cityTableView.isHidden
+        cityTableView.isHidden = false
+
+        UIView.animate(withDuration: 0.2) {
+            self.cityTableView.alpha = self.cityTableView.alpha == 0.0 ? 1.0 : 0.0
+        } completion: { (finished) in
+            if finished {
+                self.cityTableView.isHidden = self.cityTableView.alpha == 0.0
+            }
+        }
     }
     
     
     @objc private func handleTapDistrictButton() {
+        if !cityTableView.isHidden {
+            handleTapCityButton()
+        }
+        
         districtButton.isTapped = !districtButton.isTapped
-        districtTableView.isHidden = !districtTableView.isHidden
+        districtTableView.isHidden = false
+        
+        UIView.animate(withDuration: 0.2) {
+            self.districtTableView.alpha = self.districtTableView.alpha == 0.0 ? 1.0 : 0.0
+        } completion: { (finished) in
+            if finished {
+                self.districtTableView.isHidden = self.districtTableView.alpha == 0.0
+            }
+        }
     }
     
     
