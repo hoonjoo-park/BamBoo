@@ -18,6 +18,7 @@ class LocationVC: BottomSheetVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureGestureHandler()
         configureSubViews()
     }
     
@@ -33,6 +34,12 @@ class LocationVC: BottomSheetVC {
     }
     
     
+    private func configureGestureHandler() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapContainerView))
+        containerView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    
     private func configureSubViews() {
         [cityButton, districtButton, saveLocationButton].forEach {
             containerView.addSubview($0)
@@ -45,12 +52,14 @@ class LocationVC: BottomSheetVC {
             make.bottom.equalTo(containerView.snp.bottom).inset(35)
         }
         
+        cityButton.addTarget(self, action: #selector(handleTapCityButton), for: .touchUpInside)
         cityButton.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(containerView).inset(35)
             make.top.equalTo(titleLabel.snp.bottom).offset(40)
             make.height.equalTo(45)
         }
         
+        districtButton.addTarget(self, action: #selector(handleTapDistrictButton), for: .touchUpInside)
         districtButton.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(containerView).inset(35)
             make.top.equalTo(cityButton.snp.bottom).offset(15)
@@ -59,8 +68,23 @@ class LocationVC: BottomSheetVC {
     }
     
     
+    @objc private func handleTapContainerView() {
+        cityButton.isTapped = false
+        districtButton.isTapped = false
+    }
+    
+    
+    @objc private func handleTapCityButton() {
+        cityButton.isTapped = !cityButton.isTapped
+    }
+    
+    
+    @objc private func handleTapDistrictButton() {
+        districtButton.isTapped = !districtButton.isTapped
+    }
+    
+    
     @objc private func handleTapSaveLocationButton() {
-        // TODO: 선택한 위치 저장 및 ViewModel 업데이트 하는 로직 구현 필요
         print("Save Location Button Tapped!")
     }
 }
