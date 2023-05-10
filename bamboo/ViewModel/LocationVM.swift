@@ -15,6 +15,7 @@ class LocationVM {
     private(set) var locations = BehaviorRelay<[City]>(value: [])
     private(set) var selectedFilterLocation = BehaviorRelay<SelectedLocation?>(value: nil)
     private(set) var selectedArticleLocation = BehaviorRelay<SelectedLocation?>(value: nil)
+    private(set) var districtsBySelectedCity = BehaviorRelay<[District]>(value: [])
     
     
     private init() {}
@@ -36,6 +37,12 @@ class LocationVM {
     
     func updateSelectedArticleLocation(location: SelectedLocation) {
         selectedArticleLocation.accept(location)
+    }
+    
+    
+    func updateDistrictsBySelectedCity(districts: [District]) {
+        let districtsIncludeAll = District(id: -1, cityId: districts[0].cityId, name: "전체")
+        districtsBySelectedCity.accept([districtsIncludeAll] + districts)
     }
     
     

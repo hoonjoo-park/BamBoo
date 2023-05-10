@@ -2,8 +2,7 @@ import UIKit
 import SnapKit
 
 class LocationTableViewCell: PressableTableViewCell {
-    static let reuseId = "locationTableViewCell"
-    
+    let locationVM = LocationVM.shared
     let titleLabel = BambooLabel(fontSize: 12, weight: .semibold, color: BambooColors.white)
     let locationPinIcon = UIImageView(image: UIImage(named: "location-pin"))
     
