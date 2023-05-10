@@ -8,6 +8,7 @@ class PressableButton: UIButton {
         self.addTarget(self, action: #selector(onButtonTouchDown), for: .touchDown)
         self.addTarget(self, action: #selector(onButtonTouchUp), for: .touchUpInside)
         self.addTarget(self, action: #selector(onButtonTouchUp), for: .touchUpOutside)
+        self.addTarget(self, action: #selector(onButtonTouchUp), for: .touchDragExit)
     }
     
     
