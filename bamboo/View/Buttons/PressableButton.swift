@@ -2,6 +2,12 @@ import UIKit
 
 class PressableButton: UIButton {
     
+    override var isEnabled: Bool {
+        didSet {
+            updateOpacity()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -24,5 +30,14 @@ class PressableButton: UIButton {
     
     @objc func onButtonTouchUp() {
         self.alpha = 1.0
+    }
+    
+    
+    private func updateOpacity() {
+        if isEnabled {
+            self.layer.opacity = 1
+        } else {
+            self.layer.opacity = 0.5
+        }
     }
 }

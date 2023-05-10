@@ -1,7 +1,11 @@
 import UIKit
+import RxSwift
+import RxCocoa
 
 class LocationVC: BottomSheetVC {
     var fromVC: String!
+    let disposeBag = DisposeBag()
+    let locationVM = LocationVM.shared
     
     let cityButton = LocationSelectButton(text: "도시 선택")
     let districtButton = LocationSelectButton(text: "시/군/구 선택")
@@ -20,6 +24,7 @@ class LocationVC: BottomSheetVC {
         
         configureGestureHandler()
         configureSubViews()
+        setDataBinding()
     }
     
     
@@ -65,6 +70,14 @@ class LocationVC: BottomSheetVC {
             make.top.equalTo(cityButton.snp.bottom).offset(15)
             make.height.equalTo(45)
         }
+    }
+    
+    
+    private func setDataBinding() {
+        LocationVM.shared.selectedArticleLocation
+            .map { $0 != nil }
+            .bind(to: districtButton.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
     
     
