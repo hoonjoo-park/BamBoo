@@ -4,7 +4,9 @@ import RxCocoa
 
 struct SelectedLocation {
     let cityId: Int
+    let cityName: String
     let districtId: Int?
+    let districtName: String?
 }
 
 class LocationVM {

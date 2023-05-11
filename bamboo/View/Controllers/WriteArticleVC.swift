@@ -127,6 +127,7 @@ class WriteArticleVC: UIViewController {
     @objc func handleTapLoactionButton() {
         let locationVC = LocationVC(fromVC: "WriteArticleVC")
         locationVC.modalPresentationStyle = .overCurrentContext
+        locationVC.delegate = self
         
         present(locationVC, animated: false)
     }
@@ -162,5 +163,11 @@ extension WriteArticleVC: UITextViewDelegate {
             textView.text = contentInputPlaceholderText
             textView.textColor = BambooColors.gray
         }
+    }
+}
+
+extension WriteArticleVC: LocationVCDelegate {
+    func saveSelectedLocation(cityName: String, districtName: String) {
+        locationButtonPlaceHolder.text = "\(cityName), \(districtName)"
     }
 }

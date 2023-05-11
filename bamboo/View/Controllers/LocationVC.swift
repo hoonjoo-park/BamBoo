@@ -2,8 +2,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol LocationVCDelegate: AnyObject {
+    func saveSelectedLocation(cityName: String, districtName: String)
+}
+
 class LocationVC: BottomSheetVC {
     var fromVC: String!
+    var delegate: LocationVCDelegate?
+    
     let disposeBag = DisposeBag()
     let locationVM = LocationVM.shared
     
@@ -50,6 +56,14 @@ class LocationVC: BottomSheetVC {
     private func configureSubViews() {
         [cityButton, districtButton, saveLocationButton, cityTableView, districtTableView].forEach {
             containerView.addSubview($0)
+        }
+        
+        if let currentCityName = locationVM.selectedArticleLocation.value?.cityName {
+            cityButton.placeholder.text = currentCityName
+        }
+        
+        if let currentDistrictName = locationVM.selectedArticleLocation.value?.districtName {
+            districtButton.placeholder.text = currentDistrictName
         }
         
         cityTableView.isHidden = true
@@ -123,7 +137,11 @@ class LocationVC: BottomSheetVC {
                 
                 self?.cityButton.placeholder.text = selectedCity.name
                 self?.districtButton.placeholder.text = "시/군/구 선택"
-                self?.locationVM.updateSelectedArticleLocation(location: SelectedLocation(cityId: selectedCity.id, districtId: nil))
+                self?.locationVM
+                    .updateSelectedArticleLocation(location: SelectedLocation(cityId: selectedCity.id,
+                                                                              cityName: selectedCity.name,
+                                                                              districtId: nil,
+                                                                              districtName: nil))
                 self?.locationVM.updateDistrictsBySelectedCity(districts: selectedCity.districts)
                 self?.handleTapCityButton()
             }).disposed(by: disposeBag)
@@ -131,10 +149,16 @@ class LocationVC: BottomSheetVC {
         
         districtTableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
-                guard let selectedDistrict = self?.locationVM.districtsBySelectedCity.value[indexPath.row] else { return }
+                guard let selectedDistrict = self?.locationVM.districtsBySelectedCity.value[indexPath.row],
+                      let currentLocation = self?.locationVM.selectedArticleLocation.value else { return }
+
                 
                 self?.districtButton.placeholder.text = selectedDistrict.name
-                self?.locationVM.updateSelectedArticleLocation(location: SelectedLocation(cityId: selectedDistrict.id, districtId: selectedDistrict.id))
+                self?.locationVM
+                    .updateSelectedArticleLocation(location: SelectedLocation(cityId: selectedDistrict.cityId,
+                                                                              cityName: currentLocation.cityName,
+                                                                              districtId: selectedDistrict.id,
+                                                                              districtName: selectedDistrict.name))
                 self?.handleTapDistrictButton()
             }).disposed(by: disposeBag)
     }
@@ -177,6 +201,11 @@ class LocationVC: BottomSheetVC {
     
     
     @objc private func handleTapSaveLocationButton() {
-        print("Save Location Button Tapped!")
+        guard let delegate = delegate,
+              let cityName = cityButton.placeholder.text,
+              let districtName = districtButton.placeholder.text else { return }
+        
+        delegate.saveSelectedLocation(cityName: cityName, districtName: districtName)
+        dismissBottomSheet()
     }
 }
