@@ -101,6 +101,11 @@ class LocationVC: BottomSheetVC {
             .bind(to: districtButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
+        LocationVM.shared.selectedArticleLocation
+            .map { $0?.districtId != nil }
+            .bind(to: saveLocationButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
         
         LocationVM.shared.locations
             .bind(to: cityTableView.rx.items(cellIdentifier: "city-cell", cellType: LocationTableViewCell.self)) { (row, location, cell) in
