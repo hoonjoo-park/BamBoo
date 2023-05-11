@@ -29,6 +29,13 @@ class LocationVC: BottomSheetVC {
     }
     
     
+    override func handleTapBackdrop() {
+        super.handleTapBackdrop()
+        
+        locationVM.clearSelectedArticleLocation()
+    }
+    
+    
     init(fromVC: String!) {
         super.init(title: "위치 설정", height: CGFloat(500))
         self.fromVC = fromVC
