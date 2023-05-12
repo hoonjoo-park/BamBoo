@@ -2,6 +2,7 @@ import UIKit
 import SnapKit
 
 class WriteArticleVC: UIViewController {
+    let locationVM = LocationVM.shared
     let locationButton = PressableButton()
     let locationButtonPlaceHolder = BambooLabel(fontSize: 16, weight: .semibold, color: BambooColors.white)
     let arrowDownIcon = UIImageView(image: UIImage(systemName: "chevron.down"))
@@ -137,7 +138,9 @@ class WriteArticleVC: UIViewController {
         let cityId = 1
         let districtId = 1
         
-        guard let title = titleInput.text, let content = contentInput.text else {
+        guard let title = titleInput.text,
+              let content = contentInput.text,
+              let selectedLocation = locationVM.selectedArticleLocation.value else {
             // TODO: 토스트 메시지로 위치, 제목, 본문 내용 등의 내용 입력이 필수임을 알리는 로직 구현 필요
             return
         }
