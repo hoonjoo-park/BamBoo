@@ -153,7 +153,9 @@ class WriteArticleVC: ToastMessageVC {
                                           districtId: selectedDistrictId,
                                           title: title,
                                           content: content) { [weak self] article in
+            guard let article = article else { return }
             // TODO: ArticleVM 업데이트 로직 구현 필요
+            print(article)
         }
     }
 }

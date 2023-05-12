@@ -130,8 +130,8 @@ class NetworkManager {
     }
     
     
-    func postArticle(cityId: Int, districtId: Int?, title: String, content: String , completion: @escaping (Article?) -> Void) {
-        let urlString = "\(baseUrl)/post"
+    func postArticle(cityId: Int, districtId: Int, title: String, content: String , completion: @escaping (Article?) -> Void) {
+        let urlString = "\(baseUrl)/article"
         let token = UserDefaults.standard.getToken()
         
         guard let token = token else { return }
@@ -139,24 +139,21 @@ class NetworkManager {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(token)"
         ]
-        var params: [String: Any] = [
+        let params: [String: Any] = [
             "cityId": cityId,
+            "districtId": districtId,
             "title" : title,
             "content" : content,
         ]
         
-        if let districtId = districtId {
-            params["districtId"] = districtId
-        }
-        
-        AF.request(urlString, method: .post, parameters: params, headers: headers)
+        AF.request(urlString, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .response { [weak self] response in
                 switch response.result {
                 case .success(let value):
                     if let data = value {
                         do {
-                            let decodedData = try? self?.decoder.decode(Article.self, from: data)
+                            let decodedData = try? self?.decoder.decode(Article.self, from: data
                             completion(decodedData)
                         }
                     }
