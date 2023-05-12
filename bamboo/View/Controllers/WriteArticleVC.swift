@@ -146,7 +146,6 @@ class WriteArticleVC: ToastMessageVC {
         
         guard title.count <= 30 else {
             showToastMessage(message: "제목의 최대 글자 수는 30자입니다", type: .warn, dirction: .topDown)
-            // TODO: 제목 최대 글자 수는 30자 제한이라는 토스트 메시지 띄워주기
             return
         }
         
@@ -181,5 +180,6 @@ extension WriteArticleVC: UITextViewDelegate {
 extension WriteArticleVC: LocationVCDelegate {
     func saveSelectedLocation(cityName: String, districtName: String) {
         locationButtonPlaceHolder.text = "\(cityName), \(districtName)"
+        showToastMessage(message: "위치 설정이 완료되었습니다!", type: .success, dirction: .topDown)
     }
 }
