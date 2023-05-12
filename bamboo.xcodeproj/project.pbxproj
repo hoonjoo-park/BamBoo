@@ -32,6 +32,8 @@
 		CB6E524B2A092A01005F602A /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E524A2A092A01005F602A /* LocationVC.swift */; };
 		CB6E524D2A0931BC005F602A /* BottomSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E524C2A0931BC005F602A /* BottomSheetVC.swift */; };
 		CB6E524F2A096BF1005F602A /* LocationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E524E2A096BF1005F602A /* LocationVM.swift */; };
+		CB71C2C12A0E5CFA005AC9E4 /* ToastMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB71C2C02A0E5CFA005AC9E4 /* ToastMessageView.swift */; };
+		CB71C2C32A0E6262005AC9E4 /* ToastMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB71C2C22A0E6262005AC9E4 /* ToastMessageVC.swift */; };
 		CB87F49029FE48730025B67A /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */; };
 		CB87F49229FE66A00025B67A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB87F49129FE66A00025B67A /* NetworkManager.swift */; };
 		CB87F49629FE6A050025B67A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB87F49529FE6A050025B67A /* User.swift */; };
@@ -101,6 +103,8 @@
 		CB6E524A2A092A01005F602A /* LocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVC.swift; sourceTree = "<group>"; };
 		CB6E524C2A0931BC005F602A /* BottomSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetVC.swift; sourceTree = "<group>"; };
 		CB6E524E2A096BF1005F602A /* LocationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVM.swift; sourceTree = "<group>"; };
+		CB71C2C02A0E5CFA005AC9E4 /* ToastMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessageView.swift; sourceTree = "<group>"; };
+		CB71C2C22A0E6262005AC9E4 /* ToastMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessageVC.swift; sourceTree = "<group>"; };
 		CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
 		CB87F49129FE66A00025B67A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CB87F49529FE6A050025B67A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 				CB2FA93A29F54B870009F39F /* UIColor+Ext.swift */,
 				CB52566129F6D8550018E604 /* UserDefaults+Ext.swift */,
 				CB6E524C2A0931BC005F602A /* BottomSheetVC.swift */,
+				CB71C2C22A0E6262005AC9E4 /* ToastMessageVC.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 		CB2FA93C29F550910009F39F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CB71C2BF2A0E5CD0005AC9E4 /* Views */,
 				CBA77A9D2A0BAECA00CE0A02 /* TableViews */,
 				CB2FA94B29F5B8260009F39F /* Buttons */,
 				CB586FA42A05144800827590 /* Cells */,
@@ -257,6 +263,14 @@
 				CBA77AA02A0BB0E300CE0A02 /* LocationTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		CB71C2BF2A0E5CD0005AC9E4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CB71C2C02A0E5CFA005AC9E4 /* ToastMessageView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CB87F49329FE69DC0025B67A /* Model */ = {
@@ -604,6 +618,7 @@
 				CB6E524F2A096BF1005F602A /* LocationVM.swift in Sources */,
 				CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */,
 				CB4A4B432A0655CF005FE6AC /* Location.swift in Sources */,
+				CB71C2C12A0E5CFA005AC9E4 /* ToastMessageView.swift in Sources */,
 				CBA77A9F2A0BAF0000CE0A02 /* ListModalTableView.swift in Sources */,
 				CB586FA12A04FC3000827590 /* UnregisterVC.swift in Sources */,
 				CB2FA94129F554690009F39F /* WriteArticleVC.swift in Sources */,
@@ -622,6 +637,7 @@
 				CBA1C06029F818410098723E /* GoogleAuthButton.swift in Sources */,
 				CB2FA94A29F5B7910009F39F /* BambooLabel.swift in Sources */,
 				CBA1C06229F818530098723E /* AppleAuthButton.swift in Sources */,
+				CB71C2C32A0E6262005AC9E4 /* ToastMessageVC.swift in Sources */,
 				CB586FA32A0512A000827590 /* PressableButton.swift in Sources */,
 				CB2FA94D29F5B8350009F39F /* LabelButton.swift in Sources */,
 				CB4A4B3F2A064E02005FE6AC /* Article.swift in Sources */,

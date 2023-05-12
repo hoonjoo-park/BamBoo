@@ -13,6 +13,17 @@ enum BambooColors {
     static let pink = UIColor(r: 242, g: 78, b: 117, a: 1)
 }
 
+enum ToastMessageType {
+    case success
+    case failed
+    case warn
+}
+
+enum ToastMessageDirection {
+    case topDown
+    case bottomUp
+}
+
 
 func makeborderBottom(superView: UIView, height: CGFloat, color: CGColor) {
     let borderBottom = CALayer()

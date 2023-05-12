@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class WriteArticleVC: UIViewController {
+class WriteArticleVC: ToastMessageVC {
     let locationVM = LocationVM.shared
     let locationButton = PressableButton()
     let locationButtonPlaceHolder = BambooLabel(fontSize: 16, weight: .semibold, color: BambooColors.white)
@@ -140,11 +140,12 @@ class WriteArticleVC: UIViewController {
               let selectedLocation = locationVM.selectedArticleLocation.value,
               let selectedDistrictId = selectedLocation.districtId
         else {
-            // TODO: 토스트 메시지로 위치, 제목, 본문 내용 등의 내용 입력이 필수임을 알리는 로직 구현 필요
+            showToastMessage(message: "위치, 제목, 본문 내용은 모두 필수 입력 사항입니다", type: .warn, dirction: .topDown)
             return
         }
         
         guard title.count <= 30 else {
+            showToastMessage(message: "제목의 최대 글자 수는 30자입니다", type: .warn, dirction: .topDown)
             // TODO: 제목 최대 글자 수는 30자 제한이라는 토스트 메시지 띄워주기
             return
         }
