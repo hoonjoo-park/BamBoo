@@ -135,17 +135,24 @@ class WriteArticleVC: UIViewController {
     
     
     @objc func postButtonTapped() {
-        let cityId = 1
-        let districtId = 1
-        
         guard let title = titleInput.text,
               let content = contentInput.text,
-              let selectedLocation = locationVM.selectedArticleLocation.value else {
+              let selectedLocation = locationVM.selectedArticleLocation.value,
+              let selectedDistrictId = selectedLocation.districtId
+        else {
             // TODO: 토스트 메시지로 위치, 제목, 본문 내용 등의 내용 입력이 필수임을 알리는 로직 구현 필요
             return
         }
         
-        NetworkManager.shared.postArticle(cityId: cityId, districtId: districtId, title: title, content: content) { [weak self] article in
+        guard title.count <= 30 else {
+            // TODO: 제목 최대 글자 수는 30자 제한이라는 토스트 메시지 띄워주기
+            return
+        }
+        
+        NetworkManager.shared.postArticle(cityId: selectedLocation.cityId,
+                                          districtId: selectedDistrictId,
+                                          title: title,
+                                          content: content) { [weak self] article in
             // TODO: ArticleVM 업데이트 로직 구현 필요
         }
     }
@@ -168,6 +175,7 @@ extension WriteArticleVC: UITextViewDelegate {
         }
     }
 }
+
 
 extension WriteArticleVC: LocationVCDelegate {
     func saveSelectedLocation(cityName: String, districtName: String) {
