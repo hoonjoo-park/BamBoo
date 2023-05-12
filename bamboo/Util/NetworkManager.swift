@@ -153,7 +153,7 @@ class NetworkManager {
                 case .success(let value):
                     if let data = value {
                         do {
-                            let decodedData = try? self?.decoder.decode(Article.self, from: data
+                            let decodedData = try? self?.decoder.decode(Article.self, from: data)
                             completion(decodedData)
                         }
                     }
