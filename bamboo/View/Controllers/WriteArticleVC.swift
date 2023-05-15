@@ -27,6 +27,12 @@ class WriteArticleVC: ToastMessageVC {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: BambooColors.white]
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        locationVM.clearSelectedArticleLocation()
+    }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

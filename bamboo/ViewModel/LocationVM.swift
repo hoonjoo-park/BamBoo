@@ -50,5 +50,6 @@ class LocationVM {
     
     func clearSelectedArticleLocation() {
         selectedArticleLocation.accept(nil)
+        districtsBySelectedCity.accept([])
     }
 }
