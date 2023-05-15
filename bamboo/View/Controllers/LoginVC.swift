@@ -1,9 +1,13 @@
 import UIKit
+import RxSwift
+import RxCocoa
 import GoogleSignIn
 import FirebaseCore
 import FirebaseAuth
 
 class LoginVC: BottomSheetVC {
+    let disposeBag = DisposeBag()
+    let userVM = UserViewModel()
     let kakaoAuthButton = KakaoAuthButton(fontSize: 14, weight: .medium, color: BambooColors.black, iconName: "kakaoIcon")
     let googleAuthButton = GoogleAuthButton(fontSize: 14, weight: .medium, color: BambooColors.black, iconName: "googleIcon")
     let appleAuthButton = AppleAuthButton(fontSize: 14, weight: .medium, color: BambooColors.white, iconName: "appleIcon")
@@ -45,7 +49,17 @@ extension LoginVC: AuthButtonDelegate {
         dismissBottomSheet()
         UserDefaults.standard.setToken(token: accessToken)
         
-        let rootTabBarController = RootTabBarController()
+        NetworkManager.shared.fetchUser()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] user in
+                self?.userVM.updateUser(user)
+            }, onError: { error in
+                print("[Fetch User Error], \(error)")
+                UserDefaults.standard.removeToken()
+                
+            }).disposed(by: disposeBag)
+        
+        let rootTabBarController = RootTabBarController(userVM: userVM)
         
         if let window = UIApplication.shared.windows.first {
             window.rootViewController = rootTabBarController

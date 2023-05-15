@@ -1,10 +1,14 @@
 import UIKit
+import RxSwift
+import RxCocoa
 import RxKakaoSDKAuth
 import KakaoSDKAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    let disposeBag = DisposeBag()
+    let userVM = UserViewModel()
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -15,16 +19,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let token = UserDefaults.standard.getToken()
         
-        if token != nil {
-            let rootTabBarController = RootTabBarController()
-            window?.rootViewController = rootTabBarController
+        if token == nil {
+            setRootAsOnboarding()
         } else {
-            let onboardingVC = OnboardingVC()
-            let navVC = UINavigationController(rootViewController: onboardingVC)
-            window?.rootViewController = navVC
+            NetworkManager.shared.fetchUser()
+                .observe(on: MainScheduler.instance)
+                .subscribe(onNext: { [weak self] user in
+                    guard let self = self else { return }
+                    self.userVM.updateUser(user)
+                    self.setRootAsTabBar()
+                }, onError: { error in
+                    print("[Fetch User Error], \(error)")
+                    UserDefaults.standard.removeToken()
+                    self.setRootAsOnboarding()
+                }).disposed(by: disposeBag)
         }
-        
-        window?.makeKeyAndVisible()
+    }
+    
+    
+    private func setRootAsOnboarding() {
+        let onboardingVC = OnboardingVC()
+        let navVC = UINavigationController(rootViewController: onboardingVC)
+        self.window?.rootViewController = navVC
+        self.window?.makeKeyAndVisible()
+    }
+    
+    
+    private func setRootAsTabBar() {
+        let rootTabBarController = RootTabBarController(userVM: self.userVM)
+        self.window?.rootViewController = rootTabBarController
+        self.window?.makeKeyAndVisible()
     }
     
     

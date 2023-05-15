@@ -2,19 +2,20 @@ import UIKit
 import RxSwift
 
 class RootTabBarController: UITabBarController {
-    let userVM = UserViewModel()
+    var userVM: UserViewModel
     let disposeBag = DisposeBag()
+    
+    init(userVM: UserViewModel) {
+        self.userVM = userVM
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NetworkManager.shared.fetchUser()
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] user in
-                self?.userVM.updateUser(user)
-            }, onError: { error in
-                print("[Fetch User Error], \(error)")
-            }).disposed(by: disposeBag)
         
         LocationVM.shared.fetchLocations()
         
@@ -28,7 +29,7 @@ class RootTabBarController: UITabBarController {
     
     
     private func createHomeVC() -> UINavigationController {
-        let homeVC = HomeVC()
+        let homeVC = HomeVC(userVM: userVM)
         let tabBarImage: UIImage!
         
         tabBarImage = UIImage(systemName: "house")?.withBaselineOffset(fromBottom: 15)
