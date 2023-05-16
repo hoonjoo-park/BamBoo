@@ -11,3 +11,8 @@ struct District: Codable {
     let cityId: Int
     let name: String
 }
+
+struct CityWithoutDistricts: Codable {
+    let id: Int
+    let name: String
+}

@@ -1,10 +1,5 @@
 import Foundation
 
-struct CityWithoutDistricts: Codable {
-    let id: Int
-    let name: String
-}
-
 struct Article: Codable {
     let id: Int
     let title: String
@@ -31,5 +26,17 @@ struct Comment: Codable {
     let author: User
     let articleId: Int
     let parentCommentId: Int?
+    let createdAt: String
+}
+
+struct ArticleList: Codable {
+    let id: Int
+    let title: String
+    let content: String
+    let author: User
+    let cityId: Int
+    let districtId: Int?
+    let commentCount: Int
+    let likeCount: Int
     let createdAt: String
 }

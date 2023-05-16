@@ -8,6 +8,9 @@ struct OAuthResponse: Codable {
     let token: String
 }
 
+enum BambooError: Error {
+    case dataNotFound
+}
 
 class NetworkManager {
     static let shared = NetworkManager()
@@ -184,6 +187,27 @@ class NetworkManager {
                 } else {
                     return Observable.error(NSError(domain: "Fetch Locations Error", code: response.statusCode))
                 }
+            }
+    }
+    
+    
+    func fetchArticleList(cityId: Int, districtId: Int) -> Observable<[ArticleList]> {
+        let urlString = "\(baseUrl)/article"
+        var params = [
+            "cityId": cityId
+        ]
+        
+        if districtId >= 0 {
+            params["districtId"] = districtId
+        }
+        
+        return RxAlamofire
+            .request(.get, urlString, parameters: params)
+            .validate()
+            .responseJSON()
+            .map { response -> [ArticleList] in
+                guard let data = response.data else { throw BambooError.dataNotFound }
+                return try JSONDecoder().decode([ArticleList].self, from: data)
             }
     }
 }

@@ -3,6 +3,7 @@ import RxSwift
 
 class RootTabBarController: UITabBarController {
     var userVM: UserViewModel
+    let articleVM = ArticleVM()
     let disposeBag = DisposeBag()
     
     init(userVM: UserViewModel) {
@@ -18,6 +19,7 @@ class RootTabBarController: UITabBarController {
         super.viewDidLoad()
         
         LocationVM.shared.fetchLocations()
+        articleVM.fetchArticleList(cityId: 36, districtId: -1)
         
         delegate = self
         UITabBar.appearance().tintColor = BambooColors.white
