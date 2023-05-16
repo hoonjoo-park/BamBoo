@@ -5,19 +5,15 @@ import RxCocoa
 class ArticleVM {
     let disposeBag = DisposeBag()
     
-    private let articlesSubject = BehaviorSubject<[Article?]>(value: [])
-    var articles: Observable<[Article?]> {
-        return articlesSubject.asObservable()
-    }
-    
-    func updateArticles(_ articles: [Article]) {
-        articlesSubject.onNext(articles)
+    private let articleListSubject = BehaviorSubject<[ArticleList?]>(value: [])
+    var articleLists: Observable<[ArticleList?]> {
+        return articleListSubject.asObservable()
     }
     
     func fetchArticleList(cityId: Int, districtId: Int) {
         NetworkManager.shared.fetchArticleList(cityId: cityId, districtId: districtId)
             .subscribe(onNext: { [weak self] articleLists in
-                print(articleLists)
+                self?.articleListSubject.onNext(articleLists)
             }).disposed(by: disposeBag)
     }
 }
