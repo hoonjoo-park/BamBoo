@@ -1,7 +1,13 @@
 import UIKit
 import SnapKit
 
+protocol HomeHeaderViewDelegate: AnyObject {
+    func openLocationBottomSheet()
+}
+
 class HomeHeaderView: UIView {
+    var delegate: HomeHeaderViewDelegate!
+    
     let appLogoImageView = UIImageView(image: UIImage(named: "bamboo-logo-horizontal"))
     let locationButton = PressableButton(frame: .zero)
     let locationButtonContainer = UIView()
@@ -38,6 +44,9 @@ class HomeHeaderView: UIView {
             make.height.equalTo(20)
         }
         
+        locationButton.addTarget(self, action: #selector(handleTapLocationButton), for: .touchUpInside)
+        locationButtonContainer.isUserInteractionEnabled = false
+        
         locationButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(30)
             make.centerY.equalToSuperview()
@@ -63,4 +72,8 @@ class HomeHeaderView: UIView {
         }
     }
     
+    
+    @objc private func handleTapLocationButton() {
+        delegate.openLocationBottomSheet()
+    }
 }

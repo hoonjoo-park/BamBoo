@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class HomeVC: UIViewController {
+class HomeVC: ToastMessageVC {
     var userVM: UserViewModel!
     let homeHeaderView = HomeHeaderView(frame: .zero)
     
@@ -32,10 +32,29 @@ class HomeVC: UIViewController {
     private func configureUI() {
         [homeHeaderView].forEach { view.addSubview($0) }
         
+        homeHeaderView.delegate = self
+        
         homeHeaderView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(50)
         }
+    }
+}
+
+extension HomeVC: HomeHeaderViewDelegate {
+    func openLocationBottomSheet() {
+        let locationVC = LocationVC(fromVC: "HomeVC")
+        locationVC.modalPresentationStyle = .overCurrentContext
+        locationVC.delegate = self
+        
+        present(locationVC, animated: false)
+    }
+}
+
+extension HomeVC: LocationVCDelegate {
+    func saveSelectedLocation(cityName: String, districtName: String) {
+        homeHeaderView.loacationLabel.text = "\(cityName), \(districtName)"
+        showToastMessage(message: "위치 설정이 완료되었습니다!", type: .success, dirction: .topDown)
     }
 }
