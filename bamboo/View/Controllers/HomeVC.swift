@@ -1,7 +1,9 @@
 import UIKit
+import SnapKit
 
 class HomeVC: UIViewController {
     var userVM: UserViewModel!
+    let homeHeaderView = HomeHeaderView(frame: .zero)
     
     init(userVM: UserViewModel!) {
         super.init(nibName: nil, bundle: nil)
@@ -16,6 +18,7 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
     }
     
     
@@ -23,5 +26,16 @@ class HomeVC: UIViewController {
         super.viewWillAppear(animated)
         view.backgroundColor = BambooColors.black
         navigationController?.isNavigationBarHidden = true
+    }
+    
+    
+    private func configureUI() {
+        [homeHeaderView].forEach { view.addSubview($0) }
+        
+        homeHeaderView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(50)
+        }
     }
 }

@@ -54,6 +54,7 @@
 		CBCD43EF29F055970057CBEA /* bambooUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43EE29F055970057CBEA /* bambooUITests.swift */; };
 		CBCD43F129F055970057CBEA /* bambooUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43F029F055970057CBEA /* bambooUITestsLaunchTests.swift */; };
 		CBCD43FE29F058400057CBEA /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43FD29F058400057CBEA /* RootTabBarController.swift */; };
+		CBD810462A1A10E40022E507 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD810452A1A10E40022E507 /* HomeHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		CBCD43EE29F055970057CBEA /* bambooUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bambooUITests.swift; sourceTree = "<group>"; };
 		CBCD43F029F055970057CBEA /* bambooUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bambooUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CBCD43FD29F058400057CBEA /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
+		CBD810452A1A10E40022E507 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		D3CA9D8BB38C111D45D34272 /* Pods-bamboo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamboo.debug.xcconfig"; path = "Target Support Files/Pods-bamboo/Pods-bamboo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -271,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				CB71C2C02A0E5CFA005AC9E4 /* ToastMessageView.swift */,
+				CBD810452A1A10E40022E507 /* HomeHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				CB71C2C12A0E5CFA005AC9E4 /* ToastMessageView.swift in Sources */,
 				CBA77A9F2A0BAF0000CE0A02 /* ListModalTableView.swift in Sources */,
 				CB586FA12A04FC3000827590 /* UnregisterVC.swift in Sources */,
+				CBD810462A1A10E40022E507 /* HomeHeaderView.swift in Sources */,
 				CB2FA94129F554690009F39F /* WriteArticleVC.swift in Sources */,
 				CB2FA93B29F54B870009F39F /* UIColor+Ext.swift in Sources */,
 				CB4A4B412A065547005FE6AC /* Chat.swift in Sources */,
