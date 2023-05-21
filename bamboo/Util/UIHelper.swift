@@ -31,3 +31,18 @@ func makeborderBottom(superView: UIView, height: CGFloat, color: CGColor) {
     borderBottom.backgroundColor = color
     superView.layer.addSublayer(borderBottom)
 }
+
+enum CollectionViewHelper {
+    static func createArticleListFlowLayout(view: UIView) -> UICollectionViewFlowLayout {
+        let flowLayout = UICollectionViewFlowLayout()
+        let viewWidth = view.bounds.width
+        let padding: CGFloat = 30
+        let itemSpacing: CGFloat = 20
+        let itemWidth = viewWidth - (padding * 2)
+        
+        flowLayout.sectionInset = UIEdgeInsets(top: itemSpacing, left: 0, bottom: itemSpacing, right: 0)
+        flowLayout.itemSize = CGSize(width: itemWidth, height: 100)
+        
+        return flowLayout
+    }
+}

@@ -4,6 +4,7 @@ import SnapKit
 class HomeVC: ToastMessageVC {
     var userVM: UserViewModel!
     let homeHeaderView = HomeHeaderView(frame: .zero)
+    var articleListCollectionView: ArticleListCollectionView!
     
     init(userVM: UserViewModel!) {
         super.init(nibName: nil, bundle: nil)
@@ -18,6 +19,8 @@ class HomeVC: ToastMessageVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureViewController()
         configureUI()
     }
     
@@ -29,8 +32,18 @@ class HomeVC: ToastMessageVC {
     }
     
     
+    private func configureViewController() {
+        articleListCollectionView = ArticleListCollectionView(frame: .zero,
+                                                              collectionViewLayout: CollectionViewHelper.createArticleListFlowLayout(view: view))
+        articleListCollectionView.backgroundColor = BambooColors.black
+        articleListCollectionView.register(ArticleListCollectionViewCell.self, forCellWithReuseIdentifier: ArticleListCollectionViewCell.reuseId)
+    }
+    
+    
     private func configureUI() {
-        [homeHeaderView].forEach { view.addSubview($0) }
+        [homeHeaderView, articleListCollectionView].forEach {
+            view.addSubview($0)
+        }
         
         homeHeaderView.delegate = self
         
