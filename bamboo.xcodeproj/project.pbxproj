@@ -55,6 +55,8 @@
 		CBCD43F129F055970057CBEA /* bambooUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43F029F055970057CBEA /* bambooUITestsLaunchTests.swift */; };
 		CBCD43FE29F058400057CBEA /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43FD29F058400057CBEA /* RootTabBarController.swift */; };
 		CBD810462A1A10E40022E507 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD810452A1A10E40022E507 /* HomeHeaderView.swift */; };
+		CBD810492A1A32A60022E507 /* ArticleListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD810482A1A32A60022E507 /* ArticleListCollectionView.swift */; };
+		CBD8104B2A1A32C60022E507 /* ArticleListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD8104A2A1A32C60022E507 /* ArticleListCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +135,8 @@
 		CBCD43F029F055970057CBEA /* bambooUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bambooUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CBCD43FD29F058400057CBEA /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		CBD810452A1A10E40022E507 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		CBD810482A1A32A60022E507 /* ArticleListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListCollectionView.swift; sourceTree = "<group>"; };
+		CBD8104A2A1A32C60022E507 /* ArticleListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListCollectionViewCell.swift; sourceTree = "<group>"; };
 		D3CA9D8BB38C111D45D34272 /* Pods-bamboo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamboo.debug.xcconfig"; path = "Target Support Files/Pods-bamboo/Pods-bamboo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -210,12 +214,13 @@
 		CB2FA93C29F550910009F39F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CB2FA93D29F550990009F39F /* Controllers */,
 				CB71C2BF2A0E5CD0005AC9E4 /* Views */,
+				CBD810472A1A32280022E507 /* CollectionViews */,
 				CBA77A9D2A0BAECA00CE0A02 /* TableViews */,
 				CB2FA94B29F5B8260009F39F /* Buttons */,
 				CB586FA42A05144800827590 /* Cells */,
 				CB2FA94829F5B7660009F39F /* Labels */,
-				CB2FA93D29F550990009F39F /* Controllers */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 				CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */,
 				CB586FA52A05146F00827590 /* PressableTableViewCell.swift */,
 				CBA77AA02A0BB0E300CE0A02 /* LocationTableViewCell.swift */,
+				CBD8104A2A1A32C60022E507 /* ArticleListCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -371,6 +377,14 @@
 				CBA1C06529F842CE0098723E /* env.xcconfig */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		CBD810472A1A32280022E507 /* CollectionViews */ = {
+			isa = PBXGroup;
+			children = (
+				CBD810482A1A32A60022E507 /* ArticleListCollectionView.swift */,
+			);
+			path = CollectionViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -644,7 +658,9 @@
 				CB52566429F6DA270018E604 /* LoginVC.swift in Sources */,
 				CBA1C06029F818410098723E /* GoogleAuthButton.swift in Sources */,
 				CB2FA94A29F5B7910009F39F /* BambooLabel.swift in Sources */,
+				CBD8104B2A1A32C60022E507 /* ArticleListCollectionViewCell.swift in Sources */,
 				CBA1C06229F818530098723E /* AppleAuthButton.swift in Sources */,
+				CBD810492A1A32A60022E507 /* ArticleListCollectionView.swift in Sources */,
 				CB71C2C32A0E6262005AC9E4 /* ToastMessageVC.swift in Sources */,
 				CB586FA32A0512A000827590 /* PressableButton.swift in Sources */,
 				CB2FA94D29F5B8350009F39F /* LabelButton.swift in Sources */,
