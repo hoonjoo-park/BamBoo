@@ -45,7 +45,7 @@ class HomeVC: ToastMessageVC {
 extension HomeVC: HomeHeaderViewDelegate {
     func openLocationBottomSheet() {
         let locationVC = LocationVC(fromVC: "HomeVC")
-        locationVC.modalPresentationStyle = .overCurrentContext
+        locationVC.modalPresentationStyle = .overFullScreen
         locationVC.delegate = self
         
         present(locationVC, animated: false)
