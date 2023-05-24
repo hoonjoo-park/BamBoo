@@ -29,7 +29,7 @@ class HomeVC: ToastMessageVC {
         
         configureViewController()
         configureUI()
-        bindViewModel()
+        configureCollectionView()
     }
     
     
@@ -67,13 +67,20 @@ class HomeVC: ToastMessageVC {
         }
     }
     
-    private func bindViewModel() {
+    private func configureCollectionView() {
         articleVM.articleLists
             .bind(to: articleListCollectionView.rx.items(cellIdentifier: ArticleListCollectionViewCell.reuseId,
                                                          cellType: ArticleListCollectionViewCell.self)) { row, articleList, cell in
                 guard let articleList = articleList else { return }
                 
                 cell.setCell(articleList: articleList)
+            }.disposed(by: disposeBag)
+        
+        articleListCollectionView.rx.itemSelected
+            .subscribe { [weak self] indexPath in
+                let articleDetailVC = ArticleDetailVC()
+                articleDetailVC.hidesBottomBarWhenPushed = true
+                self?.navigationController?.pushViewController(articleDetailVC, animated: true)
             }.disposed(by: disposeBag)
     }
 }
