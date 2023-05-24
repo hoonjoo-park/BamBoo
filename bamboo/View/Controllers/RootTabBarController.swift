@@ -19,7 +19,7 @@ class RootTabBarController: UITabBarController {
         super.viewDidLoad()
         
         LocationVM.shared.fetchLocations()
-        articleVM.fetchArticleList(cityId: 36, districtId: -1)
+        articleVM.fetchArticleList(cityId: -1, districtId: -1)
         
         delegate = self
         UITabBar.appearance().tintColor = BambooColors.white
@@ -31,7 +31,7 @@ class RootTabBarController: UITabBarController {
     
     
     private func createHomeVC() -> UINavigationController {
-        let homeVC = HomeVC(userVM: userVM)
+        let homeVC = HomeVC(userVM: userVM, articleVM: articleVM)
         let tabBarImage: UIImage!
         
         tabBarImage = UIImage(systemName: "house")?.withBaselineOffset(fromBottom: 15)

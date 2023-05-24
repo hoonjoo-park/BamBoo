@@ -3,12 +3,14 @@ import SnapKit
 
 class HomeVC: ToastMessageVC {
     var userVM: UserViewModel!
+    var articleVM: ArticleVM!
     let homeHeaderView = HomeHeaderView(frame: .zero)
     var articleListCollectionView: ArticleListCollectionView!
     
-    init(userVM: UserViewModel!) {
-        super.init(nibName: nil, bundle: nil)
+    init(userVM: UserViewModel, articleVM: ArticleVM) {
         self.userVM = userVM
+        self.articleVM = articleVM
+        super.init(nibName: nil, bundle: nil)
     }
     
     
