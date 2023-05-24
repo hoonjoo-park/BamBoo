@@ -1,9 +1,14 @@
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class HomeVC: ToastMessageVC {
+    enum Section { case main }
+    
     var userVM: UserViewModel!
     var articleVM: ArticleVM!
+    let disposeBag = DisposeBag()
     let homeHeaderView = HomeHeaderView(frame: .zero)
     var articleListCollectionView: ArticleListCollectionView!
     
@@ -24,6 +29,7 @@ class HomeVC: ToastMessageVC {
         
         configureViewController()
         configureUI()
+        bindViewModel()
     }
     
     
@@ -54,6 +60,21 @@ class HomeVC: ToastMessageVC {
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(50)
         }
+        
+        articleListCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(homeHeaderView.snp.bottom).offset(30)
+            make.horizontalEdges.bottom.equalToSuperview()
+        }
+    }
+    
+    private func bindViewModel() {
+        articleVM.articleLists
+            .bind(to: articleListCollectionView.rx.items(cellIdentifier: ArticleListCollectionViewCell.reuseId,
+                                                         cellType: ArticleListCollectionViewCell.self)) { row, articleList, cell in
+                guard let articleList = articleList else { return }
+                
+                cell.setCell(articleList: articleList)
+            }.disposed(by: disposeBag)
     }
 }
 
