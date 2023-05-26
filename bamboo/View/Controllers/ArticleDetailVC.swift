@@ -1,7 +1,15 @@
 import UIKit
 
 class ArticleDetailVC: UIViewController {
-
+    
+    init(selectedId: Int) {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

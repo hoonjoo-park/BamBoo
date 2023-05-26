@@ -16,4 +16,14 @@ class ArticleVM {
                 self?.articleListSubject.onNext(articleLists)
             }).disposed(by: disposeBag)
     }
+    
+    func getSelectedArticleList(index: Int) -> ArticleList? {
+        do {
+            guard let selectedArticleList = try articleListSubject.value()[index] else { return nil }
+            return selectedArticleList
+        } catch {
+            print("getSelectedArticleList error: \(error)")
+            return nil
+        }
+    }
 }
