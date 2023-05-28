@@ -205,9 +205,25 @@ class NetworkManager {
             .request(.get, urlString, parameters: params)
             .validate()
             .responseJSON()
-            .map { response -> [ArticleList] in
+            .map { [unowned self] response -> [ArticleList] in
                 guard let data = response.data else { throw BambooError.dataNotFound }
-                return try JSONDecoder().decode([ArticleList].self, from: data)
+                return try self.decoder.decode([ArticleList].self, from: data)
+            }
+    }
+    
+    func fetchArticle(articleId: Int) -> Observable<Article> {
+        let urlString = "\(baseUrl)/article/:articleId"
+        let params = [
+            "articleId": articleId
+        ]
+        
+        return RxAlamofire
+            .request(.get, urlString, parameters: params)
+            .validate()
+            .responseJSON()
+            .map { [unowned self] response -> Article in
+                guard let data = response.data else { throw BambooError.dataNotFound }
+                return try self.decoder.decode(Article.self, from: data)
             }
     }
 }
