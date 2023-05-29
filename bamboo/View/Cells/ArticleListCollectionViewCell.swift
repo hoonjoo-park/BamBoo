@@ -36,7 +36,7 @@ class ArticleListCollectionViewCell: UICollectionViewCell {
         titleLabel.text = articleList.title
         likeLabel.text = "\(articleList.likeCount)"
         commentLabel.text = "\(articleList.commentCount)"
-        createdAtLabel.text = articleList.createdAt
+        createdAtLabel.text = DateHelper.getElapsedTime(articleList.createdAt)
     }
     
     private func configureUI() {
@@ -69,31 +69,30 @@ class ArticleListCollectionViewCell: UICollectionViewCell {
         
         likeIcon.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(11)
-            make.leading.equalToSuperview().inset(212)
+            make.trailing.equalTo(likeLabel.snp.leading).offset(-10)
             make.width.height.equalTo(14)
         }
         
         likeLabel.snp.makeConstraints { make in
             make.centerY.equalTo(likeIcon.snp.centerY)
-            make.leading.equalTo(likeIcon.snp.trailing).offset(5)
+            make.trailing.equalTo(commentIcon.snp.leading).offset(-5)
             make.width.equalTo(13)
         }
         
         commentIcon.snp.makeConstraints { make in
             make.centerY.equalTo(likeLabel.snp.centerY)
-            make.leading.equalTo(likeLabel.snp.trailing).offset(10)
+            make.trailing.equalTo(commentLabel.snp.leading).offset(-10)
             make.width.height.equalTo(12)
         }
         
         commentLabel.snp.makeConstraints { make in
             make.centerY.equalTo(commentIcon.snp.centerY)
-            make.leading.equalTo(commentIcon.snp.trailing).offset(5)
+            make.trailing.equalTo(createdAtLabel.snp.leading).offset(-5)
             make.width.equalTo(13)
         }
         
         createdAtLabel.snp.makeConstraints { make in
             make.centerY.equalTo(commentLabel.snp.centerY)
-            make.leading.equalTo(commentLabel.snp.trailing).offset(10)
             make.trailing.equalToSuperview().inset(padding)
         }
     }

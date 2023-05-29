@@ -46,3 +46,43 @@ enum CollectionViewHelper {
         return flowLayout
     }
 }
+
+enum DateHelper {
+    static func getElapsedTime(_ createdAt: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        guard let date = dateFormatter.date(from: createdAt) else { return "" }
+        
+        let calendar = Calendar.current
+        let now = Date()
+        let dateComponents = calendar.dateComponents([.minute, .hour, .day], from: date, to: now)
+        
+        guard let minute = dateComponents.minute,
+              let hour = dateComponents.hour,
+              let day = dateComponents.day else { return "" }
+        
+        if day >= 7 {
+            dateFormatter.dateFormat = "yy.MM.dd"
+            return dateFormatter.string(from: date)
+        }
+        
+        if day >= 1 {
+            return "\(day)일 전"
+        }
+        
+        if hour >= 1, hour < 24 {
+            return "\(hour)시간 전"
+        }
+        
+        if minute >= 1, minute < 60 {
+            return "\(minute)분 전"
+        }
+        
+        if minute < 1 {
+            return "방금"
+        }
+        
+        return ""
+    }
+}
