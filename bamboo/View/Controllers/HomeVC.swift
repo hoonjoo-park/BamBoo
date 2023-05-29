@@ -78,9 +78,11 @@ class HomeVC: ToastMessageVC {
         
         articleListCollectionView.rx.itemSelected
             .subscribe { [weak self] indexPath in
-                guard let selectedArticleList = self?.articleVM.getSelectedArticleList(index: indexPath[1]) else { return }
+                guard let selectedArticleList = self?.articleVM.getSelectedArticleList(index: indexPath[1]),
+                      let articleVM = self?.articleVM else { return }
                 
-                let articleDetailVC = ArticleDetailVC(selectedId: selectedArticleList.id)
+                let articleDetailVC = ArticleDetailVC(selectedId: selectedArticleList.id,
+                                                      articleVM: articleVM)
                 articleDetailVC.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(articleDetailVC, animated: true)
             }.disposed(by: disposeBag)

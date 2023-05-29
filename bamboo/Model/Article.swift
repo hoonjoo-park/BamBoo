@@ -11,8 +11,8 @@ struct Article: Codable {
     let author: User
     let comments: [Comment]
     let likes: [ArticleLike]
-    let city: CityWithoutDistricts
-    let district: District?
+    let cityName: String
+    let districtName: String?
 }
 
 struct ArticleLike: Codable {

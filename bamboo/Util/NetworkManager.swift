@@ -212,13 +212,10 @@ class NetworkManager {
     }
     
     func fetchArticle(articleId: Int) -> Observable<Article> {
-        let urlString = "\(baseUrl)/article/:articleId"
-        let params = [
-            "articleId": articleId
-        ]
+        let urlString = "\(baseUrl)/article/\(articleId)"
         
         return RxAlamofire
-            .request(.get, urlString, parameters: params)
+            .request(.get, urlString)
             .validate()
             .responseJSON()
             .map { [unowned self] response -> Article in

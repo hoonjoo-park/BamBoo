@@ -1,9 +1,22 @@
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ArticleDetailVC: UIViewController {
+    let disposeBag = DisposeBag()
+    var selectedArticleId: Int!
+    var articleVM: ArticleVM!
     
-    init(selectedId: Int) {
+    init(selectedId: Int, articleVM: ArticleVM) {
+        self.selectedArticleId = selectedId
+        self.articleVM = articleVM
+        
         super.init(nibName: nil, bundle: nil)
+        
+        NetworkManager.shared.fetchArticle(articleId: selectedId)
+            .subscribe(onNext: { [weak self] article in
+                print(article)
+            }).disposed(by: disposeBag)
     }
     
     required init?(coder: NSCoder) {

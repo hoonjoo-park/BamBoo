@@ -10,12 +10,14 @@ class ArticleVM {
         return articleListSubject.asObservable()
     }
     
+    
     func fetchArticleList(cityId: Int, districtId: Int) {
         NetworkManager.shared.fetchArticleList(cityId: cityId, districtId: districtId)
             .subscribe(onNext: { [weak self] articleLists in
                 self?.articleListSubject.onNext(articleLists)
             }).disposed(by: disposeBag)
     }
+    
     
     func getSelectedArticleList(index: Int) -> ArticleList? {
         do {

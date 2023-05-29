@@ -290,9 +290,9 @@
 		CB87F49329FE69DC0025B67A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CB87F49529FE6A050025B67A /* User.swift */,
 				CB4A4B3E2A064E02005FE6AC /* Article.swift */,
 				CB4A4B402A065547005FE6AC /* Chat.swift */,
+				CB87F49529FE6A050025B67A /* User.swift */,
 				CB4A4B422A0655CF005FE6AC /* Location.swift */,
 			);
 			path = Model;
