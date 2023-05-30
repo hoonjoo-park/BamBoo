@@ -35,6 +35,9 @@ class ArticleDetailVC: UIViewController {
                 self?.authorNameLabel.text = article.author.name
                 self?.createdAtLabel.text = DateHelper.getElapsedTime(article.createdAt)
                 self?.titleLabel.text = article.title
+                self?.contentLabel.text = article.content
+                self?.likeLabel.text = "\(article.likes.count)"
+                self?.commentLabel.text = "\(article.comments.count)"
             }).disposed(by: disposeBag)
     }
     
@@ -93,6 +96,40 @@ class ArticleDetailVC: UIViewController {
         createdAtLabel.snp.makeConstraints { make in
             make.leading.equalTo(authorNameLabel.snp.leading)
             make.top.equalTo(authorNameLabel.snp.bottom).offset(5)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(padding)
+            make.top.equalTo(createdAtLabel.snp.bottom).offset(20)
+        }
+        
+        contentLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(padding)
+            make.top.equalTo(titleLabel.snp.bottom).offset(30)
+        }
+        
+        likeIcon.tintColor = BambooColors.gray
+        likeIcon.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(padding)
+            make.width.height.equalTo(24)
+            make.top.equalTo(contentLabel.snp.bottom).offset(40)
+        }
+        
+        likeLabel.snp.makeConstraints { make in
+            make.leading.equalTo(likeIcon.snp.trailing).offset(10)
+            make.centerY.equalTo(likeIcon.snp.centerY)
+        }
+        
+        commentIcon.tintColor = BambooColors.gray
+        commentIcon.snp.makeConstraints { make in
+            make.leading.equalTo(likeLabel.snp.trailing).offset(20)
+            make.width.height.equalTo(21)
+            make.centerY.equalTo(likeIcon.snp.centerY)
+        }
+        
+        commentLabel.snp.makeConstraints { make in
+            make.leading.equalTo(commentIcon.snp.trailing).offset(10)
+            make.centerY.equalTo(commentIcon.snp.centerY)
         }
     }
 }
