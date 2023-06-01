@@ -22,23 +22,9 @@ class ArticleDetailVC: UIViewController {
     init(selectedId: Int, articleVM: ArticleVM) {
         self.selectedArticleId = selectedId
         self.articleVM = articleVM
+        articleVM.fetchArticle(articleId: selectedId)
         
         super.init(nibName: nil, bundle: nil)
-        
-        NetworkManager.shared.fetchArticle(articleId: selectedId)
-            .subscribe(onNext: { [weak self] article in
-                if let profileImage = article.author.profile.profileImage,
-                   let profileImageUrl = URL(string: profileImage) {
-                    self?.profileImage.kf.setImage(with: profileImageUrl)
-                }
-                
-                self?.authorNameLabel.text = article.author.name
-                self?.createdAtLabel.text = DateHelper.getElapsedTime(article.createdAt)
-                self?.titleLabel.text = article.title
-                self?.contentLabel.text = article.content
-                self?.likeLabel.text = "\(article.likes.count)"
-                self?.commentLabel.text = "\(article.comments.count)"
-            }).disposed(by: disposeBag)
     }
     
     required init?(coder: NSCoder) {
@@ -50,6 +36,7 @@ class ArticleDetailVC: UIViewController {
         
         view.backgroundColor = BambooColors.black
         configureViewController()
+        bindArticleData()
         configureSubViews()
     }
     
@@ -71,6 +58,24 @@ class ArticleDetailVC: UIViewController {
         navigationController?.navigationBar.frame.origin.y = view.safeAreaInsets.top
     }
     
+    private func bindArticleData() {
+        articleVM.article.subscribe(onNext: { [weak self] article in
+            guard let article = article else { return }
+            
+            if let profileImage = article.author.profile.profileImage,
+               let profileImageUrl = URL(string: profileImage) {
+                self?.profileImage.kf.setImage(with: profileImageUrl)
+            }
+            
+            self?.authorNameLabel.text = article.author.name
+            self?.createdAtLabel.text = DateHelper.getElapsedTime(article.createdAt)
+            self?.titleLabel.text = article.title
+            self?.contentLabel.text = article.content
+            self?.likeLabel.text = "\(article.likes.count)"
+            self?.commentLabel.text = "\(article.comments.count)"
+        }).disposed(by: disposeBag)
+    }
+    
     
     private func configureSubViews() {
         [profileImage, authorNameLabel, createdAtLabel,
@@ -84,7 +89,7 @@ class ArticleDetailVC: UIViewController {
         
         profileImage.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(padding)
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(35)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(30)
             make.width.height.equalTo(40)
         }
         

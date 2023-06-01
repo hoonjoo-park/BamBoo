@@ -9,6 +9,10 @@ class ArticleVM {
     var articleLists: Observable<[ArticleList?]> {
         return articleListSubject.asObservable()
     }
+    private let articleSubject = BehaviorSubject<Article?>(value: nil)
+    var article: Observable<Article?> {
+        return articleSubject.asObservable()
+    }
     
     
     func fetchArticleList(cityId: Int, districtId: Int) {
@@ -22,10 +26,19 @@ class ArticleVM {
     func getSelectedArticleList(index: Int) -> ArticleList? {
         do {
             guard let selectedArticleList = try articleListSubject.value()[index] else { return nil }
+            
             return selectedArticleList
         } catch {
             print("getSelectedArticleList error: \(error)")
             return nil
         }
+    }
+    
+    
+    func fetchArticle(articleId: Int) {
+        NetworkManager.shared.fetchArticle(articleId: articleId)
+            .subscribe(onNext: { [weak self] article in
+                self?.articleSubject.onNext(article)
+            }).disposed(by: disposeBag)
     }
 }
