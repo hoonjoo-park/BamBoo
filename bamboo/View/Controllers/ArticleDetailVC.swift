@@ -15,9 +15,9 @@ class ArticleDetailVC: UIViewController {
     let titleLabel = BambooLabel(fontSize: 16, weight: .semibold, color: BambooColors.white)
     let contentLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.white)
     let likeIcon = UIImageView(image: UIImage(systemName: "heart"))
-    let likeLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.gray)
+    let likeCountLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.gray)
     let commentIcon = UIImageView(image: UIImage(systemName: "message"))
-    let commentLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.gray)
+    let commentCountLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.gray)
     
     init(selectedId: Int, articleVM: ArticleVM) {
         self.selectedArticleId = selectedId
@@ -58,6 +58,7 @@ class ArticleDetailVC: UIViewController {
         navigationController?.navigationBar.frame.origin.y = view.safeAreaInsets.top
     }
     
+    
     private func bindArticleData() {
         articleVM.article.subscribe(onNext: { [weak self] article in
             guard let article = article else { return }
@@ -71,8 +72,8 @@ class ArticleDetailVC: UIViewController {
             self?.createdAtLabel.text = DateHelper.getElapsedTime(article.createdAt)
             self?.titleLabel.text = article.title
             self?.contentLabel.text = article.content
-            self?.likeLabel.text = "\(article.likes.count)"
-            self?.commentLabel.text = "\(article.comments.count)"
+            self?.likeCountLabel.text = "\(article.likes.count)"
+            self?.commentCountLabel.text = "\(article.comments.count)"
         }).disposed(by: disposeBag)
     }
     
@@ -80,7 +81,7 @@ class ArticleDetailVC: UIViewController {
     private func configureSubViews() {
         [profileImage, authorNameLabel, createdAtLabel,
          titleLabel, contentLabel, likeIcon, commentIcon,
-         likeLabel, commentLabel].forEach { view.addSubview($0) }
+         likeCountLabel, commentCountLabel].forEach { view.addSubview($0) }
         
         let padding: CGFloat = 20
         
@@ -120,19 +121,19 @@ class ArticleDetailVC: UIViewController {
             make.top.equalTo(contentLabel.snp.bottom).offset(40)
         }
         
-        likeLabel.snp.makeConstraints { make in
+        likeCountLabel.snp.makeConstraints { make in
             make.leading.equalTo(likeIcon.snp.trailing).offset(10)
             make.centerY.equalTo(likeIcon.snp.centerY)
         }
         
         commentIcon.tintColor = BambooColors.gray
         commentIcon.snp.makeConstraints { make in
-            make.leading.equalTo(likeLabel.snp.trailing).offset(20)
+            make.leading.equalTo(likeCountLabel.snp.trailing).offset(20)
             make.width.height.equalTo(21)
             make.centerY.equalTo(likeIcon.snp.centerY)
         }
         
-        commentLabel.snp.makeConstraints { make in
+        commentCountLabel.snp.makeConstraints { make in
             make.leading.equalTo(commentIcon.snp.trailing).offset(10)
             make.centerY.equalTo(commentIcon.snp.centerY)
         }
