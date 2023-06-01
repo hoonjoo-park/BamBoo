@@ -8,6 +8,7 @@ class ArticleDetailVC: UIViewController {
     let disposeBag = DisposeBag()
     var selectedArticleId: Int!
     var articleVM: ArticleVM!
+    var comments: [Comment] = []
     
     let profileImage = UIImageView()
     let authorNameLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
@@ -18,6 +19,9 @@ class ArticleDetailVC: UIViewController {
     let likeCountLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.gray)
     let commentIcon = UIImageView(image: UIImage(systemName: "message"))
     let commentCountLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.gray)
+    let grayDivider = UIView()
+    let commentTableView = UITableView(frame: .zero)
+    
     
     init(selectedId: Int, articleVM: ArticleVM) {
         self.selectedArticleId = selectedId
@@ -38,6 +42,7 @@ class ArticleDetailVC: UIViewController {
         configureViewController()
         bindArticleVM()
         configureSubViews()
+        configureCommentTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +79,9 @@ class ArticleDetailVC: UIViewController {
             self?.contentLabel.text = article.content
             self?.likeCountLabel.text = "\(article.likes.count)"
             self?.commentCountLabel.text = "\(article.commentCount)"
+            self?.comments = article.comments
+            
+            self?.commentTableView.reloadData()
         }).disposed(by: disposeBag)
     }
     
@@ -81,12 +89,14 @@ class ArticleDetailVC: UIViewController {
     private func configureSubViews() {
         [profileImage, authorNameLabel, createdAtLabel,
          titleLabel, contentLabel, likeIcon, commentIcon,
-         likeCountLabel, commentCountLabel].forEach { view.addSubview($0) }
+         likeCountLabel, commentCountLabel, grayDivider,
+         commentTableView].forEach { view.addSubview($0) }
         
         let padding: CGFloat = 20
         
         profileImage.layer.cornerRadius = 20
         profileImage.clipsToBounds = true
+        grayDivider.backgroundColor = BambooColors.gray
         
         profileImage.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(padding)
@@ -136,6 +146,62 @@ class ArticleDetailVC: UIViewController {
         commentCountLabel.snp.makeConstraints { make in
             make.leading.equalTo(commentIcon.snp.trailing).offset(10)
             make.centerY.equalTo(commentIcon.snp.centerY)
+        }
+        
+        grayDivider.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.top.equalTo(likeIcon.snp.bottom).offset(40)
+            make.height.equalTo(1)
+        }
+        
+        commentTableView.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.top.equalTo(grayDivider.snp.bottom)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+    
+    
+    private func configureCommentTableView() {
+        commentTableView.backgroundColor = BambooColors.black
+        commentTableView.separatorColor = BambooColors.gray
+        commentTableView.separatorInset = UIEdgeInsets.zero
+        commentTableView.delegate = self
+        commentTableView.dataSource = self
+        commentTableView.contentInsetAdjustmentBehavior = .never
+        
+        commentTableView.register(CommentTableViewCell.self, forCellReuseIdentifier: CommentTableViewCell.reuseId)
+        commentTableView.register(NestedCommentTableViewCell.self, forCellReuseIdentifier: NestedCommentTableViewCell.reuseId)
+    }
+}
+
+extension ArticleDetailVC: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return comments.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1 + comments[section].nestedComments.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let comment = comments[indexPath.section]
+        
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CommentTableViewCell.reuseId,
+                                                     for: indexPath) as! CommentTableViewCell
+            cell.setCell(comment: comment)
+            
+            return cell
+        } else {
+            let nestedComment = comment.nestedComments[indexPath.row - 1]
+            let cell = tableView.dequeueReusableCell(withIdentifier: NestedCommentTableViewCell.reuseId,
+                                                     for: indexPath) as! NestedCommentTableViewCell
+            cell.setCell(comment: nestedComment)
+            
+            return cell
         }
     }
 }

@@ -47,6 +47,8 @@
 		CBA1C06229F818530098723E /* AppleAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA1C06129F818530098723E /* AppleAuthButton.swift */; };
 		CBA77A9F2A0BAF0000CE0A02 /* ListModalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA77A9E2A0BAF0000CE0A02 /* ListModalTableView.swift */; };
 		CBA77AA12A0BB0E300CE0A02 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA77AA02A0BB0E300CE0A02 /* LocationTableViewCell.swift */; };
+		CBBD77A92A28D58C008CBCDE /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD77A82A28D58C008CBCDE /* CommentTableViewCell.swift */; };
+		CBBD77AB2A28D5C9008CBCDE /* NestedCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD77AA2A28D5C9008CBCDE /* NestedCommentTableViewCell.swift */; };
 		CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CD29F055950057CBEA /* AppDelegate.swift */; };
 		CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CF29F055950057CBEA /* SceneDelegate.swift */; };
 		CBCD43D729F055970057CBEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD43D629F055970057CBEA /* Assets.xcassets */; };
@@ -124,6 +126,8 @@
 		CBA1C06529F842CE0098723E /* env.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = env.xcconfig; sourceTree = "<group>"; };
 		CBA77A9E2A0BAF0000CE0A02 /* ListModalTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModalTableView.swift; sourceTree = "<group>"; };
 		CBA77AA02A0BB0E300CE0A02 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		CBBD77A82A28D58C008CBCDE /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		CBBD77AA2A28D5C9008CBCDE /* NestedCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedCommentTableViewCell.swift; sourceTree = "<group>"; };
 		CBCD43CA29F055950057CBEA /* bamboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bamboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCD43CD29F055950057CBEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBCD43CF29F055950057CBEA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -274,6 +278,8 @@
 				CB586FA52A05146F00827590 /* PressableTableViewCell.swift */,
 				CBA77AA02A0BB0E300CE0A02 /* LocationTableViewCell.swift */,
 				CBD8104A2A1A32C60022E507 /* ArticleListCollectionViewCell.swift */,
+				CBBD77A82A28D58C008CBCDE /* CommentTableViewCell.swift */,
+				CBBD77AA2A28D5C9008CBCDE /* NestedCommentTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -641,6 +647,7 @@
 				CB50D2972A0ABA2D0097C24B /* LocationSelectButton.swift in Sources */,
 				CB6E524F2A096BF1005F602A /* LocationVM.swift in Sources */,
 				CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */,
+				CBBD77AB2A28D5C9008CBCDE /* NestedCommentTableViewCell.swift in Sources */,
 				CB4A4B432A0655CF005FE6AC /* Location.swift in Sources */,
 				CB71C2C12A0E5CFA005AC9E4 /* ToastMessageView.swift in Sources */,
 				CBA77A9F2A0BAF0000CE0A02 /* ListModalTableView.swift in Sources */,
@@ -661,6 +668,7 @@
 				CB87F49229FE66A00025B67A /* NetworkManager.swift in Sources */,
 				CB52566429F6DA270018E604 /* LoginVC.swift in Sources */,
 				CBA1C06029F818410098723E /* GoogleAuthButton.swift in Sources */,
+				CBBD77A92A28D58C008CBCDE /* CommentTableViewCell.swift in Sources */,
 				CB2FA94A29F5B7910009F39F /* BambooLabel.swift in Sources */,
 				CBD8104B2A1A32C60022E507 /* ArticleListCollectionViewCell.swift in Sources */,
 				CBA1C06229F818530098723E /* AppleAuthButton.swift in Sources */,
