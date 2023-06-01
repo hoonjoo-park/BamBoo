@@ -73,7 +73,7 @@ class ArticleDetailVC: UIViewController {
             self?.titleLabel.text = article.title
             self?.contentLabel.text = article.content
             self?.likeCountLabel.text = "\(article.likes.count)"
-            self?.commentCountLabel.text = "\(article.comments.count)"
+            self?.commentCountLabel.text = "\(article.commentCount)"
         }).disposed(by: disposeBag)
     }
     

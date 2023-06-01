@@ -13,6 +13,7 @@ struct Article: Codable {
     let likes: [ArticleLike]
     let cityName: String
     let districtName: String?
+    let commentCount: Int
 }
 
 struct ArticleLike: Codable {
@@ -25,7 +26,6 @@ struct Comment: Codable {
     let content: String
     let author: User
     let articleId: Int
-    let parentCommentId: Int?
     let nestedComments: [Comment]
     let createdAt: String
 }
