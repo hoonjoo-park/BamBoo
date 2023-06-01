@@ -26,6 +26,7 @@ struct Comment: Codable {
     let author: User
     let articleId: Int
     let parentCommentId: Int?
+    let nestedComments: [Comment]
     let createdAt: String
 }
 

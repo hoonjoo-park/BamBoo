@@ -36,7 +36,7 @@ class ArticleDetailVC: UIViewController {
         
         view.backgroundColor = BambooColors.black
         configureViewController()
-        bindArticleData()
+        bindArticleVM()
         configureSubViews()
     }
     
@@ -59,7 +59,7 @@ class ArticleDetailVC: UIViewController {
     }
     
     
-    private func bindArticleData() {
+    private func bindArticleVM() {
         articleVM.article.subscribe(onNext: { [weak self] article in
             guard let article = article else { return }
             
