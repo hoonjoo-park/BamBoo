@@ -30,6 +30,7 @@
 		CB586FA32A0512A000827590 /* PressableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB586FA22A0512A000827590 /* PressableButton.swift */; };
 		CB586FA62A05146F00827590 /* PressableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB586FA52A05146F00827590 /* PressableTableViewCell.swift */; };
 		CB586FA82A057BFD00827590 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB586FA72A057BFD00827590 /* ChatVC.swift */; };
+		CB65A0EF2A2B25C70053C295 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65A0EE2A2B25C70053C295 /* IconButton.swift */; };
 		CB6E524B2A092A01005F602A /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E524A2A092A01005F602A /* LocationVC.swift */; };
 		CB6E524D2A0931BC005F602A /* BottomSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E524C2A0931BC005F602A /* BottomSheetVC.swift */; };
 		CB6E524F2A096BF1005F602A /* LocationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E524E2A096BF1005F602A /* LocationVM.swift */; };
@@ -108,6 +109,7 @@
 		CB586FA22A0512A000827590 /* PressableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressableButton.swift; sourceTree = "<group>"; };
 		CB586FA52A05146F00827590 /* PressableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressableTableViewCell.swift; sourceTree = "<group>"; };
 		CB586FA72A057BFD00827590 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		CB65A0EE2A2B25C70053C295 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		CB6E524A2A092A01005F602A /* LocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVC.swift; sourceTree = "<group>"; };
 		CB6E524C2A0931BC005F602A /* BottomSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetVC.swift; sourceTree = "<group>"; };
 		CB6E524E2A096BF1005F602A /* LocationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVM.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				CBA1C05F29F818410098723E /* GoogleAuthButton.swift */,
 				CBA1C06129F818530098723E /* AppleAuthButton.swift */,
 				CB50D2962A0ABA2D0097C24B /* LocationSelectButton.swift */,
+				CB65A0EE2A2B25C70053C295 /* IconButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				CBA77A9F2A0BAF0000CE0A02 /* ListModalTableView.swift in Sources */,
 				CB586FA12A04FC3000827590 /* UnregisterVC.swift in Sources */,
 				CBD810462A1A10E40022E507 /* HomeHeaderView.swift in Sources */,
+				CB65A0EF2A2B25C70053C295 /* IconButton.swift in Sources */,
 				CB2FA94129F554690009F39F /* WriteArticleVC.swift in Sources */,
 				CB2FA93B29F54B870009F39F /* UIColor+Ext.swift in Sources */,
 				CB4A4B412A065547005FE6AC /* Chat.swift in Sources */,
