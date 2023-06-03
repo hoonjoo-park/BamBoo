@@ -41,6 +41,7 @@ class ArticleDetailVC: UIViewController {
         view.backgroundColor = BambooColors.black
         configureViewController()
         bindArticleVM()
+        configureAddTargets()
         configureSubViews()
         configureCommentTableView()
     }
@@ -83,6 +84,12 @@ class ArticleDetailVC: UIViewController {
             
             self?.commentTableView.reloadData()
         }).disposed(by: disposeBag)
+    }
+    
+    
+    private func configureAddTargets() {
+        likeIcon.addTarget(self, action: #selector(handleTapLike), for: .touchUpInside)
+        commentIcon.addTarget(self, action: #selector(handleTapComment), for: .touchUpInside)
     }
     
     
@@ -174,6 +181,16 @@ class ArticleDetailVC: UIViewController {
         
         commentTableView.register(CommentTableViewCell.self, forCellReuseIdentifier: CommentTableViewCell.reuseId)
         commentTableView.register(NestedCommentTableViewCell.self, forCellReuseIdentifier: NestedCommentTableViewCell.reuseId)
+    }
+    
+    
+    @objc private func handleTapLike() {
+        articleVM.addLike()
+    }
+    
+    
+    @objc private func handleTapComment() {
+        
     }
 }
 

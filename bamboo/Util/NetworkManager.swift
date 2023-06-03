@@ -223,4 +223,28 @@ class NetworkManager {
                 return try self.decoder.decode(Article.self, from: data)
             }
     }
+    
+    
+    func postArticleLike(articleId: Int) {
+        let urlString = "\(baseUrl)/article/like/\(articleId)"
+        let token = UserDefaults.standard.getToken()
+        
+        guard let token = token else { return }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)"
+        ]
+        
+        AF.request(urlString, method: .post, encoding: JSONEncoding.default, headers: headers)
+            .validate()
+            .response { response in
+                switch response.result {
+                case .failure(let error):
+                    print("Post Article Like Error:", error.localizedDescription)
+                    break
+                default:
+                    break
+                }
+            }
+    }
 }

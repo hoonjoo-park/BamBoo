@@ -41,4 +41,17 @@ class ArticleVM {
                 self?.articleSubject.onNext(article)
             }).disposed(by: disposeBag)
     }
+    
+    
+    func addLike() {
+        do {
+            guard let currentArticle = try articleSubject.value() else { return }
+            
+            let currentId = currentArticle.id
+            
+        } catch {
+            print("addLike error: \(error)")
+            return
+        }
+    }
 }
