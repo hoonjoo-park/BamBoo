@@ -15,9 +15,9 @@ class ArticleDetailVC: UIViewController {
     let createdAtLabel = BambooLabel(fontSize: 10, weight: .medium, color: BambooColors.gray)
     let titleLabel = BambooLabel(fontSize: 16, weight: .semibold, color: BambooColors.white)
     let contentLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.white)
-    let likeIcon = UIImageView(image: UIImage(systemName: "heart"))
+    let likeIcon = IconButton(frame: .zero)
     let likeCountLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.gray)
-    let commentIcon = UIImageView(image: UIImage(systemName: "message"))
+    let commentIcon = IconButton(frame: .zero)
     let commentCountLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.gray)
     let grayDivider = UIView()
     let commentTableView = UITableView(frame: .zero)
@@ -125,6 +125,7 @@ class ArticleDetailVC: UIViewController {
         }
         
         likeIcon.tintColor = BambooColors.gray
+        likeIcon.iconView.image = UIImage(systemName: "heart")
         likeIcon.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(padding)
             make.width.height.equalTo(24)
@@ -137,6 +138,7 @@ class ArticleDetailVC: UIViewController {
         }
         
         commentIcon.tintColor = BambooColors.gray
+        commentIcon.iconView.image = UIImage(systemName: "message")
         commentIcon.snp.makeConstraints { make in
             make.leading.equalTo(likeCountLabel.snp.trailing).offset(20)
             make.width.height.equalTo(21)
