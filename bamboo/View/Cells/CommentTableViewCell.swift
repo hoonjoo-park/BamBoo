@@ -85,7 +85,7 @@ class CommentTableViewCell: UITableViewCell {
         commentLabel.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(10)
             make.bottom.equalToSuperview().inset(15)
-            make.leading.equalToSuperview().inset(horizontalPadding)
+            make.leading.trailing.equalToSuperview().inset(horizontalPadding)
         }
     }
 }
