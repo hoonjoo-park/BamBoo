@@ -32,4 +32,13 @@ class UserViewModel {
         
         updateUser(updatedUser)
     }
+    
+    func getUser() -> User? {
+        do {
+            return try userSubject.value()
+        } catch {
+            print("getUser error: \(error)")
+            return nil
+        }
+    }
 }

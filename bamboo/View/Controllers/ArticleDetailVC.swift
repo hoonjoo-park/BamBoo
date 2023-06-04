@@ -8,6 +8,7 @@ class ArticleDetailVC: UIViewController {
     let disposeBag = DisposeBag()
     var selectedArticleId: Int!
     var articleVM: ArticleVM!
+    var userVM: UserViewModel!
     var comments: [Comment] = []
     
     let profileImage = UIImageView()
@@ -23,9 +24,10 @@ class ArticleDetailVC: UIViewController {
     let commentTableView = UITableView(frame: .zero)
     
     
-    init(selectedId: Int, articleVM: ArticleVM) {
+    init(selectedId: Int, articleVM: ArticleVM, userVM: UserViewModel) {
         self.selectedArticleId = selectedId
         self.articleVM = articleVM
+        self.userVM = userVM
         articleVM.fetchArticle(articleId: selectedId)
         
         super.init(nibName: nil, bundle: nil)
@@ -67,22 +69,25 @@ class ArticleDetailVC: UIViewController {
     
     private func bindArticleVM() {
         articleVM.article.subscribe(onNext: { [weak self] article in
-            guard let article = article else { return }
+            guard let self = self,
+                  let article = article else { return }
             
             if let profileImage = article.author.profile.profileImage,
                let profileImageUrl = URL(string: profileImage) {
-                self?.profileImage.kf.setImage(with: profileImageUrl)
+                self.profileImage.kf.setImage(with: profileImageUrl)
             }
             
-            self?.authorNameLabel.text = article.author.name
-            self?.createdAtLabel.text = DateHelper.getElapsedTime(article.createdAt)
-            self?.titleLabel.text = article.title
-            self?.contentLabel.text = article.content
-            self?.likeCountLabel.text = "\(article.likes.count)"
-            self?.commentCountLabel.text = "\(article.commentCount)"
-            self?.comments = article.comments
+            self.likeIcon.iconView.image = self.checkIsLiked(article: article) ? UIImage(systemName: "heart") : UIImage(systemName: "heart.fill")
             
-            self?.commentTableView.reloadData()
+            self.authorNameLabel.text = article.author.name
+            self.createdAtLabel.text = DateHelper.getElapsedTime(article.createdAt)
+            self.titleLabel.text = article.title
+            self.contentLabel.text = article.content
+            self.likeCountLabel.text = "\(article.likes.count)"
+            self.commentCountLabel.text = "\(article.commentCount)"
+            self.comments = article.comments
+            
+            self.commentTableView.reloadData()
         }).disposed(by: disposeBag)
     }
     
@@ -132,7 +137,6 @@ class ArticleDetailVC: UIViewController {
         }
         
         likeIcon.tintColor = BambooColors.gray
-        likeIcon.iconView.image = UIImage(systemName: "heart")
         likeIcon.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(padding)
             make.width.height.equalTo(24)
@@ -191,6 +195,16 @@ class ArticleDetailVC: UIViewController {
     
     @objc private func handleTapComment() {
         
+    }
+    
+    private func checkIsLiked(article: Article) -> Bool {
+        guard let user = userVM.getUser() else { return false }
+        
+        let existingLike = article.likes.filter({ articleLike in
+            return articleLike.userId == user.id
+        })
+        
+        return !existingLike.isEmpty
     }
 }
 
