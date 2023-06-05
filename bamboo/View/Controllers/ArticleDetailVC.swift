@@ -77,8 +77,6 @@ class ArticleDetailVC: UIViewController {
                 self.profileImage.kf.setImage(with: profileImageUrl)
             }
             
-            self.likeIcon.iconView.image = self.checkIsLiked(article: article) ? UIImage(systemName: "heart") : UIImage(systemName: "heart.fill")
-            
             self.authorNameLabel.text = article.author.name
             self.createdAtLabel.text = DateHelper.getElapsedTime(article.createdAt)
             self.titleLabel.text = article.title
@@ -137,9 +135,10 @@ class ArticleDetailVC: UIViewController {
         }
         
         likeIcon.tintColor = BambooColors.gray
+        likeIcon.iconView.image = checkIsLiked() ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
         likeIcon.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(padding)
-            make.width.height.equalTo(24)
+            make.width.height.equalTo(22)
             make.top.equalTo(contentLabel.snp.bottom).offset(40)
         }
         
@@ -152,7 +151,7 @@ class ArticleDetailVC: UIViewController {
         commentIcon.iconView.image = UIImage(systemName: "message")
         commentIcon.snp.makeConstraints { make in
             make.leading.equalTo(likeCountLabel.snp.trailing).offset(20)
-            make.width.height.equalTo(21)
+            make.width.height.equalTo(20)
             make.centerY.equalTo(likeIcon.snp.centerY)
         }
         
@@ -197,8 +196,9 @@ class ArticleDetailVC: UIViewController {
         
     }
     
-    private func checkIsLiked(article: Article) -> Bool {
-        guard let user = userVM.getUser() else { return false }
+    private func checkIsLiked() -> Bool {
+        guard let user = userVM.getUser(),
+              let article = articleVM.getArticle() else { return false }
         
         let existingLike = article.likes.filter({ articleLike in
             return articleLike.userId == user.id

@@ -54,4 +54,14 @@ class ArticleVM {
             return
         }
     }
+    
+    
+    func getArticle() -> Article? {
+        do {
+            return try articleSubject.value()
+        } catch {
+            print("getArticle error: \(error)")
+            return nil
+        }
+    }
 }
