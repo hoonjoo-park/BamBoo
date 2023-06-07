@@ -43,15 +43,43 @@ class ArticleVM {
     }
     
     
-    func addLike() {
+    func addLike(userId: Int) {
         do {
             guard let currentArticle = try articleSubject.value() else { return }
             
             let currentId = currentArticle.id
             
+            NetworkManager.shared.postArticleLike(articleId: currentId) { [weak self] isSuccess in
+                if isSuccess {
+                    var newArticle = currentArticle
+                    newArticle.likes.append(ArticleLike(userId: userId, articleId: currentId))
+                    self?.articleSubject.onNext(newArticle)
+                }
+            }
         } catch {
             print("addLike error: \(error)")
-            return
+        }
+    }
+    
+    
+    func deleteLike(userId: Int) {
+        do {
+            guard let currentArticle = try articleSubject.value() else { return }
+            
+            let currentId = currentArticle.id
+            
+            NetworkManager.shared.deleteArticleLike(articleId: currentId) { [weak self] isSuccess in
+                if isSuccess {
+                    var newArticle = currentArticle
+                    newArticle.likes = newArticle.likes.filter { articleLike in
+                        return articleLike.userId != userId
+                    }
+                    
+                    self?.articleSubject.onNext(newArticle)
+                }
+            }
+        } catch {
+            print("addLike error: \(error)")
         }
     }
     
@@ -62,6 +90,22 @@ class ArticleVM {
         } catch {
             print("getArticle error: \(error)")
             return nil
+        }
+    }
+    
+    
+    func checkIsArticleLiked(userId: Int) -> Bool {
+        do {
+            guard let currentArticle = try articleSubject.value() else { return false }
+            
+            let isLiked = currentArticle.likes.contains { articleLike in
+                articleLike.userId == userId
+            }
+            
+            return isLiked
+        } catch {
+            print("checkIsArticleLiked error: \(error)")
+            return false
         }
     }
 }

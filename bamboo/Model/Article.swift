@@ -10,7 +10,7 @@ struct Article: Codable {
     let createdAt: String
     let author: User
     let comments: [Comment]
-    let likes: [ArticleLike]
+    var likes: [ArticleLike]
     let cityName: String
     let districtName: String?
     let commentCount: Int

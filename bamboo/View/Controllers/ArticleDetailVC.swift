@@ -135,7 +135,7 @@ class ArticleDetailVC: UIViewController {
         }
         
         likeIcon.tintColor = BambooColors.gray
-        likeIcon.iconView.image = checkIsLiked() ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+        likeIcon.iconView.image = UIImage(systemName: "heart")
         likeIcon.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(padding)
             make.width.height.equalTo(22)
@@ -188,7 +188,16 @@ class ArticleDetailVC: UIViewController {
     
     
     @objc private func handleTapLike() {
-        articleVM.addLike()
+        guard let user = userVM.getUser() else { return }
+        
+        let isLiked = articleVM.checkIsArticleLiked(userId: user.id)
+        toggleLike(isLiked)
+        
+        if isLiked {
+            articleVM.deleteLike(userId: user.id)
+        } else {
+            articleVM.addLike(userId: user.id)
+        }
     }
     
     
@@ -196,15 +205,19 @@ class ArticleDetailVC: UIViewController {
         
     }
     
-    private func checkIsLiked() -> Bool {
-        guard let user = userVM.getUser(),
-              let article = articleVM.getArticle() else { return false }
+    
+    private func toggleLike(_ isLiked: Bool) {
+        var likeCount: Int
         
-        let existingLike = article.likes.filter({ articleLike in
-            return articleLike.userId == user.id
-        })
-        
-        return !existingLike.isEmpty
+        if isLiked {
+            likeIcon.iconView.image = UIImage(systemName: "heart")
+            likeCount = max(0, (Int(likeCountLabel.text ?? "0") ?? 0) - 1)
+            likeCountLabel.text = "\(likeCount)"
+        } else {
+            likeIcon.iconView.image = UIImage(systemName: "heart.fill")
+            likeCount = (Int(likeCountLabel.text ?? "0") ?? 0) + 1
+            likeCountLabel.text = "\(likeCount)"
+        }
     }
 }
 

@@ -225,7 +225,7 @@ class NetworkManager {
     }
     
     
-    func postArticleLike(articleId: Int) {
+    func postArticleLike(articleId: Int, completion: @escaping (Bool) -> Void) {
         let urlString = "\(baseUrl)/article/like/\(articleId)"
         let token = UserDefaults.standard.getToken()
         
@@ -241,9 +241,33 @@ class NetworkManager {
                 switch response.result {
                 case .failure(let error):
                     print("Post Article Like Error:", error.localizedDescription)
-                    break
+                    completion(false)
                 default:
-                    break
+                    completion(true)
+                }
+            }
+    }
+    
+    
+    func deleteArticleLike(articleId: Int, completion: @escaping (Bool) -> Void) {
+        let urlString = "\(baseUrl)/article/like/\(articleId)"
+        let token = UserDefaults.standard.getToken()
+        
+        guard let token = token else { return }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)"
+        ]
+        
+        AF.request(urlString, method: .delete, encoding: JSONEncoding.default, headers: headers)
+            .validate()
+            .response { response in
+                switch response.result {
+                case .failure(let error):
+                    print("Delete Article Like Error:", error.localizedDescription)
+                    completion(false)
+                default:
+                    completion(true)
                 }
             }
     }
