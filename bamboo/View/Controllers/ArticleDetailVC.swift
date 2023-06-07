@@ -41,6 +41,7 @@ class ArticleDetailVC: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = BambooColors.black
+        initLikeIcon()
         configureViewController()
         bindArticleVM()
         configureAddTargets()
@@ -135,7 +136,6 @@ class ArticleDetailVC: UIViewController {
         }
         
         likeIcon.tintColor = BambooColors.gray
-        likeIcon.iconView.image = UIImage(systemName: "heart")
         likeIcon.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(padding)
             make.width.height.equalTo(22)
@@ -207,16 +207,24 @@ class ArticleDetailVC: UIViewController {
     
     
     private func toggleLike(_ isLiked: Bool) {
-        var likeCount: Int
-        
         if isLiked {
             likeIcon.iconView.image = UIImage(systemName: "heart")
-            likeCount = max(0, (Int(likeCountLabel.text ?? "0") ?? 0) - 1)
-            likeCountLabel.text = "\(likeCount)"
+            likeCountLabel.text = "\(max(0, (Int(likeCountLabel.text ?? "0") ?? 0) - 1))"
         } else {
             likeIcon.iconView.image = UIImage(systemName: "heart.fill")
-            likeCount = (Int(likeCountLabel.text ?? "0") ?? 0) + 1
-            likeCountLabel.text = "\(likeCount)"
+            likeCountLabel.text = "\((Int(likeCountLabel.text ?? "0") ?? 0) + 1)"
+        }
+    }
+    
+    private func initLikeIcon() {
+        guard let user = userVM.getUser() else { return }
+        
+        let isLiked = articleVM.checkIsArticleLiked(userId: user.id)
+        
+        if isLiked {
+            likeIcon.iconView.image = UIImage(systemName: "heart.fill")
+        } else {
+            likeIcon.iconView.image = UIImage(systemName: "heart")
         }
     }
 }
