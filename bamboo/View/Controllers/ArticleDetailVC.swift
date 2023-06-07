@@ -33,16 +33,17 @@ class ArticleDetailVC: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = BambooColors.black
         initLikeIcon()
-        configureViewController()
         bindArticleVM()
         configureAddTargets()
         configureSubViews()
@@ -51,20 +52,19 @@ class ArticleDetailVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        title = ""
-        navigationController?.isNavigationBarHidden = false
-        navigationController?.navigationBar.tintColor = BambooColors.white
-        navigationController?.navigationBar.backgroundColor = BambooColors.black
+        configureViewController()
     }
     
     
     private func configureViewController() {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
-        view.backgroundColor = BambooColors.black
+        title = ""
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         navigationController?.navigationBar.frame.origin.y = view.safeAreaInsets.top
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.tintColor = BambooColors.white
+        navigationController?.navigationBar.backgroundColor = BambooColors.black
     }
     
     
@@ -73,21 +73,25 @@ class ArticleDetailVC: UIViewController {
             guard let self = self,
                   let article = article else { return }
             
-            if let profileImage = article.author.profile.profileImage,
-               let profileImageUrl = URL(string: profileImage) {
-                self.profileImage.kf.setImage(with: profileImageUrl)
-            }
-            
-            self.authorNameLabel.text = article.author.name
-            self.createdAtLabel.text = DateHelper.getElapsedTime(article.createdAt)
-            self.titleLabel.text = article.title
-            self.contentLabel.text = article.content
-            self.likeCountLabel.text = "\(article.likes.count)"
-            self.commentCountLabel.text = "\(article.commentCount)"
-            self.comments = article.comments
-            
-            self.commentTableView.reloadData()
+            self.configureUI(article: article)
         }).disposed(by: disposeBag)
+    }
+    
+    
+    private func configureUI(article: Article) {
+        if let profileImage = article.author.profile.profileImage,
+           let profileImageUrl = URL(string: profileImage) {
+            self.profileImage.kf.setImage(with: profileImageUrl)
+        }
+        
+        authorNameLabel.text = article.author.name
+        createdAtLabel.text = DateHelper.getElapsedTime(article.createdAt)
+        titleLabel.text = article.title
+        contentLabel.text = article.content
+        likeCountLabel.text = "\(article.likes.count)"
+        commentCountLabel.text = "\(article.commentCount)"
+        comments = article.comments
+        commentTableView.reloadData()
     }
     
     
@@ -202,7 +206,7 @@ class ArticleDetailVC: UIViewController {
     
     
     @objc private func handleTapComment() {
-        
+        // TODO: 구현 예정
     }
     
     
