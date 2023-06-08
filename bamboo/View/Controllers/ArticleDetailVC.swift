@@ -42,7 +42,6 @@ class ArticleDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = BambooColors.black
         initLikeIcon()
         bindArticleVM()
         configureAddTargets()
@@ -60,6 +59,7 @@ class ArticleDetailVC: UIViewController {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         title = ""
+        view.backgroundColor = BambooColors.black
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         navigationController?.navigationBar.frame.origin.y = view.safeAreaInsets.top
         navigationController?.isNavigationBarHidden = false
