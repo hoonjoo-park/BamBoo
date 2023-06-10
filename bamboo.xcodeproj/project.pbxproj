@@ -61,6 +61,8 @@
 		CBD810462A1A10E40022E507 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD810452A1A10E40022E507 /* HomeHeaderView.swift */; };
 		CBD810492A1A32A60022E507 /* ArticleListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD810482A1A32A60022E507 /* ArticleListCollectionView.swift */; };
 		CBD8104B2A1A32C60022E507 /* ArticleListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD8104A2A1A32C60022E507 /* ArticleListCollectionViewCell.swift */; };
+		CBD948BC2A34608400245FDB /* CommentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD948BB2A34608400245FDB /* CommentTextField.swift */; };
+		CBD948BF2A3460BF00245FDB /* ChatTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD948BE2A3460BF00245FDB /* ChatTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +147,8 @@
 		CBD810452A1A10E40022E507 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		CBD810482A1A32A60022E507 /* ArticleListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListCollectionView.swift; sourceTree = "<group>"; };
 		CBD8104A2A1A32C60022E507 /* ArticleListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListCollectionViewCell.swift; sourceTree = "<group>"; };
+		CBD948BB2A34608400245FDB /* CommentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextField.swift; sourceTree = "<group>"; };
+		CBD948BE2A3460BF00245FDB /* ChatTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTextField.swift; sourceTree = "<group>"; };
 		D3CA9D8BB38C111D45D34272 /* Pods-bamboo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamboo.debug.xcconfig"; path = "Target Support Files/Pods-bamboo/Pods-bamboo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,6 +226,7 @@
 		CB2FA93C29F550910009F39F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CBD948BD2A34608A00245FDB /* TextFields */,
 				CB2FA93D29F550990009F39F /* Controllers */,
 				CB71C2BF2A0E5CD0005AC9E4 /* Views */,
 				CBD810472A1A32280022E507 /* CollectionViews */,
@@ -397,6 +402,15 @@
 				CBD810482A1A32A60022E507 /* ArticleListCollectionView.swift */,
 			);
 			path = CollectionViews;
+			sourceTree = "<group>";
+		};
+		CBD948BD2A34608A00245FDB /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				CBD948BB2A34608400245FDB /* CommentTextField.swift */,
+				CBD948BE2A3460BF00245FDB /* ChatTextField.swift */,
+			);
+			path = TextFields;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -657,6 +671,7 @@
 				CB586FA12A04FC3000827590 /* UnregisterVC.swift in Sources */,
 				CBD810462A1A10E40022E507 /* HomeHeaderView.swift in Sources */,
 				CB65A0EF2A2B25C70053C295 /* IconButton.swift in Sources */,
+				CBD948BC2A34608400245FDB /* CommentTextField.swift in Sources */,
 				CB2FA94129F554690009F39F /* WriteArticleVC.swift in Sources */,
 				CB2FA93B29F54B870009F39F /* UIColor+Ext.swift in Sources */,
 				CB4A4B412A065547005FE6AC /* Chat.swift in Sources */,
@@ -665,6 +680,7 @@
 				CB87F49629FE6A050025B67A /* User.swift in Sources */,
 				CB87F49A29FFCEB00025B67A /* EditProfileVC.swift in Sources */,
 				CB87F49029FE48730025B67A /* MyPageTableViewCell.swift in Sources */,
+				CBD948BF2A3460BF00245FDB /* ChatTextField.swift in Sources */,
 				CB8BE8082A1259D2001A38CE /* ArticleVM.swift in Sources */,
 				CB2FA94329F554750009F39F /* MyPageVC.swift in Sources */,
 				CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */,
