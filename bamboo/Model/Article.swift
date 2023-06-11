@@ -37,7 +37,7 @@ struct ArticleList: Codable {
     let author: User
     let cityId: Int
     let districtId: Int?
-    let commentCount: Int
-    let likeCount: Int
+    var commentCount: Int
+    var likeCount: Int
     let createdAt: String
 }

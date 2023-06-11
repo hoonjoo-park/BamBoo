@@ -54,6 +54,7 @@ class ArticleVM {
                     var newArticle = currentArticle
                     newArticle.likes.append(ArticleLike(userId: userId, articleId: currentId))
                     self?.articleSubject.onNext(newArticle)
+                    self?.updateArticleListLike(currentId, "add")
                 }
             }
         } catch {
@@ -76,6 +77,7 @@ class ArticleVM {
                     }
                     
                     self?.articleSubject.onNext(newArticle)
+                    self?.updateArticleListLike(currentId, "delete")
                 }
             }
         } catch {
@@ -106,6 +108,26 @@ class ArticleVM {
         } catch {
             print("checkIsArticleLiked error: \(error)")
             return false
+        }
+    }
+    
+    func updateArticleListLike(_ currentId: Int, _ type: String) {
+        do {
+            let articleList = try articleListSubject.value()
+            
+            let newArticleList = articleList.map { list -> ArticleList? in
+                guard var currentList = list else { return nil }
+                if type == "add" {
+                    currentList.likeCount += 1
+                } else {
+                    currentList.likeCount -= 1
+                }
+                return currentList
+            }
+            
+            articleListSubject.onNext(newArticleList)
+        } catch {
+            print("updateArticleListLike error: \(error)")
         }
     }
 }
