@@ -31,6 +31,7 @@ class ArticleDetailVC: UIViewController {
         articleVM.fetchArticle(articleId: selectedId)
         
         super.init(nibName: nil, bundle: nil)
+        bindArticleVM()
     }
     
     
@@ -42,16 +43,17 @@ class ArticleDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initLikeIcon()
-        bindArticleVM()
         configureAddTargets()
         configureSubViews()
         configureCommentTableView()
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         configureViewController()
+        initLikeIcon()
     }
     
     
@@ -74,6 +76,7 @@ class ArticleDetailVC: UIViewController {
                   let article = article else { return }
             
             self.configureUI(article: article)
+            self.initLikeIcon()
         }).disposed(by: disposeBag)
     }
     
@@ -219,6 +222,7 @@ class ArticleDetailVC: UIViewController {
             likeCountLabel.text = "\((Int(likeCountLabel.text ?? "0") ?? 0) + 1)"
         }
     }
+    
     
     private func initLikeIcon() {
         guard let user = userVM.getUser() else { return }

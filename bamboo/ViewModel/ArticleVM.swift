@@ -111,12 +111,14 @@ class ArticleVM {
         }
     }
     
+    
     func updateArticleListLike(_ currentId: Int, _ type: String) {
         do {
             let articleList = try articleListSubject.value()
             
             let newArticleList = articleList.map { list -> ArticleList? in
                 guard var currentList = list else { return nil }
+                
                 if type == "add" {
                     currentList.likeCount += 1
                 } else {
