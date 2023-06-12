@@ -63,6 +63,7 @@
 		CBD8104B2A1A32C60022E507 /* ArticleListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD8104A2A1A32C60022E507 /* ArticleListCollectionViewCell.swift */; };
 		CBD948BC2A34608400245FDB /* CommentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD948BB2A34608400245FDB /* CommentTextField.swift */; };
 		CBD948BF2A3460BF00245FDB /* ChatTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD948BE2A3460BF00245FDB /* ChatTextField.swift */; };
+		CBE51F4F2A374A00000D7118 /* CommentTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE51F4E2A374A00000D7118 /* CommentTextFieldView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,7 @@
 		CBD8104A2A1A32C60022E507 /* ArticleListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListCollectionViewCell.swift; sourceTree = "<group>"; };
 		CBD948BB2A34608400245FDB /* CommentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextField.swift; sourceTree = "<group>"; };
 		CBD948BE2A3460BF00245FDB /* ChatTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTextField.swift; sourceTree = "<group>"; };
+		CBE51F4E2A374A00000D7118 /* CommentTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextFieldView.swift; sourceTree = "<group>"; };
 		D3CA9D8BB38C111D45D34272 /* Pods-bamboo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamboo.debug.xcconfig"; path = "Target Support Files/Pods-bamboo/Pods-bamboo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -297,6 +299,7 @@
 			children = (
 				CB71C2C02A0E5CFA005AC9E4 /* ToastMessageView.swift */,
 				CBD810452A1A10E40022E507 /* HomeHeaderView.swift */,
+				CBE51F4E2A374A00000D7118 /* CommentTextFieldView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				CB50D2972A0ABA2D0097C24B /* LocationSelectButton.swift in Sources */,
 				CB6E524F2A096BF1005F602A /* LocationVM.swift in Sources */,
 				CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */,
+				CBE51F4F2A374A00000D7118 /* CommentTextFieldView.swift in Sources */,
 				CBBD77AB2A28D5C9008CBCDE /* NestedCommentTableViewCell.swift in Sources */,
 				CB4A4B432A0655CF005FE6AC /* Location.swift in Sources */,
 				CB71C2C12A0E5CFA005AC9E4 /* ToastMessageView.swift in Sources */,
