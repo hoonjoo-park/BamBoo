@@ -1,9 +1,9 @@
 import UIKit
 import SnapKit
 
-class CommentTextFieldView: UIView {
+class CommentContainerView: UIView {
     let borderContainer = UIView()
-    let textfield = CommentTextField()
+    let textView = CommentTextView()
     let submitButton = LabelButton(fontSize: 14, weight: .regular, color: BambooColors.green)
 
     override init(frame: CGRect) {
@@ -22,7 +22,7 @@ class CommentTextFieldView: UIView {
         backgroundColor = BambooColors.navy
         
         addSubview(borderContainer)
-        [textfield, submitButton].forEach { borderContainer.addSubview($0) }
+        [textView, submitButton].forEach { borderContainer.addSubview($0) }
         
         borderContainer.layer.borderWidth = 1
         borderContainer.layer.borderColor = BambooColors.gray.cgColor
@@ -30,7 +30,7 @@ class CommentTextFieldView: UIView {
         borderContainer.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(15)
             make.horizontalEdges.equalToSuperview().inset(25)
-            make.height.equalTo(45)
+            make.height.greaterThanOrEqualTo(45)
         }
         
         submitButton.buttonLabel.text = "등록"
@@ -40,7 +40,7 @@ class CommentTextFieldView: UIView {
             make.width.equalTo(20)
         }
         
-        textfield.snp.makeConstraints { make in
+        textView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
             make.trailing.equalTo(submitButton.snp.leading).offset(-15)
             make.verticalEdges.equalToSuperview()

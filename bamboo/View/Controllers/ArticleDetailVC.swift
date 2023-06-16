@@ -22,7 +22,7 @@ class ArticleDetailVC: UIViewController {
     let commentCountLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.gray)
     let grayDivider = UIView()
     let commentTableView = UITableView(frame: .zero)
-    let commentTextFieldView = CommentTextFieldView(frame: .zero)
+    let commentContainerView = CommentContainerView(frame: .zero)
     
     
     init(selectedId: Int, articleVM: ArticleVM, userVM: UserViewModel) {
@@ -109,7 +109,7 @@ class ArticleDetailVC: UIViewController {
         [profileImage, authorNameLabel, createdAtLabel,
          titleLabel, contentLabel, likeIcon, commentIcon,
          likeCountLabel, commentCountLabel, grayDivider,
-         commentTableView, commentTextFieldView].forEach { view.addSubview($0) }
+         commentTableView, commentContainerView].forEach { view.addSubview($0) }
         
         let padding: CGFloat = 20
         
@@ -174,7 +174,7 @@ class ArticleDetailVC: UIViewController {
             make.height.equalTo(1)
         }
         
-        commentTextFieldView.snp.makeConstraints { make in
+        commentContainerView.snp.makeConstraints { make in
             make.height.equalTo(90 + view.safeAreaInsets.bottom)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview()
@@ -183,7 +183,7 @@ class ArticleDetailVC: UIViewController {
         commentTableView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
             make.top.equalTo(grayDivider.snp.bottom)
-            make.bottom.equalTo(commentTextFieldView.snp.top)
+            make.bottom.equalTo(commentContainerView.snp.top)
         }
     }
     
