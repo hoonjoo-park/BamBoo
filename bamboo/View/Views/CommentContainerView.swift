@@ -28,7 +28,7 @@ class CommentContainerView: UIView {
         borderContainer.layer.borderColor = BambooColors.gray.cgColor
         borderContainer.layer.cornerRadius = 22.5
         borderContainer.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(15)
+            make.bottom.equalToSuperview().inset(26 + (superview?.safeAreaInsets.bottom ?? 0))
             make.horizontalEdges.equalToSuperview().inset(25)
             make.height.greaterThanOrEqualTo(45)
         }

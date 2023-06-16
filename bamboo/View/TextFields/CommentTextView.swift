@@ -28,7 +28,9 @@ class CommentTextView: UITextView, UITextViewDelegate {
         
         isScrollEnabled = expectedSize.height > maxSize.height
         
-        superview?.superview?.setNeedsLayout()
-        superview?.superview?.layoutIfNeeded()
+        let borderContainer = self.superview?.superview
+        
+        borderContainer?.setNeedsLayout()
+        borderContainer?.layoutIfNeeded()
     }
 }
