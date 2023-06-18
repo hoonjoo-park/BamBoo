@@ -4,14 +4,12 @@ class CommentTextView: UITextView, UITextViewDelegate {
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         configureUI()
-        self.delegate = self
     }
     
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureUI()
-        self.delegate = self
     }
     
     
@@ -19,24 +17,5 @@ class CommentTextView: UITextView, UITextViewDelegate {
         backgroundColor = BambooColors.navy
         textContainerInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
         font = UIFont.systemFont(ofSize: 14)
-    }
-    
-    
-    func textViewDidChange(_ textView: UITextView) {
-        let maxSize = CGSize(width: self.frame.size.width, height: 255.0)
-        let expectedSize = sizeThatFits(maxSize)
-        
-        isScrollEnabled = expectedSize.height > maxSize.height
-        
-        let borderContainer = self.superview?.superview
-        let commentContainer = borderContainer?.superview
-        
-        borderContainer?.setNeedsLayout()
-        borderContainer?.layoutIfNeeded()
-        
-        [borderContainer, commentContainer].forEach {
-            $0?.setNeedsLayout()
-            $0?.layoutIfNeeded()
-        }
     }
 }

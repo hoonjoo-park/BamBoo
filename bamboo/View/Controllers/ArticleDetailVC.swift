@@ -175,7 +175,7 @@ class ArticleDetailVC: UIViewController {
         }
         
         commentContainerView.snp.makeConstraints { make in
-            make.height.equalTo(90 + view.safeAreaInsets.bottom)
+            make.height.equalTo(85 + view.safeAreaInsets.bottom)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview()
         }

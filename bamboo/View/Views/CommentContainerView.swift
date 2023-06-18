@@ -5,6 +5,9 @@ class CommentContainerView: UIView {
     let borderContainer = UIView()
     let textView = CommentTextView()
     let submitButton = LabelButton(fontSize: 14, weight: .regular, color: BambooColors.green)
+    
+    let lineHeight: CGFloat = 16
+    let maxNumberOfLines = 7
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,14 +26,15 @@ class CommentContainerView: UIView {
         
         addSubview(borderContainer)
         [textView, submitButton].forEach { borderContainer.addSubview($0) }
+        textView.delegate = self
         
         borderContainer.layer.borderWidth = 1
         borderContainer.layer.borderColor = BambooColors.gray.cgColor
         borderContainer.layer.cornerRadius = 22.5
         borderContainer.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(26 + (superview?.safeAreaInsets.bottom ?? 0))
+            make.top.equalToSuperview().inset(15)
             make.horizontalEdges.equalToSuperview().inset(25)
-            make.height.greaterThanOrEqualTo(45)
+            make.height.equalTo(47)
         }
         
         submitButton.buttonLabel.text = "등록"
@@ -46,5 +50,25 @@ class CommentContainerView: UIView {
             make.verticalEdges.equalToSuperview()
         }
     }
+}
+
+extension CommentContainerView: UITextViewDelegate {
     
+    func textViewDidChange(_ textView: UITextView) {
+        let maxSize = CGSize(width: textView.frame.width, height: .infinity)
+        let estimatedSize = textView.sizeThatFits(maxSize)
+        
+        if estimatedSize.height > lineHeight * CGFloat(maxNumberOfLines) {
+            textView.isScrollEnabled = true
+        } else {
+            textView.isScrollEnabled = false
+            borderContainer.snp.updateConstraints { make in
+                make.height.equalTo(estimatedSize.height)
+            }
+            
+            self.snp.updateConstraints { make in
+                make.height.equalTo(38 + estimatedSize.height)
+            }
+        }
+    }
 }
