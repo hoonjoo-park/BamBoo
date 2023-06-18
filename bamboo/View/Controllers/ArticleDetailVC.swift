@@ -11,6 +11,8 @@ class ArticleDetailVC: UIViewController {
     var userVM: UserViewModel!
     var comments: [Comment] = []
     
+    let scrollView = UIScrollView()
+    let containerView = UIView()
     let profileImage = UIImageView()
     let authorNameLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
     let createdAtLabel = BambooLabel(fontSize: 10, weight: .medium, color: BambooColors.gray)
@@ -106,10 +108,13 @@ class ArticleDetailVC: UIViewController {
     
     
     private func configureSubViews() {
+        [scrollView, commentContainerView].forEach { view.addSubview($0) }
+        scrollView.addSubview(containerView)
+        
         [profileImage, authorNameLabel, createdAtLabel,
          titleLabel, contentLabel, likeIcon, commentIcon,
          likeCountLabel, commentCountLabel, grayDivider,
-         commentTableView, commentContainerView].forEach { view.addSubview($0) }
+         commentTableView].forEach { containerView.addSubview($0) }
         
         let padding: CGFloat = 20
         
@@ -117,9 +122,19 @@ class ArticleDetailVC: UIViewController {
         profileImage.clipsToBounds = true
         grayDivider.backgroundColor = BambooColors.gray
         
+        scrollView.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.top.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        containerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalTo(scrollView.snp.width)
+        }
+        
         profileImage.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(padding)
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(30)
+            make.top.equalToSuperview().inset(30)
             make.width.height.equalTo(40)
         }
         
