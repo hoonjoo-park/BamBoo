@@ -43,12 +43,19 @@ class ArticleDetailVC: UIViewController {
     }
     
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureAddTargets()
         configureSubViews()
         configureCommentTableView()
+        configureNotification()
     }
     
     
@@ -122,13 +129,21 @@ class ArticleDetailVC: UIViewController {
         profileImage.clipsToBounds = true
         grayDivider.backgroundColor = BambooColors.gray
         
+        commentContainerView.snp.makeConstraints { make in
+            make.height.equalTo(85 + view.safeAreaInsets.bottom)
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
         scrollView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
-            make.top.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(commentContainerView.snp.top)
         }
         
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+            make.height.equalTo(scrollView.snp.height)
             make.width.equalTo(scrollView.snp.width)
         }
         
@@ -189,16 +204,10 @@ class ArticleDetailVC: UIViewController {
             make.height.equalTo(1)
         }
         
-        commentContainerView.snp.makeConstraints { make in
-            make.height.equalTo(85 + view.safeAreaInsets.bottom)
-            make.horizontalEdges.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
-        
         commentTableView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
             make.top.equalTo(grayDivider.snp.bottom)
-            make.bottom.equalTo(commentContainerView.snp.top)
+            make.bottom.equalToSuperview()
         }
     }
     
@@ -213,6 +222,18 @@ class ArticleDetailVC: UIViewController {
         
         commentTableView.register(CommentTableViewCell.self, forCellReuseIdentifier: CommentTableViewCell.reuseId)
         commentTableView.register(NestedCommentTableViewCell.self, forCellReuseIdentifier: NestedCommentTableViewCell.reuseId)
+    }
+    
+    
+    private func configureNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleKeyboardNotification),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleKeyboardNotification),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
     
     
@@ -257,7 +278,25 @@ class ArticleDetailVC: UIViewController {
             likeIcon.iconView.image = UIImage(systemName: "heart")
         }
     }
+    
+    
+    @objc func handleKeyboardNotification(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else { return }
+        
+        let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+        let isKeyboardUp = notification.name == UIResponder.keyboardWillShowNotification
+        let keyboardHeight = isKeyboardUp ? keyboardFrame.height : 0
+        
+        commentContainerView.snp.updateConstraints { make in
+            make.bottom.equalTo(view.safeAreaInsets.bottom).inset(keyboardHeight)
+        }
+        
+        UIView.animate(withDuration: 0, delay: 0,options: .curveEaseOut) {
+            self.view.layoutIfNeeded()
+        }
+    }
 }
+
 
 extension ArticleDetailVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
