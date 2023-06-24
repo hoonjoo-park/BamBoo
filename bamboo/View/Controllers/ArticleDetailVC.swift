@@ -111,6 +111,7 @@ class ArticleDetailVC: UIViewController {
         contentLabel.text = article.content
         likeCountLabel.text = "\(article.likes.count)"
         commentCountLabel.text = "\(article.commentCount)"
+        
         comments = article.comments
         commentTableView.reloadData()
     }

@@ -5,6 +5,7 @@ class CommentContainerView: UIView {
     let borderContainer = UIView()
     let textView = CommentTextView()
     let submitButton = LabelButton(fontSize: 14, weight: .regular, color: BambooColors.green)
+    let commentPlaceholder = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.gray)
     
     let lineHeight: CGFloat = 16
     let maxNumberOfLines = 7
@@ -23,9 +24,10 @@ class CommentContainerView: UIView {
     
     private func configureUI() {
         backgroundColor = BambooColors.navy
+        commentPlaceholder.text = "댓글을 입력해 주세요"
         
         addSubview(borderContainer)
-        [textView, submitButton].forEach { borderContainer.addSubview($0) }
+        [textView, submitButton, commentPlaceholder].forEach { borderContainer.addSubview($0) }
         textView.delegate = self
         
         borderContainer.layer.borderWidth = 1
@@ -49,6 +51,11 @@ class CommentContainerView: UIView {
             make.trailing.equalTo(submitButton.snp.leading).offset(-15)
             make.verticalEdges.equalToSuperview()
         }
+        
+        commentPlaceholder.snp.makeConstraints { make in
+            make.leading.equalTo(textView.snp.leading).inset(5)
+            make.verticalEdges.equalToSuperview()
+        }
     }
 }
 
@@ -57,6 +64,8 @@ extension CommentContainerView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         let maxSize = CGSize(width: textView.frame.width, height: .infinity)
         let estimatedSize = textView.sizeThatFits(maxSize)
+        
+        commentPlaceholder.isHidden = !textView.text.isEmpty
         
         if estimatedSize.height > lineHeight * CGFloat(maxNumberOfLines) {
             textView.isScrollEnabled = true
