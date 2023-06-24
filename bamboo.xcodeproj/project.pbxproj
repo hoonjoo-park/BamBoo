@@ -228,6 +228,7 @@
 		CB2FA93C29F550910009F39F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CBBE57432A46C60A00DA24B4 /* TextViews */,
 				CBD948BD2A34608A00245FDB /* TextFields */,
 				CB2FA93D29F550990009F39F /* Controllers */,
 				CB71C2BF2A0E5CD0005AC9E4 /* Views */,
@@ -333,6 +334,14 @@
 			path = TableViews;
 			sourceTree = "<group>";
 		};
+		CBBE57432A46C60A00DA24B4 /* TextViews */ = {
+			isa = PBXGroup;
+			children = (
+				CBD948BB2A34608400245FDB /* CommentTextView.swift */,
+			);
+			path = TextViews;
+			sourceTree = "<group>";
+		};
 		CBCD43C129F055950057CBEA = {
 			isa = PBXGroup;
 			children = (
@@ -410,7 +419,6 @@
 		CBD948BD2A34608A00245FDB /* TextFields */ = {
 			isa = PBXGroup;
 			children = (
-				CBD948BB2A34608400245FDB /* CommentTextView.swift */,
 				CBD948BE2A3460BF00245FDB /* ChatTextField.swift */,
 			);
 			path = TextFields;
