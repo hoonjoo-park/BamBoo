@@ -258,7 +258,7 @@ class ArticleDetailVC: UIViewController {
     
     
     @objc private func handleTapComment() {
-        // TODO: 구현 예정
+        commentContainerView.textView.becomeFirstResponder()
     }
     
     
