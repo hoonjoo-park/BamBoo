@@ -11,7 +11,6 @@ class ArticleDetailVC: UIViewController {
     var userVM: UserViewModel!
     var comments: [Comment] = []
     
-    let scrollView = UIScrollView()
     let containerView = UIView()
     let profileImage = UIImageView()
     let authorNameLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
@@ -67,6 +66,15 @@ class ArticleDetailVC: UIViewController {
     }
     
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        DispatchQueue.main.async {
+            self.updateContainerViewHeight()
+        }
+    }
+    
+    
     private func configureViewController() {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
@@ -115,13 +123,11 @@ class ArticleDetailVC: UIViewController {
     
     
     private func configureSubViews() {
-        [scrollView, commentContainerView].forEach { view.addSubview($0) }
-        scrollView.addSubview(containerView)
+        [commentTableView, commentContainerView].forEach { view.addSubview($0) }
         
         [profileImage, authorNameLabel, createdAtLabel,
          titleLabel, contentLabel, likeIcon, commentIcon,
-         likeCountLabel, commentCountLabel, grayDivider,
-         commentTableView].forEach { containerView.addSubview($0) }
+         likeCountLabel, commentCountLabel, grayDivider].forEach { containerView.addSubview($0) }
         
         let padding: CGFloat = 20
         
@@ -135,16 +141,10 @@ class ArticleDetailVC: UIViewController {
             make.bottom.equalToSuperview()
         }
         
-        scrollView.snp.makeConstraints { make in
+        commentTableView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(commentContainerView.snp.top)
-        }
-        
-        containerView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-            make.height.equalTo(scrollView.snp.height)
-            make.width.equalTo(scrollView.snp.width)
         }
         
         profileImage.snp.makeConstraints { make in
@@ -203,12 +203,6 @@ class ArticleDetailVC: UIViewController {
             make.top.equalTo(likeIcon.snp.bottom).offset(40)
             make.height.equalTo(1)
         }
-        
-        commentTableView.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview()
-            make.top.equalTo(grayDivider.snp.bottom)
-            make.bottom.equalToSuperview()
-        }
     }
     
     
@@ -236,6 +230,17 @@ class ArticleDetailVC: UIViewController {
                                                object: nil)
     }
     
+    
+    private func updateContainerViewHeight() {
+        containerView.layoutIfNeeded()
+        
+        let headerHeight = grayDivider.frame.maxY
+        containerView.frame.size.height = headerHeight
+        
+        commentTableView.tableHeaderView = containerView
+        commentTableView.tableHeaderView?.layoutIfNeeded()
+    }
+
     
     @objc private func handleTapLike() {
         guard let user = userVM.getUser() else { return }
