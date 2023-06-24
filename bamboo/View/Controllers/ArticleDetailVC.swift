@@ -11,7 +11,7 @@ class ArticleDetailVC: UIViewController {
     var userVM: UserViewModel!
     var comments: [Comment] = []
     
-    let containerView = UIView()
+    let contentHeaderView = UIView()
     let profileImage = UIImageView()
     let authorNameLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
     let createdAtLabel = BambooLabel(fontSize: 10, weight: .medium, color: BambooColors.gray)
@@ -70,7 +70,7 @@ class ArticleDetailVC: UIViewController {
         super.viewDidLayoutSubviews()
 
         DispatchQueue.main.async {
-            self.updateContainerViewHeight()
+            self.updateContentHeaderView()
         }
     }
     
@@ -127,7 +127,7 @@ class ArticleDetailVC: UIViewController {
         
         [profileImage, authorNameLabel, createdAtLabel,
          titleLabel, contentLabel, likeIcon, commentIcon,
-         likeCountLabel, commentCountLabel, grayDivider].forEach { containerView.addSubview($0) }
+         likeCountLabel, commentCountLabel, grayDivider].forEach { contentHeaderView.addSubview($0) }
         
         let padding: CGFloat = 20
         
@@ -231,13 +231,13 @@ class ArticleDetailVC: UIViewController {
     }
     
     
-    private func updateContainerViewHeight() {
-        containerView.layoutIfNeeded()
+    private func updateContentHeaderView() {
+        contentHeaderView.layoutIfNeeded()
         
         let headerHeight = grayDivider.frame.maxY
-        containerView.frame.size.height = headerHeight
+        contentHeaderView.frame.size.height = headerHeight
         
-        commentTableView.tableHeaderView = containerView
+        commentTableView.tableHeaderView = contentHeaderView
         commentTableView.tableHeaderView?.layoutIfNeeded()
     }
 
