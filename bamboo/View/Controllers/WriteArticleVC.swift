@@ -146,12 +146,12 @@ class WriteArticleVC: ToastMessageVC {
               let selectedLocation = locationVM.selectedArticleLocation.value,
               let selectedDistrictId = selectedLocation.districtId
         else {
-            showToastMessage(message: "위치, 제목, 본문 내용은 모두 필수 입력 사항입니다", type: .warn, dirction: .topDown)
+            showToastMessage(message: "위치, 제목, 본문 내용은 모두 필수 입력 사항입니다", type: .warn, direction: .topDown)
             return
         }
         
         guard title.count <= 30 else {
-            showToastMessage(message: "제목의 최대 글자 수는 30자입니다", type: .warn, dirction: .topDown)
+            showToastMessage(message: "제목의 최대 글자 수는 30자입니다", type: .warn, direction: .topDown)
             return
         }
         
@@ -190,6 +190,6 @@ extension WriteArticleVC: UITextViewDelegate {
 extension WriteArticleVC: LocationVCDelegate {
     func saveSelectedLocation(cityName: String, districtName: String) {
         locationButtonPlaceHolder.text = "\(cityName), \(districtName)"
-        showToastMessage(message: "위치 설정이 완료되었습니다!", type: .success, dirction: .topDown)
+        showToastMessage(message: "위치 설정이 완료되었습니다!", type: .success, direction: .topDown)
     }
 }

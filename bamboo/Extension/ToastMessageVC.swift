@@ -8,7 +8,7 @@ class ToastMessageVC: UIViewController {
     }
     
     
-    func showToastMessage(message: String, type: ToastMessageType, dirction: ToastMessageDirection) {
+    func showToastMessage(message: String, type: ToastMessageType, direction: ToastMessageDirection) {
         let toastMessageHeight = 50
         let toastMessageWidth = Int(view.frame.width - 30)
         let viewHeight = Int(view.frame.height)
@@ -22,7 +22,7 @@ class ToastMessageVC: UIViewController {
         var startFrame: CGRect
         var finishFrame: CGRect
         
-        switch dirction {
+        switch direction {
         case .topDown:
             startFrame = CGRect(x: centerX,
                                 y: -toastMessageHeight,

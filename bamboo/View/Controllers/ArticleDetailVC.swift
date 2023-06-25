@@ -4,7 +4,7 @@ import Kingfisher
 import RxSwift
 import RxCocoa
 
-class ArticleDetailVC: UIViewController {
+class ArticleDetailVC: ToastMessageVC {
     let disposeBag = DisposeBag()
     var selectedArticleId: Int!
     var selectedCommentId: Int?
@@ -350,7 +350,13 @@ extension ArticleDetailVC: UITableViewDelegate, UITableViewDataSource {
 
 extension ArticleDetailVC: CommentContainerDelegate {
     func submitComment(content: String) {
-        NetworkManager.shared.postComment(articleId: selectedArticleId, content: content, parentCommentId: selectedCommentId) {
+        NetworkManager.shared.postComment(articleId: selectedArticleId, content: content, parentCommentId: selectedCommentId) { [weak self] in
+            guard let self = self else { return }
+            
+            self.commentContainerView.textView.text = ""
+            self.commentContainerView.commentPlaceholder.isHidden = false
+            self.commentContainerView.textView.resignFirstResponder()
+            self.showToastMessage(message: "댓글이 등록되었습니다", type: .success, direction: .topDown)
             self.articleVM.fetchArticle(articleId: self.selectedArticleId)
         }
     }

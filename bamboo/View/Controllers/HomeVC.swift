@@ -103,6 +103,6 @@ extension HomeVC: HomeHeaderViewDelegate {
 extension HomeVC: LocationVCDelegate {
     func saveSelectedLocation(cityName: String, districtName: String) {
         homeHeaderView.loacationLabel.text = "\(cityName), \(districtName)"
-        showToastMessage(message: "위치 설정이 완료되었습니다!", type: .success, dirction: .topDown)
+        showToastMessage(message: "위치 설정이 완료되었습니다!", type: .success, direction: .topDown)
     }
 }
