@@ -7,6 +7,7 @@ import RxCocoa
 class ArticleDetailVC: UIViewController {
     let disposeBag = DisposeBag()
     var selectedArticleId: Int!
+    var selectedCommentId: Int?
     var articleVM: ArticleVM!
     var userVM: UserViewModel!
     var comments: [Comment] = []
@@ -54,6 +55,7 @@ class ArticleDetailVC: UIViewController {
         configureAddTargets()
         configureSubViews()
         configureCommentTableView()
+        configureCommentContainerView()
         configureNotification()
     }
     
@@ -220,6 +222,11 @@ class ArticleDetailVC: UIViewController {
     }
     
     
+    private func configureCommentContainerView() {
+        commentContainerView.delegate = self
+    }
+    
+    
     private func configureNotification() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleKeyboardNotification),
@@ -337,5 +344,14 @@ extension ArticleDetailVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
+    }
+}
+
+
+extension ArticleDetailVC: CommentContainerDelegate {
+    func submitComment(content: String) {
+        NetworkManager.shared.postComment(articleId: selectedArticleId, content: content, parentCommentId: selectedCommentId) {
+            self.articleVM.fetchArticle(articleId: self.selectedArticleId)
+        }
     }
 }
