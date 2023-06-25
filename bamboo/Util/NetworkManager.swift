@@ -271,4 +271,36 @@ class NetworkManager {
                 }
             }
     }
+    
+    func postComment(articleId: Int, content: String, parentCommentId: Int?, completion: @escaping () -> Void) {
+        let urlString = "\(baseUrl)/comment/\(articleId)"
+        let token = UserDefaults.standard.getToken()
+        
+        guard let token = token else { return }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)"
+        ]
+        
+        var params = [
+            "content": content,
+        ]
+        
+        if let parentCommentId = parentCommentId {
+            params["parentCommentId"] = String(parentCommentId)
+        }
+        
+        AF.request(urlString, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+            .validate()
+            .response { response in
+                switch response.result {
+                case .failure(let error):
+                    print("Post Comment Error:", error.localizedDescription)
+                    break
+                default:
+                    completion()
+                    break
+                }
+            }
+    }
 }

@@ -1,11 +1,16 @@
 import UIKit
 import SnapKit
 
+protocol CommentContainerDelegate: AnyObject {
+    func submitComment(content: String)
+}
+
 class CommentContainerView: UIView {
     let borderContainer = UIView()
     let textView = CommentTextView()
     let submitButton = LabelButton(fontSize: 14, weight: .regular, color: BambooColors.green)
     let commentPlaceholder = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.gray)
+    var delegate: CommentContainerDelegate!
     
     let lineHeight: CGFloat = 16
     let maxNumberOfLines = 7
@@ -14,6 +19,7 @@ class CommentContainerView: UIView {
         super.init(frame: frame)
         
         configureUI()
+        configureAddTarget()
     }
     
     
@@ -56,6 +62,16 @@ class CommentContainerView: UIView {
             make.leading.equalTo(textView.snp.leading).inset(5)
             make.verticalEdges.equalToSuperview()
         }
+    }
+    
+    
+    private func configureAddTarget() {
+        submitButton.addTarget(self, action: #selector(onSubmitButtonTapped), for: .touchUpInside)
+    }
+    
+    
+    @objc func onSubmitButtonTapped() {
+        delegate.submitComment(content: textView.text)
     }
 }
 
