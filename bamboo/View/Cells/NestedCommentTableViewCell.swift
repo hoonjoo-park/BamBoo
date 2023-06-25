@@ -34,7 +34,7 @@ class NestedCommentTableViewCell: UITableViewCell {
     }
     
     
-    func setCell(comment: Comment) {
+    func setCell(comment: Comment, userVM: UserViewModel) {
         if let profileImage = comment.author.profile.profileImage,
            let profileImageUrl = URL(string: profileImage) {
             profileImageView.kf.setImage(with: profileImageUrl)

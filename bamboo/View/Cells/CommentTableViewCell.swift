@@ -9,6 +9,7 @@ class CommentTableViewCell: UITableViewCell {
     let usernameLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
     let createdAtLabel = BambooLabel(fontSize: 10, weight: .medium, color: BambooColors.gray)
     let replyButton = IconButton(frame: .zero)
+    let optionButton = IconButton(frame: .zero)
     let commentLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.white)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -33,7 +34,7 @@ class CommentTableViewCell: UITableViewCell {
     }
     
     
-    func setCell(comment: Comment) {
+    func setCell(comment: Comment, userVM: UserViewModel) {
         if let profileImage = comment.author.profile.profileImage,
            let profileImageUrl = URL(string: profileImage) {
             profileImageView.kf.setImage(with: profileImageUrl)
@@ -42,6 +43,13 @@ class CommentTableViewCell: UITableViewCell {
         usernameLabel.text = comment.author.profile.username
         createdAtLabel.text = DateHelper.getElapsedTime(comment.createdAt)
         commentLabel.text = comment.content
+        
+        guard let currentUser = userVM.getUser() else { return }
+        
+        let isMyComment = comment.author.id == currentUser.id
+        
+        replyButton.isHidden = isMyComment
+        optionButton.isHidden = !isMyComment
     }
     
     
@@ -53,9 +61,11 @@ class CommentTableViewCell: UITableViewCell {
         
         replyButton.iconView.image = UIImage(systemName: "arrowshape.turn.up.right")
         replyButton.iconView.tintColor = BambooColors.gray
+        optionButton.iconView.image = UIImage(systemName: "ellipsis")
+        optionButton.iconView.tintColor = BambooColors.gray
         
         [profileImageView, usernameLabel, createdAtLabel,
-         replyButton, commentLabel].forEach { addSubview($0) }
+         replyButton, optionButton, commentLabel].forEach { addSubview($0) }
         
         profileImageView.layer.cornerRadius = 10
         profileImageView.clipsToBounds = true
@@ -80,6 +90,13 @@ class CommentTableViewCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(horizontalPadding)
             make.top.equalToSuperview().offset(verticalPadding)
             make.width.height.equalTo(15)
+        }
+        
+        optionButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(horizontalPadding)
+            make.top.equalToSuperview().offset(verticalPadding)
+            make.width.equalTo(15)
+            make.height.equalTo(10)
         }
         
         commentLabel.snp.makeConstraints { make in

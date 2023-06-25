@@ -328,14 +328,14 @@ extension ArticleDetailVC: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: CommentTableViewCell.reuseId,
                                                      for: indexPath) as! CommentTableViewCell
-            cell.setCell(comment: comment)
+            cell.setCell(comment: comment, userVM: userVM)
             
             return cell
         } else {
             let nestedComment = comment.nestedComments[indexPath.row - 1]
             let cell = tableView.dequeueReusableCell(withIdentifier: NestedCommentTableViewCell.reuseId,
                                                      for: indexPath) as! NestedCommentTableViewCell
-            cell.setCell(comment: nestedComment)
+            cell.setCell(comment: nestedComment, userVM: userVM)
             
             return cell
         }
