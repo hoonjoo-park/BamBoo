@@ -362,6 +362,7 @@ extension ArticleDetailVC: CommentContainerDelegate {
             self.commentContainerView.textView.resignFirstResponder()
             self.showToastMessage(message: "댓글이 등록되었습니다", type: .success, direction: .topDown)
             self.articleVM.fetchArticle(articleId: self.selectedArticleId)
+            self.articleVM.updateArticleListCommentCount(articleId: self.selectedArticleId, type: "add")
         }
     }
 }
@@ -377,6 +378,7 @@ extension ArticleDetailVC: CommentCellDelegate {
             NetworkManager.shared.deleteComment(commentId: commentId) {
                 self.showToastMessage(message: "댓글이 삭제되었습니다", type: .success, direction: .topDown)
                 self.articleVM.fetchArticle(articleId: self.selectedArticleId)
+                self.articleVM.updateArticleListCommentCount(articleId: self.selectedArticleId, type: "delete")
             }
         })
         actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel))

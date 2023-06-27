@@ -119,17 +119,45 @@ class ArticleVM {
             let newArticleList = articleList.map { list -> ArticleList? in
                 guard var currentList = list else { return nil }
                 
-                if type == "add" {
-                    currentList.likeCount += 1
-                } else {
-                    currentList.likeCount -= 1
+                if currentList.id == currentId {
+                    if type == "add" {
+                        currentList.likeCount += 1
+                    } else {
+                        currentList.likeCount -= 1
+                    }
                 }
+                
                 return currentList
             }
             
             articleListSubject.onNext(newArticleList)
         } catch {
             print("updateArticleListLike error: \(error)")
+        }
+    }
+    
+    
+    func updateArticleListCommentCount(articleId: Int, type: String) {
+        do {
+            let articleList = try articleListSubject.value()
+            
+            let newArticleList = articleList.map { list -> ArticleList? in
+                guard var currentList = list else { return nil }
+                
+                if currentList.id == articleId {
+                    if type == "add" {
+                        currentList.commentCount += 1
+                    } else {
+                        currentList.commentCount = max(0, currentList.commentCount - 1)
+                    }
+                }
+                
+                return currentList
+            }
+            
+            articleListSubject.onNext(newArticleList)
+        } catch {
+            print("updateArticleListCommentCount error: \(error)")
         }
     }
 }
