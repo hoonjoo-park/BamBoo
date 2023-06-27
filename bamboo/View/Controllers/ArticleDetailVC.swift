@@ -385,4 +385,9 @@ extension ArticleDetailVC: CommentCellDelegate {
         
         self.present(actionSheet, animated: true)
     }
+    
+    
+    func replyComment(commentId: Int) {
+        // TODO: 구현 예정
+    }
 }

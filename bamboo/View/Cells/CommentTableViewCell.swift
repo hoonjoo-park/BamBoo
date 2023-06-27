@@ -4,6 +4,7 @@ import Kingfisher
 
 protocol CommentCellDelegate: AnyObject {
     func openActionSheet(commentId: Int)
+    func replyComment(commentId: Int)
 }
 
 class CommentTableViewCell: UITableViewCell {
@@ -131,6 +132,8 @@ class CommentTableViewCell: UITableViewCell {
     
     
     @objc func handleTapReplyButton() {
-        // TODO: 구현 예정
+        if currentCommentId != nil {
+            self.delegate.replyComment(commentId: currentCommentId)
+        }
     }
 }
