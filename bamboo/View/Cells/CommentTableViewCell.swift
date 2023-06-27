@@ -3,13 +3,14 @@ import SnapKit
 import Kingfisher
 
 protocol CommentCellDelegate: AnyObject {
-    func openActionSheet()
+    func openActionSheet(commentId: Int)
 }
 
 class CommentTableViewCell: UITableViewCell {
     static let reuseId = "CommentTableViewCell"
     
     var delegate: CommentCellDelegate!
+    var currentCommentId: Int!
     
     let profileImageView = UIImageView()
     let usernameLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
@@ -51,6 +52,7 @@ class CommentTableViewCell: UITableViewCell {
         usernameLabel.text = comment.author.profile.username
         createdAtLabel.text = DateHelper.getElapsedTime(comment.createdAt)
         commentLabel.text = comment.content
+        currentCommentId = comment.id
         
         guard let currentUser = userVM.getUser() else { return }
         
@@ -122,7 +124,9 @@ class CommentTableViewCell: UITableViewCell {
     
     
     @objc func handleTapOptionButton() {
-        self.delegate.openActionSheet()
+        if currentCommentId != nil {
+            self.delegate.openActionSheet(commentId: currentCommentId)
+        }
     }
     
     

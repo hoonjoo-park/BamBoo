@@ -272,6 +272,7 @@ class NetworkManager {
             }
     }
     
+    
     func postComment(articleId: Int, content: String, parentCommentId: Int?, completion: @escaping () -> Void) {
         let urlString = "\(baseUrl)/comment/\(articleId)"
         let token = UserDefaults.standard.getToken()
@@ -296,6 +297,31 @@ class NetworkManager {
                 switch response.result {
                 case .failure(let error):
                     print("Post Comment Error:", error.localizedDescription)
+                    break
+                default:
+                    completion()
+                    break
+                }
+            }
+    }
+    
+    
+    func deleteComment(commentId: Int, completion: @escaping () -> Void) {
+        let urlString = "\(baseUrl)/comment/\(commentId)"
+        let token = UserDefaults.standard.getToken()
+        
+        guard let token = token else { return }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)"
+        ]
+        
+        AF.request(urlString, method: .delete, headers: headers)
+            .validate()
+            .response { response in
+                switch response.result {
+                case .failure(let error):
+                    print("Delete Comment Error:", error.localizedDescription)
                     break
                 default:
                     completion()

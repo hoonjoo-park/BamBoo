@@ -368,10 +368,17 @@ extension ArticleDetailVC: CommentContainerDelegate {
 
 
 extension ArticleDetailVC: CommentCellDelegate {
-    func openActionSheet() {
+    func openActionSheet(commentId: Int) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        actionSheet.addAction(UIAlertAction(title: "삭제", style: .destructive))
+        actionSheet.addAction(UIAlertAction(title: "삭제", style: .destructive) { [weak self] _ in
+            guard let self = self else { return }
+            
+            NetworkManager.shared.deleteComment(commentId: commentId) {
+                self.showToastMessage(message: "댓글이 삭제되었습니다", type: .success, direction: .topDown)
+                self.articleVM.fetchArticle(articleId: self.selectedArticleId)
+            }
+        })
         actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel))
         
         self.present(actionSheet, animated: true)
