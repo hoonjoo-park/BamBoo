@@ -2,20 +2,28 @@ import UIKit
 import SnapKit
 import Kingfisher
 
+protocol CommentCellDelegate: AnyObject {
+    func openActionSheet()
+}
+
 class CommentTableViewCell: UITableViewCell {
     static let reuseId = "CommentTableViewCell"
+    
+    var delegate: CommentCellDelegate!
     
     let profileImageView = UIImageView()
     let usernameLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
     let createdAtLabel = BambooLabel(fontSize: 10, weight: .medium, color: BambooColors.gray)
-    let replyButton = IconButton(frame: .zero)
-    let optionButton = IconButton(frame: .zero)
+    let replyButton = IconButton()
+    let optionButton = IconButton()
     let commentLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.white)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
+        
         configureUI()
+        configureButtonTargets()
     }
     
     
@@ -65,7 +73,7 @@ class CommentTableViewCell: UITableViewCell {
         optionButton.iconView.tintColor = BambooColors.gray
         
         [profileImageView, usernameLabel, createdAtLabel,
-         replyButton, optionButton, commentLabel].forEach { addSubview($0) }
+         replyButton, optionButton, commentLabel].forEach { contentView.addSubview($0) }
         
         profileImageView.layer.cornerRadius = 10
         profileImageView.clipsToBounds = true
@@ -104,5 +112,21 @@ class CommentTableViewCell: UITableViewCell {
             make.bottom.equalToSuperview().inset(15)
             make.leading.trailing.equalToSuperview().inset(horizontalPadding)
         }
+    }
+    
+    
+    private func configureButtonTargets() {
+        optionButton.addTarget(self, action: #selector(handleTapOptionButton), for: .touchUpInside)
+        replyButton.addTarget(self, action: #selector(handleTapReplyButton), for: .touchUpInside)
+    }
+    
+    
+    @objc func handleTapOptionButton() {
+        self.delegate.openActionSheet()
+    }
+    
+    
+    @objc func handleTapReplyButton() {
+        // TODO: 구현 예정
     }
 }

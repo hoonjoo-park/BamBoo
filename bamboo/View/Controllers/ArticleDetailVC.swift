@@ -328,6 +328,9 @@ extension ArticleDetailVC: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: CommentTableViewCell.reuseId,
                                                      for: indexPath) as! CommentTableViewCell
+            
+            cell.delegate = self
+            cell.optionButton.tag = indexPath.row
             cell.setCell(comment: comment, userVM: userVM)
             
             return cell
@@ -335,6 +338,7 @@ extension ArticleDetailVC: UITableViewDelegate, UITableViewDataSource {
             let nestedComment = comment.nestedComments[indexPath.row - 1]
             let cell = tableView.dequeueReusableCell(withIdentifier: NestedCommentTableViewCell.reuseId,
                                                      for: indexPath) as! NestedCommentTableViewCell
+            
             cell.setCell(comment: nestedComment, userVM: userVM)
             
             return cell
@@ -359,5 +363,17 @@ extension ArticleDetailVC: CommentContainerDelegate {
             self.showToastMessage(message: "댓글이 등록되었습니다", type: .success, direction: .topDown)
             self.articleVM.fetchArticle(articleId: self.selectedArticleId)
         }
+    }
+}
+
+
+extension ArticleDetailVC: CommentCellDelegate {
+    func openActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        actionSheet.addAction(UIAlertAction(title: "삭제", style: .destructive))
+        actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel))
+        
+        self.present(actionSheet, animated: true)
     }
 }
