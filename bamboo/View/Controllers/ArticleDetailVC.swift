@@ -388,6 +388,8 @@ extension ArticleDetailVC: CommentCellDelegate {
     
     
     func replyComment(commentId: Int) {
-        // TODO: 구현 예정
+        self.commentContainerView.textView.becomeFirstResponder()
+        
+        // TODO: 디자인 확정 후 대댓글 기능 구현 예정
     }
 }
