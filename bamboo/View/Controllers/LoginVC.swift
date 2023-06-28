@@ -75,7 +75,9 @@ extension LoginVC: AuthButtonDelegate {
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
         
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, err in
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, err in
+            
+            guard let self = self else { return }
             
             if let error = err {
                 print("[Google Auth]", error)
@@ -85,7 +87,16 @@ extension LoginVC: AuthButtonDelegate {
             guard let user = result?.user,
                   let idToken = user.idToken?.tokenString else { return }
             
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+            let accessToken = user.accessToken.tokenString
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+            
+            NetworkManager.shared.postOAuth(accessToken, provider: "google") { token in
+                if let token = token {
+                    self.authCompletion(accessToken: token)
+                } else {
+                    print("[postOAuth] Failed to receive token")
+                }
+            }
         }
     }
 }
