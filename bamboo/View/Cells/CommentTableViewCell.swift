@@ -1,6 +1,7 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import RxSwift
 
 protocol CommentCellDelegate: AnyObject {
     func openActionSheet(commentId: Int)
@@ -10,8 +11,10 @@ protocol CommentCellDelegate: AnyObject {
 class CommentTableViewCell: UITableViewCell {
     static let reuseId = "CommentTableViewCell"
     
+    let disposeBag = DisposeBag()
     var delegate: CommentCellDelegate!
     var currentCommentId: Int!
+    var articleVM: ArticleVM!
     
     let profileImageView = UIImageView()
     let usernameLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
@@ -44,12 +47,14 @@ class CommentTableViewCell: UITableViewCell {
     }
     
     
-    func setCell(comment: Comment, userVM: UserViewModel) {
+    func setCell(comment: Comment, userVM: UserViewModel, articleVM: ArticleVM) {
         if let profileImage = comment.author.profile.profileImage,
            let profileImageUrl = URL(string: profileImage) {
             profileImageView.kf.setImage(with: profileImageUrl)
         }
         
+        self.articleVM = articleVM
+        bindArticleVM()
         usernameLabel.text = comment.author.profile.username
         createdAtLabel.text = DateHelper.getElapsedTime(comment.createdAt)
         commentLabel.text = comment.content
@@ -115,6 +120,27 @@ class CommentTableViewCell: UITableViewCell {
             make.bottom.equalToSuperview().inset(15)
             make.leading.trailing.equalToSuperview().inset(horizontalPadding)
         }
+    }
+    
+    
+    private func bindArticleVM() {
+        guard let articleVM = articleVM else { return }
+        
+        articleVM.selectedCommentId.subscribe(onNext: { [weak self] selectedId in
+            guard let self = self,
+                  let selectedId = selectedId,
+                  let currentCommentId = self.currentCommentId else { return }
+            
+            if selectedId == currentCommentId {
+                self.layer.borderWidth = 1
+                self.layer.borderColor = BambooColors.green.cgColor
+                self.layer.cornerRadius = 2
+            } else {
+                self.layer.borderWidth = 0
+                self.layer.cornerRadius = 0
+            }
+            
+        }).disposed(by: disposeBag)
     }
     
     

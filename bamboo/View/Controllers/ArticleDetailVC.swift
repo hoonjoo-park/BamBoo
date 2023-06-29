@@ -7,7 +7,6 @@ import RxCocoa
 class ArticleDetailVC: ToastMessageVC {
     let disposeBag = DisposeBag()
     var selectedArticleId: Int!
-    var selectedCommentId: Int?
     var articleVM: ArticleVM!
     var userVM: UserViewModel!
     var comments: [Comment] = []
@@ -65,6 +64,12 @@ class ArticleDetailVC: ToastMessageVC {
         
         configureViewController()
         initLikeIcon()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        articleVM.updateSelectedCommentId(commentId: nil)
     }
     
     
@@ -331,7 +336,7 @@ extension ArticleDetailVC: UITableViewDelegate, UITableViewDataSource {
             
             cell.delegate = self
             cell.optionButton.tag = indexPath.row
-            cell.setCell(comment: comment, userVM: userVM)
+            cell.setCell(comment: comment, userVM: userVM, articleVM: articleVM)
             
             return cell
         } else {
@@ -354,6 +359,8 @@ extension ArticleDetailVC: UITableViewDelegate, UITableViewDataSource {
 
 extension ArticleDetailVC: CommentContainerDelegate {
     func submitComment(content: String) {
+        let selectedCommentId = articleVM.getSelectedCommentId()
+        
         NetworkManager.shared.postComment(articleId: selectedArticleId, content: content, parentCommentId: selectedCommentId) { [weak self] in
             guard let self = self else { return }
             
@@ -389,7 +396,6 @@ extension ArticleDetailVC: CommentCellDelegate {
     
     func replyComment(commentId: Int) {
         self.commentContainerView.textView.becomeFirstResponder()
-        
-        // TODO: 디자인 확정 후 대댓글 기능 구현 예정
+        self.articleVM.updateSelectedCommentId(commentId: commentId)
     }
 }

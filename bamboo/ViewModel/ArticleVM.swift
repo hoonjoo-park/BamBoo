@@ -13,6 +13,10 @@ class ArticleVM {
     var article: Observable<Article?> {
         return articleSubject.asObservable()
     }
+    private let selectedCommentIdSubject = BehaviorSubject<Int?>(value: nil)
+    var selectedCommentId: Observable<Int?> {
+        return selectedCommentIdSubject.asObservable()
+    }
     
     
     func fetchArticleList(cityId: Int, districtId: Int) {
@@ -159,5 +163,25 @@ class ArticleVM {
         } catch {
             print("updateArticleListCommentCount error: \(error)")
         }
+    }
+    
+    
+    func getSelectedCommentId() -> Int? {
+        do {
+            return try selectedCommentIdSubject.value()
+        } catch {
+            print("getSelectedCommentId error: \(error)")
+            return nil
+        }
+    }
+    
+    
+    func updateSelectedCommentId(commentId: Int?) {        
+        guard let commentId = commentId else {
+            selectedCommentIdSubject.onNext(nil)
+            return
+        }
+        
+        selectedCommentIdSubject.onNext(commentId)
     }
 }
