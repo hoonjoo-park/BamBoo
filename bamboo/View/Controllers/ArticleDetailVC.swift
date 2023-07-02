@@ -56,6 +56,7 @@ class ArticleDetailVC: ToastMessageVC {
         configureCommentTableView()
         configureCommentContainerView()
         configureNotification()
+        configureGestureHandler()
     }
     
     
@@ -252,6 +253,18 @@ class ArticleDetailVC: ToastMessageVC {
         
         commentTableView.tableHeaderView = contentHeaderView
         commentTableView.tableHeaderView?.layoutIfNeeded()
+    }
+    
+    
+    private func configureGestureHandler() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        commentTableView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    
+    @objc private func dismissKeyboard() {
+        commentContainerView.textView.endEditing(true)
+        articleVM.updateSelectedCommentId(commentId: nil)
     }
 
     

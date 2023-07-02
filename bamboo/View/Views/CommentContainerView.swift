@@ -68,7 +68,7 @@ class CommentContainerView: UIView {
     private func configureAddTarget() {
         submitButton.addTarget(self, action: #selector(onSubmitButtonTapped), for: .touchUpInside)
     }
-    
+
     
     @objc func onSubmitButtonTapped() {
         delegate.submitComment(content: textView.text)
