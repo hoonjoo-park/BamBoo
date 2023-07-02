@@ -128,7 +128,6 @@ class CommentTableViewCell: UITableViewCell {
         
         articleVM.selectedCommentId.subscribe(onNext: { [weak self] selectedId in
             guard let self = self,
-                  let selectedId = selectedId,
                   let currentCommentId = self.currentCommentId else { return }
             
             if selectedId == currentCommentId {
@@ -158,8 +157,10 @@ class CommentTableViewCell: UITableViewCell {
     
     
     @objc func handleTapReplyButton() {
-        if currentCommentId != nil {
-            self.delegate.replyComment(commentId: currentCommentId)
-        }
+        guard let currentCommentId = currentCommentId else { return }
+        
+        self.delegate.replyComment(commentId: currentCommentId)
+        
+        
     }
 }

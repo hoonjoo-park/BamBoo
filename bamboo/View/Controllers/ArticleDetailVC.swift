@@ -361,7 +361,8 @@ extension ArticleDetailVC: CommentContainerDelegate {
     func submitComment(content: String) {
         let selectedCommentId = articleVM.getSelectedCommentId()
         
-        NetworkManager.shared.postComment(articleId: selectedArticleId, content: content, parentCommentId: selectedCommentId) { [weak self] in
+        NetworkManager.shared.postComment(articleId: selectedArticleId, content: content, parentCommentId: selectedCommentId
+        ) { [weak self] in
             guard let self = self else { return }
             
             self.commentContainerView.textView.text = ""
@@ -370,6 +371,7 @@ extension ArticleDetailVC: CommentContainerDelegate {
             self.showToastMessage(message: "댓글이 등록되었습니다", type: .success, direction: .topDown)
             self.articleVM.fetchArticle(articleId: self.selectedArticleId)
             self.articleVM.updateArticleListCommentCount(articleId: self.selectedArticleId, type: "add")
+            self.articleVM.updateSelectedCommentId(commentId: nil)
         }
     }
 }
@@ -395,7 +397,14 @@ extension ArticleDetailVC: CommentCellDelegate {
     
     
     func replyComment(commentId: Int) {
-        self.commentContainerView.textView.becomeFirstResponder()
-        self.articleVM.updateSelectedCommentId(commentId: commentId)
+        let confirmAlert = UIAlertController(title: "", message: "대댓글을 입력하시겠습니까?", preferredStyle: .alert)
+        
+        confirmAlert.addAction(UIAlertAction(title: "취소", style: .cancel))
+        confirmAlert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
+            self.commentContainerView.textView.becomeFirstResponder()
+            self.articleVM.updateSelectedCommentId(commentId: commentId)
+        })
+        
+        self.present(confirmAlert, animated: true)
     }
 }
