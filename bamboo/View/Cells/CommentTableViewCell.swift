@@ -51,6 +51,8 @@ class CommentTableViewCell: UITableViewCell {
         if let profileImage = comment.author.profile.profileImage,
            let profileImageUrl = URL(string: profileImage) {
             profileImageView.kf.setImage(with: profileImageUrl)
+        } else {
+            profileImageView.image = UIImage(named: "panda")
         }
         
         self.articleVM = articleVM
@@ -160,7 +162,5 @@ class CommentTableViewCell: UITableViewCell {
         guard let currentCommentId = currentCommentId else { return }
         
         self.delegate.replyComment(commentId: currentCommentId)
-        
-        
     }
 }

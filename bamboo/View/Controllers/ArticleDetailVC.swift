@@ -111,6 +111,8 @@ class ArticleDetailVC: ToastMessageVC {
         if let profileImage = article.author.profile.profileImage,
            let profileImageUrl = URL(string: profileImage) {
             self.profileImage.kf.setImage(with: profileImageUrl)
+        } else {
+            profileImage.image = UIImage(named: "panda")
         }
         
         authorNameLabel.text = article.author.name
