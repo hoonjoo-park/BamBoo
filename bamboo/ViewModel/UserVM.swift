@@ -15,9 +15,8 @@ class UserViewModel {
     
     
     func updateProfile(_ profile: UserProfile) {
-        guard let currentUser = try? userSubject.value(), let profileImage = profile.profileImage else { return }
-        
-        KingfisherManager.shared.cache.removeImage(forKey: profileImage)
+        guard let currentUser = try? userSubject.value(),
+              let profileImage = profile.profileImage else { return }
         
         let updatedUser = User(
             id: currentUser.id,

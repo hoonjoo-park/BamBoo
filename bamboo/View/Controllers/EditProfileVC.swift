@@ -182,15 +182,16 @@ class EditProfileVC: UIViewController {
         let confirm = UIAlertController(title: "저장하시겠습니까?", message: "확인 버튼을 누르시면 변경 사항이 저장됩니다.", preferredStyle: .alert)
         
         confirm.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] action in
-            guard let username = self?.usernameInput.text,
-                  let image = self?.profileImageView.image,
+            guard let self = self,
+                  let username = self.usernameInput.text,
+                  let image = self.profileImageView.image,
                   let imageData = image.jpegData(compressionQuality: 1.0) else { return }
             
             NetworkManager.shared.putUser(profileImage: imageData, username: username) { profile in
                 guard let profile = profile else { return }
                 
-                self?.userVM.updateProfile(profile)
-                self?.navigationController?.popViewController(animated: true)
+                self.userVM.updateProfile(profile)
+                self.navigationController?.popViewController(animated: true)
             }
         })
         

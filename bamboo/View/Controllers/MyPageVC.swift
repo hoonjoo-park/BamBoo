@@ -117,13 +117,17 @@ class MyPageVC: UIViewController {
     private func bindUserVM() {
         userVM.user
             .subscribe(onNext: { [weak self] user in
+                guard let self = self else { return }
+                
                 if let user = user {
                     if let profileImage = user.profile.profileImage,
                        let profileImageUrl = URL(string: profileImage) {
-                        self?.profileImage.kf.setImage(with: profileImageUrl)
+                        self.profileImage.kf.setImage(with: profileImageUrl)
+                    } else {
+                        self.profileImage.image = UIImage(named: "panda")
                     }
                     
-                    self?.usernameLabel.text = user.profile.username
+                    self.usernameLabel.text = user.profile.username
                 }
             }).disposed(by: disposeBag)
     }
