@@ -8,7 +8,8 @@ class MyPageVC: UIViewController {
     private let tableView = UITableView(frame: .zero)
     private let headerView = UIView()
     private let listTitles = ["채팅", "로그아웃", "회원 탈퇴", "버전 정보"]
-    let profileImage = UIImageView(image: UIImage(named: "panda"))
+    let placeholderImage = UIImage(named: "avatar")
+    let profileImage = UIImageView()
     let usernameLabel = BambooLabel(fontSize: 18, weight: .semibold, color: BambooColors.white)
     let profileEditButton = UIButton()
     let editIcon = UIImageView(image: UIImage(systemName: "square.and.pencil"))
@@ -122,9 +123,9 @@ class MyPageVC: UIViewController {
                 if let user = user {
                     if let profileImage = user.profile.profileImage,
                        let profileImageUrl = URL(string: profileImage) {
-                        self.profileImage.kf.setImage(with: profileImageUrl)
+                        self.profileImage.kf.setImage(with: profileImageUrl, placeholder: self.placeholderImage)
                     } else {
-                        self.profileImage.image = UIImage(named: "panda")
+                        self.profileImage.image = self.placeholderImage
                     }
                     
                     self.usernameLabel.text = user.profile.username

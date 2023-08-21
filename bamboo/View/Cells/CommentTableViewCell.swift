@@ -52,7 +52,7 @@ class CommentTableViewCell: UITableViewCell {
            let profileImageUrl = URL(string: profileImage) {
             profileImageView.kf.setImage(with: profileImageUrl)
         } else {
-            profileImageView.image = UIImage(named: "panda")
+            profileImageView.image = UIImage(named: "avatar")
         }
         
         self.articleVM = articleVM

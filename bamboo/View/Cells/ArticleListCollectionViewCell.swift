@@ -5,6 +5,7 @@ import SnapKit
 class ArticleListCollectionViewCell: UICollectionViewCell {
     static let reuseId = "ArticleListCell"
     
+    let placeholderImage = UIImage(named: "avatar")
     let avatarImageView = UIImageView()
     let authorNameLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.darkGray)
     let titleLabel = BambooLabel(fontSize: 13, weight: .medium, color: BambooColors.white)
@@ -29,7 +30,9 @@ class ArticleListCollectionViewCell: UICollectionViewCell {
     func setCell(articleList: ArticleList) {
         if let profileImage = articleList.author.profile.profileImage,
            let profileImageUrl = URL(string: profileImage) {
-            avatarImageView.kf.setImage(with: profileImageUrl)
+            avatarImageView.kf.setImage(with: profileImageUrl, placeholder: placeholderImage)
+        } else {
+            avatarImageView.image = placeholderImage
         }
         
         authorNameLabel.text = articleList.author.profile.username

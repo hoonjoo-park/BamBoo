@@ -39,7 +39,7 @@ class NestedCommentTableViewCell: UITableViewCell {
            let profileImageUrl = URL(string: profileImage) {
             profileImageView.kf.setImage(with: profileImageUrl)
         } else {
-            profileImageView.image = UIImage(named: "panda")
+            profileImageView.image = UIImage(named: "avatar")
         }
         
         usernameLabel.text = comment.author.profile.username

@@ -121,15 +121,17 @@ class EditProfileVC: UIViewController {
     
     private func bindUserVM() {
         userVM.user.subscribe(onNext: { [weak self] user in
+            guard let self = self else { return }
+            
             if let user = user {
                 if let profileImage = user.profile.profileImage,
                    let profileImageUrl = URL(string: profileImage) {
-                    self?.profileImageView.kf.setImage(with: profileImageUrl)
+                    self.profileImageView.kf.setImage(with: profileImageUrl)
                 } else {
-                    self?.profileImageView.image = UIImage(named: "panda")
+                    self.profileImageView.image = UIImage(named: "avatar")
                 }
                 
-                self?.usernameInput.text = user.profile.username
+                self.usernameInput.text = user.profile.username
             }
         }).disposed(by: disposeBag)
     }
