@@ -5,7 +5,7 @@ import SnapKit
 import Kingfisher
 import Photos
 
-class EditProfileVC: UIViewController {
+class EditProfileVC: ToastMessageVC {
     let profileImageTitleLabel = BambooLabel(fontSize: 16, weight: .semibold, color: BambooColors.gray)
     let profileImageView = UIImageView()
     let profileImageDescriptionLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
@@ -183,6 +183,8 @@ class EditProfileVC: UIViewController {
     @objc private func handleSaveButtonTapped() {
         let confirm = UIAlertController(title: "저장하시겠습니까?", message: "확인 버튼을 누르시면 변경 사항이 저장됩니다.", preferredStyle: .alert)
         
+        confirm.addAction(UIAlertAction(title: "취소", style: .destructive))
+        
         confirm.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] action in
             guard let self = self,
                   let username = self.usernameInput.text,
@@ -190,14 +192,17 @@ class EditProfileVC: UIViewController {
                   let imageData = image.jpegData(compressionQuality: 1.0) else { return }
             
             NetworkManager.shared.putUser(profileImage: imageData, username: username) { profile in
-                guard let profile = profile else { return }
+                guard let profile = profile else {
+                    self.showToastMessage(message: "프로필 수정에 실패했습니다.",
+                                          type: ToastMessageType.failed,
+                                          direction: ToastMessageDirection.topDown)
+                    return
+                }
                 
                 self.userVM.updateProfile(profile)
                 self.navigationController?.popViewController(animated: true)
             }
         })
-        
-        confirm.addAction(UIAlertAction(title: "취소", style: .destructive))
         
         present(confirm, animated: true)
     }
