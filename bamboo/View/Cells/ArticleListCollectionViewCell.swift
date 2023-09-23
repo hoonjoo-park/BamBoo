@@ -30,7 +30,7 @@ class ArticleListCollectionViewCell: UICollectionViewCell {
     func setCell(articleList: ArticleList) {
         if let profileImage = articleList.author.profile.profileImage,
            let profileImageUrl = URL(string: profileImage) {
-            avatarImageView.kf.setImage(with: profileImageUrl, placeholder: placeholderImage)
+            avatarImageView.setImageWithRetry(url: profileImageUrl, retry: 5)
         } else {
             avatarImageView.image = placeholderImage
         }

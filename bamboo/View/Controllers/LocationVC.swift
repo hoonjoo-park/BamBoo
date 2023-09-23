@@ -10,6 +10,9 @@ class LocationVC: BottomSheetVC {
     var fromVC: String!
     var delegate: LocationVCDelegate?
     
+    var selectedCityId: Int?
+    var selectedDistrictId: Int?
+    
     let disposeBag = DisposeBag()
     let locationVM = LocationVM.shared
     
@@ -135,6 +138,7 @@ class LocationVC: BottomSheetVC {
             .subscribe(onNext: { [weak self] indexPath in
                 guard let selectedCity = self?.locationVM.locations.value[indexPath.row] else { return }
                 
+                self?.selectedCityId = selectedCity.id
                 self?.cityButton.placeholder.text = selectedCity.name
                 self?.districtButton.placeholder.text = "시/군/구 선택"
                 self?.locationVM
@@ -152,7 +156,7 @@ class LocationVC: BottomSheetVC {
                 guard let selectedDistrict = self?.locationVM.districtsBySelectedCity.value[indexPath.row],
                       let currentLocation = self?.locationVM.selectedArticleLocation.value else { return }
 
-                
+                self?.selectedDistrictId = selectedDistrict.id
                 self?.districtButton.placeholder.text = selectedDistrict.name
                 self?.locationVM
                     .updateSelectedArticleLocation(location: SelectedLocation(cityId: selectedDistrict.cityId,
@@ -203,9 +207,15 @@ class LocationVC: BottomSheetVC {
     @objc private func handleTapSaveLocationButton() {
         guard let delegate = delegate,
               let cityName = cityButton.placeholder.text,
+              let cityId = selectedCityId,
+              let districtId = selectedDistrictId,
               let districtName = districtButton.placeholder.text else { return }
         
         delegate.saveSelectedLocation(cityName: cityName, districtName: districtName)
+        locationVM.updateSelectedLocation(location: SelectedLocation(cityId: cityId,
+                                                                     cityName: cityName,
+                                                                     districtId: districtId,
+                                                                     districtName: districtName))
         dismissBottomSheet()
     }
 }

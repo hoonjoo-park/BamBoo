@@ -200,6 +200,7 @@ class EditProfileVC: ToastMessageVC {
                 }
                 
                 self.userVM.updateProfile(profile)
+                NotificationCenter.default.post(name: NotificationName.profileUpdated, object: nil)
                 self.navigationController?.popViewController(animated: true)
             }
         })

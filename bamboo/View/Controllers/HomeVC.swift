@@ -41,6 +41,11 @@ class HomeVC: ToastMessageVC {
     
     
     private func configureViewController() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleProfileUpdatedNotification),
+                                               name: NotificationName.profileUpdated,
+                                               object: nil)
+        
         articleListCollectionView = ArticleListCollectionView(frame: .zero,
                                                               collectionViewLayout: CollectionViewHelper.createArticleListFlowLayout(view: view))
         articleListCollectionView.backgroundColor = BambooColors.black
@@ -87,6 +92,12 @@ class HomeVC: ToastMessageVC {
                 articleDetailVC.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(articleDetailVC, animated: true)
             }.disposed(by: disposeBag)
+    }
+    
+    @objc private func handleProfileUpdatedNotification() {
+        let selectedLocation = LocationVM.shared.selectedFilterLocation.value
+        
+        articleVM.fetchArticleList(cityId: selectedLocation?.cityId ?? -1, districtId: selectedLocation?.districtId ?? -1)
     }
 }
 
