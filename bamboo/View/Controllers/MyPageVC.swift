@@ -35,13 +35,14 @@ class MyPageVC: UIViewController {
         configureViewController()
         configureHeaderView()
         configureTableView()
-        bindUserVM()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+        
+        bindUserVM()
     }
     
     
@@ -116,21 +117,20 @@ class MyPageVC: UIViewController {
     }
     
     private func bindUserVM() {
-        userVM.user
-            .subscribe(onNext: { [weak self] user in
-                guard let self = self else { return }
-                
-                if let user = user {
-                    if let profileImage = user.profile.profileImage,
-                       let profileImageUrl = URL(string: profileImage) {
-                        self.profileImage.kf.setImage(with: profileImageUrl, placeholder: self.placeholderImage)
-                    } else {
-                        self.profileImage.image = self.placeholderImage
-                    }
-                    
-                    self.usernameLabel.text = user.profile.username
+        userVM.user.subscribe(onNext: { [weak self] user in
+            guard let self = self else { return }
+            
+            if let user = user {
+                if let profileImage = user.profile.profileImage,
+                   let profileImageUrl = URL(string: profileImage) {
+                    self.profileImage.setImageWithRetry(url: profileImageUrl, retry: 5)
+                } else {
+                    self.profileImage.image = self.placeholderImage
                 }
-            }).disposed(by: disposeBag)
+                
+                self.usernameLabel.text = user.profile.username
+            }
+        }).disposed(by: disposeBag)
     }
 }
 
