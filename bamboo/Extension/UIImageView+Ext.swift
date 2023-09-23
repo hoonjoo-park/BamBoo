@@ -13,9 +13,10 @@ extension UIImageView {
                 break
                 
             case .failure(let error):
-                print("setImageWithRetry error: \(error)")
-                
-                guard retry > 0 else { return }
+                guard retry > 0 else {
+                    print("setImageWithRetry error: \(error)")
+                    return
+                }
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     self.setImageWithRetry(url: url, retry: retry - 1)
