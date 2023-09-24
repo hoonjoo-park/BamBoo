@@ -15,6 +15,7 @@ class HomeVC: ToastMessageVC {
     init(userVM: UserViewModel, articleVM: ArticleVM) {
         self.userVM = userVM
         self.articleVM = articleVM
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,6 +28,7 @@ class HomeVC: ToastMessageVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bindLocationVM()
         configureViewController()
         configureUI()
         configureCollectionView()
@@ -71,6 +73,18 @@ class HomeVC: ToastMessageVC {
             make.horizontalEdges.bottom.equalToSuperview()
         }
     }
+    
+    
+    private func bindLocationVM() {
+        LocationVM.shared.selectedFilterLocation.subscribe(onNext: { [weak self] selectedLoacation in
+            guard let self = self else { return }
+            
+            self.articleVM.fetchArticleList(cityId: selectedLoacation?.cityId ?? -1,
+                                            districtId: selectedLoacation?.districtId ?? -1)
+            
+        }).disposed(by: disposeBag)
+    }
+    
     
     private func configureCollectionView() {
         articleVM.articleLists
