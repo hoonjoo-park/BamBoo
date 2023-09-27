@@ -65,8 +65,16 @@ class LocationVC: BottomSheetVC {
             cityButton.placeholder.text = currentCityName
         }
         
+        if let currentCityId = locationVM.selectedFilterLocation.value?.cityId {
+            selectedCityId = currentCityId
+        }
+        
         if let currentDistrictName = locationVM.selectedArticleLocation.value?.districtName {
             districtButton.placeholder.text = currentDistrictName
+        }
+        
+        if let currentDistrictId = locationVM.selectedFilterLocation.value?.districtId {
+            selectedDistrictId = currentDistrictId
         }
         
         cityTableView.isHidden = true
@@ -136,18 +144,20 @@ class LocationVC: BottomSheetVC {
         
         cityTableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
-                guard let selectedCity = self?.locationVM.locations.value[indexPath.row] else { return }
+                guard let self = self else { return }
                 
-                self?.selectedCityId = selectedCity.id
-                self?.cityButton.placeholder.text = selectedCity.name
-                self?.districtButton.placeholder.text = "시/군/구 선택"
-                self?.locationVM
+                let selectedCity = self.locationVM.locations.value[indexPath.row]
+                
+                self.selectedCityId = selectedCity.id
+                self.cityButton.placeholder.text = selectedCity.name
+                self.districtButton.placeholder.text = "시/군/구 선택"
+                self.locationVM
                     .updateSelectedArticleLocation(location: SelectedLocation(cityId: selectedCity.id,
                                                                               cityName: selectedCity.name,
                                                                               districtId: nil,
                                                                               districtName: nil))
-                self?.locationVM.updateDistrictsBySelectedCity(districts: selectedCity.districts)
-                self?.handleTapCityButton()
+                self.locationVM.updateDistrictsBySelectedCity(districts: selectedCity.districts)
+                self.handleTapCityButton()
             }).disposed(by: disposeBag)
         
         
@@ -155,7 +165,7 @@ class LocationVC: BottomSheetVC {
             .subscribe(onNext: { [weak self] indexPath in
                 guard let selectedDistrict = self?.locationVM.districtsBySelectedCity.value[indexPath.row],
                       let currentLocation = self?.locationVM.selectedArticleLocation.value else { return }
-
+                
                 self?.selectedDistrictId = selectedDistrict.id
                 self?.districtButton.placeholder.text = selectedDistrict.name
                 self?.locationVM
@@ -175,7 +185,7 @@ class LocationVC: BottomSheetVC {
         
         cityButton.isTapped = !cityButton.isTapped
         cityTableView.isHidden = false
-
+        
         UIView.animate(withDuration: 0.2) {
             self.cityTableView.alpha = self.cityTableView.alpha == 0.0 ? 1.0 : 0.0
         } completion: { (finished) in
