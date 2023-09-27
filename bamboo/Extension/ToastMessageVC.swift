@@ -14,7 +14,7 @@ class ToastMessageVC: UIViewController {
         let viewHeight = Int(view.frame.height)
         let centerX = (Int(view.frame.width) - toastMessageWidth) / 2
         let navigationBarHeight = navigationController?.navigationBar.frame.height ?? 0
-        let safeAreaTop = Int(view.safeAreaInsets.top) - Int(navigationBarHeight)
+        let safeAreaTop = Int(view.safeAreaInsets.top)
         let safeAreaBottom = Int(view.safeAreaInsets.bottom)
         
         toastMessageView = ToastMessageView(message: message, type: type)
