@@ -13,7 +13,7 @@ class HomeHeaderView: UIView {
     let locationButtonContainer = UIView()
     let locationIcon = UIImageView(image: UIImage(systemName: "mappin.and.ellipse"))
     let loacationLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.white)
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -50,8 +50,8 @@ class HomeHeaderView: UIView {
         locationButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(30)
             make.centerY.equalToSuperview()
-            make.width.equalTo(110)
             make.height.equalTo(30)
+            make.width.equalTo(locationButtonContainer).offset(32)
         }
         
         locationButtonContainer.snp.makeConstraints { make in
