@@ -32,7 +32,7 @@ class LocationVM {
     }
     
     
-    func updateSelectedLocation(location: SelectedLocation) {
+    func updateSelectedFilterLocation(location: SelectedLocation) {
         selectedFilterLocation.accept(location)
     }
     

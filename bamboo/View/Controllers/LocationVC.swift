@@ -10,8 +10,16 @@ class LocationVC: BottomSheetVC {
     var fromVC: String!
     var delegate: LocationVCDelegate?
     
-    var selectedCityId: Int?
-    var selectedDistrictId: Int?
+    var selectedCityId: Int? {
+        didSet {
+            districtButton.isEnabled = selectedCityId != nil
+        }
+    }
+    var selectedDistrictId: Int? {
+        didSet {
+            saveLocationButton.isEnabled = selectedCityId != nil
+        }
+    }
     
     let disposeBag = DisposeBag()
     let locationVM = LocationVM.shared
@@ -34,6 +42,7 @@ class LocationVC: BottomSheetVC {
         super.viewDidLoad()
         
         configureSubViews()
+        setSelectedLocation()
         setDataBinding()
     }
     
@@ -59,22 +68,6 @@ class LocationVC: BottomSheetVC {
     private func configureSubViews() {
         [cityButton, districtButton, saveLocationButton, cityTableView, districtTableView].forEach {
             containerView.addSubview($0)
-        }
-        
-        if let currentCityName = locationVM.selectedArticleLocation.value?.cityName {
-            cityButton.placeholder.text = currentCityName
-        }
-        
-        if let currentCityId = locationVM.selectedFilterLocation.value?.cityId {
-            selectedCityId = currentCityId
-        }
-        
-        if let currentDistrictName = locationVM.selectedArticleLocation.value?.districtName {
-            districtButton.placeholder.text = currentDistrictName
-        }
-        
-        if let currentDistrictId = locationVM.selectedFilterLocation.value?.districtId {
-            selectedDistrictId = currentDistrictId
         }
         
         cityTableView.isHidden = true
@@ -117,20 +110,56 @@ class LocationVC: BottomSheetVC {
     }
     
     
+    private func setSelectedLocation() {
+        // For Article Location
+        if fromVC == "WriteArticleVC", let selectedArticleLocation = locationVM.selectedArticleLocation.value {
+            
+            cityButton.placeholder.text = selectedArticleLocation.cityName
+            selectedCityId = selectedArticleLocation.cityId
+            
+            if let currentDistrictName = selectedArticleLocation.districtName {
+                districtButton.placeholder.text = currentDistrictName
+            }
+            
+            if let currentDistrictId = selectedArticleLocation.districtId {
+                selectedDistrictId = currentDistrictId
+            }
+        }
+        
+        // For ArticleList Filter Location
+        if fromVC == "HomeVC", let selectedFilterLocation = locationVM.selectedFilterLocation.value {
+            
+            cityButton.placeholder.text = selectedFilterLocation.cityName
+            selectedCityId = selectedFilterLocation.cityId
+            
+            if let currentDistrictName = selectedFilterLocation.districtName {
+                districtButton.placeholder.text = currentDistrictName
+            }
+            
+            if let currentDistrictId = selectedFilterLocation.districtId {
+                selectedDistrictId = currentDistrictId
+            }
+        }
+    }
+    
+    
     private func setDataBinding() {
         cityTableView.register(LocationTableViewCell.self, forCellReuseIdentifier: "city-cell")
         districtTableView.register(LocationTableViewCell.self, forCellReuseIdentifier: "district-cell")
         
-        LocationVM.shared.selectedArticleLocation
-            .map { $0 != nil }
-            .bind(to: districtButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
-        LocationVM.shared.selectedArticleLocation
-            .map { $0?.districtId != nil }
-            .bind(to: saveLocationButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
+        if fromVC == "HomeVC" {
+            LocationVM.shared.selectedFilterLocation.subscribe(onNext: { [weak self] location in
+                guard let self = self, let selectedFilterLocation = location else { return }
+                
+                self.getDistrictsBySelectedCity(location: selectedFilterLocation)
+            }).disposed(by: disposeBag)
+        } else {
+            LocationVM.shared.selectedArticleLocation.subscribe(onNext: { [weak self] location in
+                guard let self = self, let selectedArticleLocation = location else { return }
+                
+                self.getDistrictsBySelectedCity(location: selectedArticleLocation)
+            }).disposed(by: disposeBag)
+        }
         
         LocationVM.shared.locations
             .bind(to: cityTableView.rx.items(cellIdentifier: "city-cell", cellType: LocationTableViewCell.self)) { (row, location, cell) in
@@ -151,11 +180,7 @@ class LocationVC: BottomSheetVC {
                 self.selectedCityId = selectedCity.id
                 self.cityButton.placeholder.text = selectedCity.name
                 self.districtButton.placeholder.text = "시/군/구 선택"
-                self.locationVM
-                    .updateSelectedArticleLocation(location: SelectedLocation(cityId: selectedCity.id,
-                                                                              cityName: selectedCity.name,
-                                                                              districtId: nil,
-                                                                              districtName: nil))
+                
                 self.locationVM.updateDistrictsBySelectedCity(districts: selectedCity.districts)
                 self.handleTapCityButton()
             }).disposed(by: disposeBag)
@@ -163,18 +188,24 @@ class LocationVC: BottomSheetVC {
         
         districtTableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
-                guard let selectedDistrict = self?.locationVM.districtsBySelectedCity.value[indexPath.row],
-                      let currentLocation = self?.locationVM.selectedArticleLocation.value else { return }
+                guard let self = self else { return }
                 
-                self?.selectedDistrictId = selectedDistrict.id
-                self?.districtButton.placeholder.text = selectedDistrict.name
-                self?.locationVM
-                    .updateSelectedArticleLocation(location: SelectedLocation(cityId: selectedDistrict.cityId,
-                                                                              cityName: currentLocation.cityName,
-                                                                              districtId: selectedDistrict.id,
-                                                                              districtName: selectedDistrict.name))
-                self?.handleTapDistrictButton()
+                let selectedDistrict = self.locationVM.districtsBySelectedCity.value[indexPath.row]
+                
+                self.selectedDistrictId = selectedDistrict.id
+                self.districtButton.placeholder.text = selectedDistrict.name
+                
+                self.handleTapDistrictButton()
             }).disposed(by: disposeBag)
+    }
+    
+    
+    private func getDistrictsBySelectedCity(location: SelectedLocation) {
+        let currentCity = self.locationVM.locations.value.filter { city in
+            return location.cityId == city.id
+        }[0]
+        
+        self.locationVM.updateDistrictsBySelectedCity(districts: currentCity.districts)
     }
     
     
@@ -214,6 +245,15 @@ class LocationVC: BottomSheetVC {
     }
     
     
+    private func updateLocation(location: SelectedLocation) {
+        if self.fromVC == "HomeVC" {
+            self.locationVM.updateSelectedFilterLocation(location: location)
+        } else {
+            self.locationVM.updateSelectedArticleLocation(location: location)
+        }
+    }
+    
+    
     @objc private func handleTapSaveLocationButton() {
         guard let delegate = delegate,
               let cityName = cityButton.placeholder.text,
@@ -222,10 +262,13 @@ class LocationVC: BottomSheetVC {
               let districtName = districtButton.placeholder.text else { return }
         
         delegate.saveSelectedLocation(cityName: cityName, districtName: districtName)
-        locationVM.updateSelectedLocation(location: SelectedLocation(cityId: cityId,
-                                                                     cityName: cityName,
-                                                                     districtId: districtId,
-                                                                     districtName: districtName))
+        
+        
+        updateLocation(location: SelectedLocation(cityId: cityId,
+                                                  cityName: cityName,
+                                                  districtId: districtId,
+                                                  districtName: districtName))
+        
         dismissBottomSheet()
     }
 }
