@@ -11,6 +11,7 @@
 		4B2D8D4407786DD0C11317CC /* Pods_bamboo_bambooUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08B22B52AA4B60F8BB535A55 /* Pods_bamboo_bambooUITests.framework */; };
 		7D39424284414EE361F7D3C7 /* Pods_bamboo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29A536DE793FF6AFAAA68404 /* Pods_bamboo.framework */; };
 		CB0B4F532A012E3C00C75735 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB0B4F522A012E3C00C75735 /* GoogleService-Info.plist */; };
+		CB1DE49C2AC86E5900D344A6 /* ArticleListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1DE49B2AC86E5900D344A6 /* ArticleListEmptyView.swift */; };
 		CB2FA93829F54B450009F39F /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA93729F54B450009F39F /* UIHelper.swift */; };
 		CB2FA93B29F54B870009F39F /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA93A29F54B870009F39F /* UIColor+Ext.swift */; };
 		CB2FA93F29F5544B0009F39F /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA93E29F5544B0009F39F /* HomeVC.swift */; };
@@ -95,6 +96,7 @@
 		95AE51AAA8203FBE02B35919 /* Pods-bamboo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamboo.release.xcconfig"; path = "Target Support Files/Pods-bamboo/Pods-bamboo.release.xcconfig"; sourceTree = "<group>"; };
 		B66D56879D201C03E2D8F083 /* Pods_bambooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bambooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0B4F522A012E3C00C75735 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB1DE49B2AC86E5900D344A6 /* ArticleListEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListEmptyView.swift; sourceTree = "<group>"; };
 		CB2FA93729F54B450009F39F /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		CB2FA93A29F54B870009F39F /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		CB2FA93E29F5544B0009F39F /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				CB71C2C02A0E5CFA005AC9E4 /* ToastMessageView.swift */,
 				CBD810452A1A10E40022E507 /* HomeHeaderView.swift */,
 				CBE51F4E2A374A00000D7118 /* CommentContainerView.swift */,
+				CB1DE49B2AC86E5900D344A6 /* ArticleListEmptyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				CB71C2C12A0E5CFA005AC9E4 /* ToastMessageView.swift in Sources */,
 				CB5ED4A52ABEEA3F00C2E9EF /* NotificationHelper.swift in Sources */,
 				CBA77A9F2A0BAF0000CE0A02 /* ListModalTableView.swift in Sources */,
+				CB1DE49C2AC86E5900D344A6 /* ArticleListEmptyView.swift in Sources */,
 				CB586FA12A04FC3000827590 /* UnregisterVC.swift in Sources */,
 				CBD810462A1A10E40022E507 /* HomeHeaderView.swift in Sources */,
 				CB65A0EF2A2B25C70053C295 /* IconButton.swift in Sources */,
