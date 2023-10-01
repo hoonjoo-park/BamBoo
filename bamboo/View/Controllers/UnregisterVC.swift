@@ -54,7 +54,7 @@ class UnregisterVC: UIViewController {
             view.addSubview($0)
         }
         
-        descriptionLabel.text = "회원 탈퇴 시 유저님의 모든 데이터가 삭제 되며,\n삭제된 데이터는 복구할 수 없습니다."
+        descriptionLabel.text = "회원 탈퇴 시 모든 데이터가 삭제 되며,\n삭제된 데이터는 복구할 수 없습니다."
         confirmLabel.text = "회원 탈퇴를 원하시면 아래 버튼을 눌러주세요"
         unregisterButton.buttonLabel.text = "회원 탈퇴"
         
