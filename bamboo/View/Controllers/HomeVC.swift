@@ -10,6 +10,7 @@ class HomeVC: ToastMessageVC {
     var articleVM: ArticleVM!
     let disposeBag = DisposeBag()
     let homeHeaderView = HomeHeaderView(frame: .zero)
+    let emptyView = ArticleListEmptyView()
     var articleListCollectionView: ArticleListCollectionView!
     
     init(userVM: UserViewModel, articleVM: ArticleVM) {
@@ -30,7 +31,7 @@ class HomeVC: ToastMessageVC {
         
         bindLocationVM()
         configureViewController()
-        configureUI()
+        configureSubViews()
         configureCollectionView()
     }
     
@@ -55,12 +56,13 @@ class HomeVC: ToastMessageVC {
     }
     
     
-    private func configureUI() {
-        [homeHeaderView, articleListCollectionView].forEach {
+    private func configureSubViews() {
+        emptyView.isHidden = true
+        homeHeaderView.delegate = self
+        
+        [homeHeaderView, articleListCollectionView, emptyView].forEach {
             view.addSubview($0)
         }
-        
-        homeHeaderView.delegate = self
         
         homeHeaderView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
@@ -71,6 +73,12 @@ class HomeVC: ToastMessageVC {
         articleListCollectionView.snp.makeConstraints { make in
             make.top.equalTo(homeHeaderView.snp.bottom).offset(30)
             make.horizontalEdges.bottom.equalToSuperview()
+        }
+        
+        emptyView.snp.makeConstraints { make in
+            make.top.equalTo(homeHeaderView.snp.bottom)
+            make.bottom.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
         }
     }
     
@@ -87,13 +95,16 @@ class HomeVC: ToastMessageVC {
     
     
     private func configureCollectionView() {
-        articleVM.articleLists
-            .bind(to: articleListCollectionView.rx.items(cellIdentifier: ArticleListCollectionViewCell.reuseId,
-                                                         cellType: ArticleListCollectionViewCell.self)) { row, articleList, cell in
-                guard let articleList = articleList else { return }
-                
-                cell.setCell(articleList: articleList)
-            }.disposed(by: disposeBag)
+        articleVM.articleLists.do(onNext: {[weak self] lists in
+            guard let self = self else { return }
+            
+            self.emptyView.isHidden = !lists.isEmpty
+        }).bind(to: articleListCollectionView.rx.items(cellIdentifier: ArticleListCollectionViewCell.reuseId,
+                                                       cellType: ArticleListCollectionViewCell.self)) { row, articleList, cell in
+            guard let articleList = articleList else { return }
+            
+            cell.setCell(articleList: articleList)
+        }.disposed(by: disposeBag)
         
         articleListCollectionView.rx.itemSelected
             .subscribe { [weak self] indexPath in
