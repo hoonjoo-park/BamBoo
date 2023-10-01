@@ -67,6 +67,7 @@
 		CBD948BC2A34608400245FDB /* CommentTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD948BB2A34608400245FDB /* CommentTextView.swift */; };
 		CBD948BF2A3460BF00245FDB /* ChatTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD948BE2A3460BF00245FDB /* ChatTextField.swift */; };
 		CBE51F4F2A374A00000D7118 /* CommentContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE51F4E2A374A00000D7118 /* CommentContainerView.swift */; };
+		CBF11F162AC980F100DD2F19 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF11F152AC980F100DD2F19 /* SocketIOManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,7 @@
 		CBD948BB2A34608400245FDB /* CommentTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextView.swift; sourceTree = "<group>"; };
 		CBD948BE2A3460BF00245FDB /* ChatTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTextField.swift; sourceTree = "<group>"; };
 		CBE51F4E2A374A00000D7118 /* CommentContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentContainerView.swift; sourceTree = "<group>"; };
+		CBF11F152AC980F100DD2F19 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		D3CA9D8BB38C111D45D34272 /* Pods-bamboo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamboo.debug.xcconfig"; path = "Target Support Files/Pods-bamboo/Pods-bamboo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,6 +219,7 @@
 				CB2FA93729F54B450009F39F /* UIHelper.swift */,
 				CB87F49129FE66A00025B67A /* NetworkManager.swift */,
 				CB5ED4A42ABEEA3F00C2E9EF /* NotificationHelper.swift */,
+				CBF11F152AC980F100DD2F19 /* SocketIOManager.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -720,6 +723,7 @@
 				CB71C2C32A0E6262005AC9E4 /* ToastMessageVC.swift in Sources */,
 				CB586FA32A0512A000827590 /* PressableButton.swift in Sources */,
 				CB2FA94D29F5B8350009F39F /* LabelButton.swift in Sources */,
+				CBF11F162AC980F100DD2F19 /* SocketIOManager.swift in Sources */,
 				CB4A4B3F2A064E02005FE6AC /* Article.swift in Sources */,
 				CB586FA82A057BFD00827590 /* ChatVC.swift in Sources */,
 				CB2FA93829F54B450009F39F /* UIHelper.swift in Sources */,
