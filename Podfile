@@ -21,6 +21,7 @@ target 'bamboo' do
   pod 'RxKakaoSDKCommon'
   pod 'RxKakaoSDKAuth'
   pod 'RxKakaoSDKUser'
+  pod 'Socket.IO-Client-Swift', '~> 15.2.0'
 
 
   target 'bambooTests' do
