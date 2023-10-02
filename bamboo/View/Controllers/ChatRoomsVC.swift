@@ -1,6 +1,6 @@
 import UIKit
 
-class ChatVC: UIViewController {
+class ChatRoomsVC: UIViewController {
     var userVM: UserViewModel!
 
     override func viewDidLoad() {
@@ -12,7 +12,7 @@ class ChatVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        title = "채팅"
+        title = "채팅 목록"
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.tintColor = BambooColors.white
         navigationController?.navigationBar.backgroundColor = BambooColors.black

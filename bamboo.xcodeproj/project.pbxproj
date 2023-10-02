@@ -30,7 +30,7 @@
 		CB586FA12A04FC3000827590 /* UnregisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB586FA02A04FC3000827590 /* UnregisterVC.swift */; };
 		CB586FA32A0512A000827590 /* PressableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB586FA22A0512A000827590 /* PressableButton.swift */; };
 		CB586FA62A05146F00827590 /* PressableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB586FA52A05146F00827590 /* PressableTableViewCell.swift */; };
-		CB586FA82A057BFD00827590 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB586FA72A057BFD00827590 /* ChatVC.swift */; };
+		CB586FA82A057BFD00827590 /* ChatRoomsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB586FA72A057BFD00827590 /* ChatRoomsVC.swift */; };
 		CB5ED4A32ABEDEE100C2E9EF /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5ED4A22ABEDEE100C2E9EF /* UIImageView+Ext.swift */; };
 		CB5ED4A52ABEEA3F00C2E9EF /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5ED4A42ABEEA3F00C2E9EF /* NotificationHelper.swift */; };
 		CB65A0EF2A2B25C70053C295 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65A0EE2A2B25C70053C295 /* IconButton.swift */; };
@@ -116,7 +116,7 @@
 		CB586FA02A04FC3000827590 /* UnregisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnregisterVC.swift; sourceTree = "<group>"; };
 		CB586FA22A0512A000827590 /* PressableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressableButton.swift; sourceTree = "<group>"; };
 		CB586FA52A05146F00827590 /* PressableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressableTableViewCell.swift; sourceTree = "<group>"; };
-		CB586FA72A057BFD00827590 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		CB586FA72A057BFD00827590 /* ChatRoomsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomsVC.swift; sourceTree = "<group>"; };
 		CB5ED4A22ABEDEE100C2E9EF /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		CB5ED4A42ABEEA3F00C2E9EF /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 		CB65A0EE2A2B25C70053C295 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
@@ -263,7 +263,7 @@
 				CB52566329F6DA270018E604 /* LoginVC.swift */,
 				CB87F49929FFCEB00025B67A /* EditProfileVC.swift */,
 				CB586FA02A04FC3000827590 /* UnregisterVC.swift */,
-				CB586FA72A057BFD00827590 /* ChatVC.swift */,
+				CB586FA72A057BFD00827590 /* ChatRoomsVC.swift */,
 				CB6E524A2A092A01005F602A /* LocationVC.swift */,
 				CB48B55E2A1E5FE900F4A3CD /* ArticleDetailVC.swift */,
 			);
@@ -725,7 +725,7 @@
 				CB2FA94D29F5B8350009F39F /* LabelButton.swift in Sources */,
 				CBF11F162AC980F100DD2F19 /* SocketIOManager.swift in Sources */,
 				CB4A4B3F2A064E02005FE6AC /* Article.swift in Sources */,
-				CB586FA82A057BFD00827590 /* ChatVC.swift in Sources */,
+				CB586FA82A057BFD00827590 /* ChatRoomsVC.swift in Sources */,
 				CB2FA93829F54B450009F39F /* UIHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

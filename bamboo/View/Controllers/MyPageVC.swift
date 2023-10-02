@@ -157,8 +157,8 @@ extension MyPageVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            let chatVC = ChatVC(userVM: self.userVM)
-            navigationController?.pushViewController(chatVC, animated: true)
+            let chatRoomsVC = ChatRoomsVC(userVM: self.userVM)
+            navigationController?.pushViewController(chatRoomsVC, animated: true)
             break
         case 1:
             let alert = UIAlertController(title: "로그아웃", message: "로그아웃 하시겠습니까?", preferredStyle: .alert)
