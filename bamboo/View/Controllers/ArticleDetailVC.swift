@@ -13,7 +13,7 @@ class ArticleDetailVC: ToastMessageVC {
     
     let contentHeaderView = UIView()
     let profileImage = UIImageView()
-    let authorNameLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
+    let authorNameButton = LabelButton(fontSize: 12, weight: .medium, color: BambooColors.gray, isCenter: false)
     let createdAtLabel = BambooLabel(fontSize: 10, weight: .medium, color: BambooColors.gray)
     let titleLabel = BambooLabel(fontSize: 16, weight: .semibold, color: BambooColors.white)
     let contentLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.white)
@@ -30,9 +30,10 @@ class ArticleDetailVC: ToastMessageVC {
         self.selectedArticleId = selectedId
         self.articleVM = articleVM
         self.userVM = userVM
-        articleVM.fetchArticle(articleId: selectedId)
+        self.articleVM.fetchArticle(articleId: selectedId)
         
         super.init(nibName: nil, bundle: nil)
+        
         bindArticleVM()
     }
     
@@ -89,7 +90,6 @@ class ArticleDetailVC: ToastMessageVC {
         title = ""
         view.backgroundColor = BambooColors.black
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-        navigationController?.navigationBar.frame.origin.y = view.safeAreaInsets.top
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.tintColor = BambooColors.white
         navigationController?.navigationBar.backgroundColor = BambooColors.black
@@ -115,7 +115,7 @@ class ArticleDetailVC: ToastMessageVC {
             profileImage.image = UIImage(named: "avatar")
         }
         
-        authorNameLabel.text = article.author.name
+        authorNameButton.buttonLabel.text = article.author.name
         createdAtLabel.text = DateHelper.getElapsedTime(article.createdAt)
         titleLabel.text = article.title
         contentLabel.text = article.content
@@ -130,13 +130,14 @@ class ArticleDetailVC: ToastMessageVC {
     private func configureAddTargets() {
         likeIcon.addTarget(self, action: #selector(handleTapLike), for: .touchUpInside)
         commentIcon.addTarget(self, action: #selector(handleTapComment), for: .touchUpInside)
+        authorNameButton.addTarget(self, action: #selector(handleTapAuthorNameButton), for: .touchUpInside)
     }
     
     
     private func configureSubViews() {
         [commentTableView, commentContainerView].forEach { view.addSubview($0) }
         
-        [profileImage, authorNameLabel, createdAtLabel,
+        [profileImage, authorNameButton, createdAtLabel,
          titleLabel, contentLabel, likeIcon, commentIcon,
          likeCountLabel, commentCountLabel, grayDivider].forEach { contentHeaderView.addSubview($0) }
         
@@ -164,14 +165,15 @@ class ArticleDetailVC: ToastMessageVC {
             make.width.height.equalTo(40)
         }
         
-        authorNameLabel.snp.makeConstraints { make in
+        authorNameButton.snp.makeConstraints { make in
             make.top.equalTo(profileImage.snp.top).inset(3)
+            make.bottom.equalTo(profileImage.snp.centerY)
             make.leading.equalTo(profileImage.snp.trailing).offset(11)
         }
         
         createdAtLabel.snp.makeConstraints { make in
-            make.leading.equalTo(authorNameLabel.snp.leading)
-            make.top.equalTo(authorNameLabel.snp.bottom).offset(5)
+            make.leading.equalTo(authorNameButton.snp.leading)
+            make.top.equalTo(authorNameButton.snp.bottom).offset(5)
         }
         
         titleLabel.snp.makeConstraints { make in
@@ -327,6 +329,14 @@ class ArticleDetailVC: ToastMessageVC {
         UIView.animate(withDuration: 0, delay: 0,options: .curveEaseOut) {
             self.view.layoutIfNeeded()
         }
+    }
+    
+    @objc func handleTapAuthorNameButton() {
+        guard let articleVM = articleVM, let author = articleVM.getArticle()?.author else { return }
+        
+        let userProfileVC = UserProfileVC(user: author)
+        
+        navigationController?.pushViewController(userProfileVC, animated: true)
     }
 }
 

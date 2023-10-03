@@ -6,7 +6,7 @@ class LabelButton: PressableButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
+        configureUI(true)
     }
     
     
@@ -15,18 +15,24 @@ class LabelButton: PressableButton {
     }
     
     
-    init(fontSize: CGFloat, weight: UIFont.Weight, color: UIColor) {
+    init(fontSize: CGFloat, weight: UIFont.Weight, color: UIColor, isCenter: Bool? = nil) {
         super.init(frame: .zero)
         buttonLabel = BambooLabel(fontSize: fontSize, weight: weight, color: color)
-        configureUI()
+        configureUI(isCenter ?? true)
     }
     
     
-    private func configureUI() {
+    private func configureUI(_ isCenter: Bool) {
         addSubview(buttonLabel)
         
-        buttonLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
+        if isCenter {
+            buttonLabel.snp.makeConstraints {
+                $0.center.equalToSuperview()
+            }
+        } else {
+            buttonLabel.snp.makeConstraints {
+                $0.leading.equalToSuperview()
+            }
         }
     }
 }

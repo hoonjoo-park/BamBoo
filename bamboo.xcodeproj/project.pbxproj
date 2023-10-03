@@ -37,6 +37,7 @@
 		CB6E524B2A092A01005F602A /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E524A2A092A01005F602A /* LocationVC.swift */; };
 		CB6E524D2A0931BC005F602A /* BottomSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E524C2A0931BC005F602A /* BottomSheetVC.swift */; };
 		CB6E524F2A096BF1005F602A /* LocationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E524E2A096BF1005F602A /* LocationVM.swift */; };
+		CB7132062ACC2C2B00949898 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7132052ACC2C2B00949898 /* UserProfileVC.swift */; };
 		CB71C2C12A0E5CFA005AC9E4 /* ToastMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB71C2C02A0E5CFA005AC9E4 /* ToastMessageView.swift */; };
 		CB71C2C32A0E6262005AC9E4 /* ToastMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB71C2C22A0E6262005AC9E4 /* ToastMessageVC.swift */; };
 		CB87F49029FE48730025B67A /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */; };
@@ -123,6 +124,7 @@
 		CB6E524A2A092A01005F602A /* LocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVC.swift; sourceTree = "<group>"; };
 		CB6E524C2A0931BC005F602A /* BottomSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetVC.swift; sourceTree = "<group>"; };
 		CB6E524E2A096BF1005F602A /* LocationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVM.swift; sourceTree = "<group>"; };
+		CB7132052ACC2C2B00949898 /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		CB71C2C02A0E5CFA005AC9E4 /* ToastMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessageView.swift; sourceTree = "<group>"; };
 		CB71C2C22A0E6262005AC9E4 /* ToastMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessageVC.swift; sourceTree = "<group>"; };
 		CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				CB586FA72A057BFD00827590 /* ChatRoomsVC.swift */,
 				CB6E524A2A092A01005F602A /* LocationVC.swift */,
 				CB48B55E2A1E5FE900F4A3CD /* ArticleDetailVC.swift */,
+				CB7132052ACC2C2B00949898 /* UserProfileVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				CBD810462A1A10E40022E507 /* HomeHeaderView.swift in Sources */,
 				CB65A0EF2A2B25C70053C295 /* IconButton.swift in Sources */,
 				CBD948BC2A34608400245FDB /* CommentTextView.swift in Sources */,
+				CB7132062ACC2C2B00949898 /* UserProfileVC.swift in Sources */,
 				CB2FA94129F554690009F39F /* WriteArticleVC.swift in Sources */,
 				CB2FA93B29F54B870009F39F /* UIColor+Ext.swift in Sources */,
 				CB4A4B412A065547005FE6AC /* Chat.swift in Sources */,
