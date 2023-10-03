@@ -1,16 +1,10 @@
 import Foundation
 
-struct ChatRoomUser: Codable {
-    let userId: Int
-    let user: User
-    let chatRoomId: Int
-    let chatRoom: ChatRoom
-}
-
 struct ChatRoom: Codable {
     let id: Int
-    let users: [ChatRoomUser]
+    let users: [User]
     let messages: [Message]
+    let unReadCount: Int
     let createdAt: Date
     let updatedAt: Date
 }

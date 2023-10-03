@@ -4,10 +4,13 @@ import RxCocoa
 import Kingfisher
 
 class UserViewModel {
+    static let shared = UserViewModel()
+    
     private let userSubject = BehaviorSubject<User?>(value: nil)
     var user: Observable<User?> {
         return userSubject.asObservable()
     }
+    
     
     func updateUser(_ user: User) {
         userSubject.onNext(user)
@@ -31,6 +34,7 @@ class UserViewModel {
         
         updateUser(updatedUser)
     }
+    
     
     func getUser() -> User? {
         do {

@@ -10,14 +10,23 @@ enum SocketEvent {
 class SocketIOManager: NSObject {
     static let shared = SocketIOManager()
     
-    let manager = SocketManager(socketURL: URL(string: "http://localhost:3090")!,
-                                config: [.log(true), .compress])
+    var manager: SocketManager!
     
     var socket: SocketIOClient!
     
     
     override init() {
         super.init()
+    }
+    
+    
+    func configureSocket(token: String) {
+        manager = SocketManager(socketURL: URL(string: "http://localhost:3090")!,
+                                config: [
+                                    .log(true),
+                                    .compress,
+                                    .connectParams(["token": token])
+                                ])
         
         socket = manager.defaultSocket
     }

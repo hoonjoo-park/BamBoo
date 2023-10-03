@@ -25,12 +25,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             NetworkManager.shared.fetchUser()
                 .observe(on: MainScheduler.instance)
                 .subscribe(onNext: { [weak self] user in
-                    guard let self = self else { return }
+                    guard let self = self, let token = token else { return }
+                    
                     self.userVM.updateUser(user)
                     self.setRootAsTabBar()
+                    
+                    SocketIOManager.shared.configureSocket(token: token)
+                    SocketIOManager.shared.connectSocket()
                 }, onError: { error in
                     print("[Fetch User Error], \(error)")
+                    
                     UserDefaults.standard.removeToken()
+                    
                     self.setRootAsOnboarding()
                 }).disposed(by: disposeBag)
         }
