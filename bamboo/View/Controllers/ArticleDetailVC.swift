@@ -332,9 +332,11 @@ class ArticleDetailVC: ToastMessageVC {
     }
     
     @objc func handleTapAuthorNameButton() {
-        guard let articleVM = articleVM, let author = articleVM.getArticle()?.author else { return }
+        guard let articleVM = articleVM,
+              let author = articleVM.getArticle()?.author,
+              let me = userVM.getUser() else { return }
         
-        let userProfileVC = UserProfileVC(user: author)
+        let userProfileVC = UserProfileVC(user: author, me: me)
         
         navigationController?.pushViewController(userProfileVC, animated: true)
     }

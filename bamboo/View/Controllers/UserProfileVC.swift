@@ -5,6 +5,7 @@ import Kingfisher
 
 class UserProfileVC: UIViewController {
     var currentUser: User!
+    var me: User!
     
     let profileImageView = UIImageView()
     let emailLabel = BambooLabel(fontSize: 14, weight: .medium, color: BambooColors.gray)
@@ -28,8 +29,9 @@ class UserProfileVC: UIViewController {
     }
     
     
-    init(user: User) {
-        currentUser = user
+    init(user: User, me: User) {
+        self.currentUser = user
+        self.me = me
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -53,12 +55,8 @@ class UserProfileVC: UIViewController {
     
     
     private func configureUI() {
-        [profileImageView, emailLabel, createdAtLabel, chatButton].forEach { subView in
+        [profileImageView, emailLabel, createdAtLabel].forEach { subView in
             view.addSubview(subView)
-        }
-        
-        [chatIconView, chatButtonLabel].forEach { subView in
-            chatButton.addSubview(subView)
         }
         
         if let profileImage = currentUser.profile.profileImage, let profileImageUrl = URL(string: profileImage) {
@@ -69,8 +67,6 @@ class UserProfileVC: UIViewController {
         
         emailLabel.text = currentUser.email
         createdAtLabel.text = DateHelper.getElapsedTime(currentUser.createdAt)
-        chatButtonLabel.text = "1:1 채팅하기"
-        chatIconView.tintColor = BambooColors.white
         
         profileImageView.layer.cornerRadius = 30
         profileImageView.clipsToBounds = true
@@ -90,6 +86,21 @@ class UserProfileVC: UIViewController {
             make.bottom.equalTo(profileImageView.snp.bottom).inset(10)
             make.leading.equalTo(emailLabel.snp.leading)
         }
+        
+        if currentUser.id != me.id {
+            configureChatButton()
+        }
+    }
+    
+    private func configureChatButton() {
+        self.view.addSubview(chatButton)
+        
+        [chatIconView, chatButtonLabel].forEach { subView in
+            chatButton.addSubview(subView)
+        }
+        
+        chatButtonLabel.text = "1:1 채팅하기"
+        chatIconView.tintColor = BambooColors.white
         
         chatButton.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(20)
