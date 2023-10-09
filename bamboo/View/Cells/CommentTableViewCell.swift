@@ -6,6 +6,7 @@ import RxSwift
 protocol CommentCellDelegate: AnyObject {
     func openActionSheet(commentId: Int)
     func replyComment(commentId: Int)
+    func navigateToUserPofile(author: User)
 }
 
 class CommentTableViewCell: UITableViewCell {
@@ -13,11 +14,11 @@ class CommentTableViewCell: UITableViewCell {
     
     let disposeBag = DisposeBag()
     var delegate: CommentCellDelegate!
-    var currentCommentId: Int!
+    var currentComment: Comment!
     var articleVM: ArticleVM!
     
     let profileImageView = UIImageView()
-    let usernameLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
+    let usernameLabel = LabelButton(fontSize: 12, weight: .medium, color: BambooColors.gray)
     let createdAtLabel = BambooLabel(fontSize: 10, weight: .medium, color: BambooColors.gray)
     let replyButton = IconButton()
     let optionButton = IconButton()
@@ -57,10 +58,10 @@ class CommentTableViewCell: UITableViewCell {
         
         self.articleVM = articleVM
         bindArticleVM()
-        usernameLabel.text = comment.author.profile.username
+        usernameLabel.buttonLabel.text = comment.author.profile.username
         createdAtLabel.text = DateHelper.getElapsedTime(comment.createdAt)
         commentLabel.text = comment.content
-        currentCommentId = comment.id
+        currentComment = comment
         
         guard let currentUser = userVM.getUser() else { return }
         
@@ -96,12 +97,12 @@ class CommentTableViewCell: UITableViewCell {
         
         usernameLabel.snp.makeConstraints { make in
             make.centerY.equalTo(profileImageView)
-            make.leading.equalTo(profileImageView.snp.trailing).offset(10)
+            make.leading.equalTo(profileImageView.snp.trailing).offset(12)
         }
         
         createdAtLabel.snp.makeConstraints { make in
             make.centerY.equalTo(usernameLabel)
-            make.leading.equalTo(usernameLabel.snp.trailing).offset(10)
+            make.leading.equalTo(usernameLabel.snp.trailing).offset(12)
         }
         
         replyButton.snp.makeConstraints { make in
@@ -130,9 +131,9 @@ class CommentTableViewCell: UITableViewCell {
         
         articleVM.selectedCommentId.subscribe(onNext: { [weak self] selectedId in
             guard let self = self,
-                  let currentCommentId = self.currentCommentId else { return }
+                  let currentComment = self.currentComment else { return }
             
-            if selectedId == currentCommentId {
+            if selectedId == currentComment.id {
                 self.layer.borderWidth = 1
                 self.layer.borderColor = BambooColors.green.cgColor
                 self.layer.cornerRadius = 2
@@ -148,19 +149,27 @@ class CommentTableViewCell: UITableViewCell {
     private func configureButtonTargets() {
         optionButton.addTarget(self, action: #selector(handleTapOptionButton), for: .touchUpInside)
         replyButton.addTarget(self, action: #selector(handleTapReplyButton), for: .touchUpInside)
+        usernameLabel.addTarget(self, action: #selector(handleTapUsernameButton), for: .touchUpInside)
     }
     
     
     @objc func handleTapOptionButton() {
-        if currentCommentId != nil {
-            self.delegate.openActionSheet(commentId: currentCommentId)
+        if currentComment != nil {
+            self.delegate.openActionSheet(commentId: currentComment.id)
         }
     }
     
     
     @objc func handleTapReplyButton() {
-        guard let currentCommentId = currentCommentId else { return }
+        guard let currentComment = currentComment  else { return }
         
-        self.delegate.replyComment(commentId: currentCommentId)
+        self.delegate.replyComment(commentId: currentComment.id)
+    }
+    
+    
+    @objc func handleTapUsernameButton() {
+        guard let currentComment = currentComment else { return }
+        
+        self.delegate.navigateToUserPofile(author: currentComment.author)
     }
 }

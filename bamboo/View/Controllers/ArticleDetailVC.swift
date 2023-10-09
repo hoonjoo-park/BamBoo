@@ -336,7 +336,7 @@ class ArticleDetailVC: ToastMessageVC {
               let author = articleVM.getArticle()?.author,
               let me = userVM.getUser() else { return }
         
-        let userProfileVC = UserProfileVC(user: author, me: me)
+        let userProfileVC = UserProfileVC(author: author, meId: me.id)
         
         navigationController?.pushViewController(userProfileVC, animated: true)
     }
@@ -433,5 +433,13 @@ extension ArticleDetailVC: CommentCellDelegate {
         })
         
         self.present(confirmAlert, animated: true)
+    }
+    
+    func navigateToUserPofile(author: User) {
+        guard let me = userVM.getUser() else { return }
+        
+        let userProfileVC = UserProfileVC(author: author, meId: me.id)
+        
+        navigationController?.pushViewController(userProfileVC, animated: true)
     }
 }

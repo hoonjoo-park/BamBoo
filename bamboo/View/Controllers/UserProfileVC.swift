@@ -5,7 +5,7 @@ import Kingfisher
 
 class UserProfileVC: UIViewController {
     var currentUser: User!
-    var me: User!
+    var meId: Int!
     
     let profileImageView = UIImageView()
     let emailLabel = BambooLabel(fontSize: 14, weight: .medium, color: BambooColors.gray)
@@ -29,9 +29,9 @@ class UserProfileVC: UIViewController {
     }
     
     
-    init(user: User, me: User) {
-        self.currentUser = user
-        self.me = me
+    init(author: User, meId: Int) {
+        self.currentUser = author
+        self.meId = meId
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -87,7 +87,7 @@ class UserProfileVC: UIViewController {
             make.leading.equalTo(emailLabel.snp.leading)
         }
         
-        if currentUser.id != me.id {
+        if currentUser.id != meId {
             configureChatButton()
         }
     }
