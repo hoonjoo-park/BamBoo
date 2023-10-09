@@ -2,14 +2,15 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-
-
 class NestedCommentTableViewCell: UITableViewCell {
     static let reuseId = "NestedCommentTableViewCell"
     
+    var delegate: CommentCellDelegate!
+    var currentComment: Comment!
+    
     let replyIndicateIcon = UIImageView(image: UIImage(systemName: "arrow.turn.down.right"))
     let profileImageView = UIImageView()
-    let usernameLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
+    let usernameLabel = LabelButton(fontSize: 12, weight: .medium, color: BambooColors.gray)
     let createdAtLabel = BambooLabel(fontSize: 10, weight: .medium, color: BambooColors.gray)
     let commentLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.white)
     
@@ -17,7 +18,9 @@ class NestedCommentTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.selectionStyle = .none
+        
         configureUI()
+        configureButtonTargets()
     }
     
     
@@ -44,7 +47,8 @@ class NestedCommentTableViewCell: UITableViewCell {
             profileImageView.image = UIImage(named: "avatar")
         }
         
-        usernameLabel.text = comment.author.profile.username
+        currentComment = comment
+        usernameLabel.buttonLabel.text = comment.author.profile.username
         createdAtLabel.text = DateHelper.getElapsedTime(comment.createdAt)
         commentLabel.text = comment.content
     }
@@ -90,6 +94,18 @@ class NestedCommentTableViewCell: UITableViewCell {
             make.leading.equalTo(profileImageView)
             make.trailing.equalToSuperview().inset(horizontalPadding)
         }
+    }
+    
+    
+    private func configureButtonTargets() {
+        usernameLabel.addTarget(self, action: #selector(handleTapUsernameLabel), for: .touchUpInside)
+    }
+    
+    
+    @objc func handleTapUsernameLabel() {
+        guard let currentComment = currentComment else { return }
+        
+        self.delegate.navigateToUserPofile(author: currentComment.author)
     }
     
 }

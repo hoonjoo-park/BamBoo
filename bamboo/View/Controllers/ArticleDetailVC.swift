@@ -371,6 +371,7 @@ extension ArticleDetailVC: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: NestedCommentTableViewCell.reuseId,
                                                      for: indexPath) as! NestedCommentTableViewCell
             
+            cell.delegate = self
             cell.setCell(comment: nestedComment, userVM: userVM)
             
             return cell
