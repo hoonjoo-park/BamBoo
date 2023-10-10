@@ -186,4 +186,15 @@ class ArticleVM {
         
         selectedCommentIdSubject.onNext(commentId)
     }
+    
+    
+    func pushNewArticleList(articleList: ArticleList) {
+        do {
+            let currentArticleLists =  try articleListSubject.value()
+            
+            articleListSubject.onNext(currentArticleLists + [articleList])
+        } catch {
+            print("pushNewArticleList error: \(error)")
+        }
+    }
 }
