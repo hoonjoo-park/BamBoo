@@ -17,7 +17,7 @@ class HomeVC: ToastMessageVC {
         self.userVM = userVM
         self.articleVM = articleVM
         
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
     
     

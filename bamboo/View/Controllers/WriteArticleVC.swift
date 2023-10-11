@@ -2,6 +2,8 @@ import UIKit
 import SnapKit
 
 class WriteArticleVC: ToastMessageVC {
+    var articleVM: ArticleVM!
+    
     let locationVM = LocationVM.shared
     let locationButton = PressableButton()
     let locationButtonPlaceHolder = BambooLabel(fontSize: 16, weight: .semibold, color: BambooColors.white)
@@ -10,6 +12,16 @@ class WriteArticleVC: ToastMessageVC {
     let contentInput = UITextView()
     let titleInputPlaceHolder = "제목을 입력해 주세요"
     let contentInputPlaceholderText = "본문 내용을 입력해 주세요"
+    
+    init(articleVM: ArticleVM) {
+        self.articleVM = articleVM
+        
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,9 +171,9 @@ class WriteArticleVC: ToastMessageVC {
                                           districtId: selectedDistrictId,
                                           title: title,
                                           content: content) { [weak self] article in
+            
             guard let article = article else { return }
             
-            // TODO: ArticleVM 업데이트 로직 구현 필요
             
             self?.dismiss(animated: true)
         }

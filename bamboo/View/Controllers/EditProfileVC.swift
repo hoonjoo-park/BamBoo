@@ -17,8 +17,9 @@ class EditProfileVC: ToastMessageVC {
     let disposeBag = DisposeBag()
     
     init(userVM: UserViewModel!) {
-        super.init(nibName: nil, bundle: nil)
         self.userVM = userVM
+        
+        super.init()
     }
     
     

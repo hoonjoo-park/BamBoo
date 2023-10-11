@@ -32,7 +32,7 @@ class ArticleDetailVC: ToastMessageVC {
         self.userVM = userVM
         self.articleVM.fetchArticle(articleId: selectedId)
         
-        super.init(nibName: nil, bundle: nil)
+        super.init()
         
         bindArticleVM()
     }

@@ -65,7 +65,7 @@ class RootTabBarController: UITabBarController {
     
     
     private func presentWriteArticleVC() {
-        let writeArticleVC = WriteArticleVC()
+        let writeArticleVC = WriteArticleVC(articleVM: articleVM)
         let navigationController = UINavigationController(rootViewController: writeArticleVC)
         
         navigationController.modalPresentationStyle = .fullScreen
