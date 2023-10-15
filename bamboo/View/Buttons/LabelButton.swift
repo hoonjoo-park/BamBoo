@@ -29,11 +29,12 @@ class LabelButton: PressableButton {
         if isCenter {
             buttonLabel.snp.makeConstraints {
                 $0.center.equalToSuperview()
-                $0.leading.equalToSuperview()
             }
         } else {
             buttonLabel.snp.makeConstraints {
                 $0.leading.equalToSuperview()
+                $0.trailing.equalToSuperview()
+                $0.centerY.equalToSuperview()
             }
         }
     }

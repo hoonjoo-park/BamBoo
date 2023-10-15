@@ -18,7 +18,7 @@ class CommentTableViewCell: UITableViewCell {
     var articleVM: ArticleVM!
     
     let profileImageView = UIImageView()
-    let usernameButton = LabelButton(fontSize: 12, weight: .medium, color: BambooColors.gray)
+    let usernameButton = LabelButton(fontSize: 12, weight: .medium, color: BambooColors.gray, isCenter: false)
     let createdAtLabel = BambooLabel(fontSize: 10, weight: .medium, color: BambooColors.gray)
     let replyButton = IconButton()
     let optionButton = IconButton()

@@ -10,7 +10,7 @@ class NestedCommentTableViewCell: UITableViewCell {
     
     let replyIndicateIcon = UIImageView(image: UIImage(systemName: "arrow.turn.down.right"))
     let profileImageView = UIImageView()
-    let usernameButton = LabelButton(fontSize: 12, weight: .medium, color: BambooColors.gray)
+    let usernameButton = LabelButton(fontSize: 12, weight: .medium, color: BambooColors.gray, isCenter: false)
     let createdAtLabel = BambooLabel(fontSize: 10, weight: .medium, color: BambooColors.gray)
     let commentLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.white)
     
