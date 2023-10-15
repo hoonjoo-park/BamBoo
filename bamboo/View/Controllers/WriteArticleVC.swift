@@ -170,12 +170,14 @@ class WriteArticleVC: ToastMessageVC {
         NetworkManager.shared.postArticle(cityId: selectedLocation.cityId,
                                           districtId: selectedDistrictId,
                                           title: title,
-                                          content: content) { [weak self] article in
+                                          content: content) { [weak self] articleList in
             
-            guard let article = article else { return }
+            guard let self = self,
+                  let articleList = articleList else { return }
             
+            self.articleVM.updateArticleList(articleList: articleList)
             
-            self?.dismiss(animated: true)
+            self.dismiss(animated: true)
         }
     }
 }

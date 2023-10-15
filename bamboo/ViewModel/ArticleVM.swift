@@ -29,6 +29,17 @@ class ArticleVM {
     }
     
     
+    func updateArticleList(articleList: ArticleList) {
+        do {
+            let currentList = try articleListSubject.value()
+            
+            articleListSubject.onNext([articleList] + currentList)
+        } catch {
+            print("updateArticleList error: \(error)")
+        }
+    }
+    
+    
     func getSelectedArticleList(index: Int) -> ArticleList? {
         do {
             guard let selectedArticleList = try articleListSubject.value()[index] else { return nil }

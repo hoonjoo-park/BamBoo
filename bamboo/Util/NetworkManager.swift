@@ -133,7 +133,7 @@ class NetworkManager {
     }
     
     
-    func postArticle(cityId: Int, districtId: Int, title: String, content: String , completion: @escaping (Article?) -> Void) {
+    func postArticle(cityId: Int, districtId: Int, title: String, content: String , completion: @escaping (ArticleList?) -> Void) {
         let urlString = "\(baseUrl)/article"
         let token = UserDefaults.standard.getToken()
         
@@ -156,7 +156,7 @@ class NetworkManager {
                 case .success(let value):
                     if let data = value {
                         do {
-                            let decodedData = try? self?.decoder.decode(Article.self, from: data)
+                            let decodedData = try? self?.decoder.decode(ArticleList.self, from: data)
                             completion(decodedData)
                         }
                     }
