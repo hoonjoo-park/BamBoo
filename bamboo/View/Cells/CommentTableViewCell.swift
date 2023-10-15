@@ -18,7 +18,7 @@ class CommentTableViewCell: UITableViewCell {
     var articleVM: ArticleVM!
     
     let profileImageView = UIImageView()
-    let usernameLabel = LabelButton(fontSize: 12, weight: .medium, color: BambooColors.gray)
+    let usernameButton = LabelButton(fontSize: 12, weight: .medium, color: BambooColors.gray)
     let createdAtLabel = BambooLabel(fontSize: 10, weight: .medium, color: BambooColors.gray)
     let replyButton = IconButton()
     let optionButton = IconButton()
@@ -58,7 +58,7 @@ class CommentTableViewCell: UITableViewCell {
         
         self.articleVM = articleVM
         bindArticleVM()
-        usernameLabel.buttonLabel.text = comment.author.profile.username
+        usernameButton.buttonLabel.text = comment.author.profile.username
         createdAtLabel.text = DateHelper.getElapsedTime(comment.createdAt)
         commentLabel.text = comment.content
         currentComment = comment
@@ -83,7 +83,7 @@ class CommentTableViewCell: UITableViewCell {
         optionButton.iconView.image = UIImage(systemName: "ellipsis")
         optionButton.iconView.tintColor = BambooColors.gray
         
-        [profileImageView, usernameLabel, createdAtLabel,
+        [profileImageView, usernameButton, createdAtLabel,
          replyButton, optionButton, commentLabel].forEach { contentView.addSubview($0) }
         
         profileImageView.layer.cornerRadius = 10
@@ -95,14 +95,14 @@ class CommentTableViewCell: UITableViewCell {
             make.leading.equalToSuperview().inset(horizontalPadding)
         }
         
-        usernameLabel.snp.makeConstraints { make in
+        usernameButton.snp.makeConstraints { make in
             make.centerY.equalTo(profileImageView)
-            make.leading.equalTo(profileImageView.snp.trailing).offset(12)
+            make.leading.equalTo(profileImageView.snp.trailing).offset(10)
         }
         
         createdAtLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(usernameLabel)
-            make.leading.equalTo(usernameLabel.snp.trailing).offset(12)
+            make.centerY.equalTo(usernameButton)
+            make.leading.equalTo(usernameButton.snp.trailing).offset(10)
         }
         
         replyButton.snp.makeConstraints { make in
@@ -149,7 +149,7 @@ class CommentTableViewCell: UITableViewCell {
     private func configureButtonTargets() {
         optionButton.addTarget(self, action: #selector(handleTapOptionButton), for: .touchUpInside)
         replyButton.addTarget(self, action: #selector(handleTapReplyButton), for: .touchUpInside)
-        usernameLabel.addTarget(self, action: #selector(handleTapUsernameButton), for: .touchUpInside)
+        usernameButton.addTarget(self, action: #selector(handleTapUsernameButton), for: .touchUpInside)
     }
     
     

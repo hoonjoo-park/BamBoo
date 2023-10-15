@@ -362,7 +362,6 @@ extension ArticleDetailVC: UITableViewDelegate, UITableViewDataSource {
                                                      for: indexPath) as! CommentTableViewCell
             
             cell.delegate = self
-            cell.optionButton.tag = indexPath.row
             cell.setCell(comment: comment, userVM: userVM, articleVM: articleVM)
             
             return cell

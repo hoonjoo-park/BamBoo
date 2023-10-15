@@ -17,6 +17,7 @@ class LabelButton: PressableButton {
     
     init(fontSize: CGFloat, weight: UIFont.Weight, color: UIColor, isCenter: Bool? = nil) {
         super.init(frame: .zero)
+        
         buttonLabel = BambooLabel(fontSize: fontSize, weight: weight, color: color)
         configureUI(isCenter ?? true)
     }
@@ -28,6 +29,7 @@ class LabelButton: PressableButton {
         if isCenter {
             buttonLabel.snp.makeConstraints {
                 $0.center.equalToSuperview()
+                $0.leading.equalToSuperview()
             }
         } else {
             buttonLabel.snp.makeConstraints {

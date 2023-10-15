@@ -10,7 +10,7 @@ class NestedCommentTableViewCell: UITableViewCell {
     
     let replyIndicateIcon = UIImageView(image: UIImage(systemName: "arrow.turn.down.right"))
     let profileImageView = UIImageView()
-    let usernameLabel = LabelButton(fontSize: 12, weight: .medium, color: BambooColors.gray)
+    let usernameButton = LabelButton(fontSize: 12, weight: .medium, color: BambooColors.gray)
     let createdAtLabel = BambooLabel(fontSize: 10, weight: .medium, color: BambooColors.gray)
     let commentLabel = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.white)
     
@@ -48,7 +48,7 @@ class NestedCommentTableViewCell: UITableViewCell {
         }
         
         currentComment = comment
-        usernameLabel.buttonLabel.text = comment.author.profile.username
+        usernameButton.buttonLabel.text = comment.author.profile.username
         createdAtLabel.text = DateHelper.getElapsedTime(comment.createdAt)
         commentLabel.text = comment.content
     }
@@ -60,8 +60,8 @@ class NestedCommentTableViewCell: UITableViewCell {
         
         backgroundColor = BambooColors.navy
         
-        [replyIndicateIcon, profileImageView, usernameLabel,
-         createdAtLabel, commentLabel].forEach { addSubview($0) }
+        [replyIndicateIcon, profileImageView, usernameButton,
+         createdAtLabel, commentLabel].forEach { contentView.addSubview($0) }
         
         replyIndicateIcon.tintColor = BambooColors.gray
         replyIndicateIcon.snp.makeConstraints { make in
@@ -78,14 +78,14 @@ class NestedCommentTableViewCell: UITableViewCell {
             make.width.height.equalTo(20)
         }
         
-        usernameLabel.snp.makeConstraints { make in
+        usernameButton.snp.makeConstraints { make in
             make.centerY.equalTo(profileImageView)
             make.leading.equalTo(profileImageView.snp.trailing).offset(10)
         }
         
         createdAtLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(usernameLabel)
-            make.leading.equalTo(usernameLabel.snp.trailing).offset(10)
+            make.centerY.equalTo(usernameButton)
+            make.leading.equalTo(usernameButton.snp.trailing).offset(10)
         }
         
         commentLabel.snp.makeConstraints { make in
@@ -98,11 +98,13 @@ class NestedCommentTableViewCell: UITableViewCell {
     
     
     private func configureButtonTargets() {
-        usernameLabel.addTarget(self, action: #selector(handleTapUsernameLabel), for: .touchUpInside)
+        usernameButton.addTarget(self, action: #selector(handleTapUsernameButton), for: .touchUpInside)
     }
     
     
-    @objc func handleTapUsernameLabel() {
+    @objc func handleTapUsernameButton() {
+        print("@@@@@@@@@@")
+        
         guard let currentComment = currentComment else { return }
         
         self.delegate.navigateToUserPofile(author: currentComment.author)
