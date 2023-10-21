@@ -103,8 +103,6 @@ class NestedCommentTableViewCell: UITableViewCell {
     
     
     @objc func handleTapUsernameButton() {
-        print("@@@@@@@@@@")
-        
         guard let currentComment = currentComment else { return }
         
         self.delegate.navigateToUserPofile(author: currentComment.author)

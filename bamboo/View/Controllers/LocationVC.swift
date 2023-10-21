@@ -50,6 +50,15 @@ class LocationVC: BottomSheetVC {
     override func handleTapBackdrop() {
         super.handleTapBackdrop()
         
+        
+        if fromVC == "WriteArticleVC", locationVM.selectedArticleLocation.value != nil {
+            return
+        }
+        
+        if fromVC == "HomeVC", locationVM.selectedFilterLocation.value != nil {
+            return
+        }
+        
         locationVM.clearSelectedArticleLocation()
     }
     
@@ -111,7 +120,7 @@ class LocationVC: BottomSheetVC {
     
     
     private func setSelectedLocation() {
-        // For Article Location
+        // For Write Article Location
         if fromVC == "WriteArticleVC", let selectedArticleLocation = locationVM.selectedArticleLocation.value {
             
             cityButton.placeholder.text = selectedArticleLocation.cityName
