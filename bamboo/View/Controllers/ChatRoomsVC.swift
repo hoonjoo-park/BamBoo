@@ -5,6 +5,7 @@ class ChatRoomsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureViewController()
     }
     

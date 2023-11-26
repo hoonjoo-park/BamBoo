@@ -50,6 +50,7 @@
 		CBA1C05E29F817E50098723E /* KakaoAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA1C05D29F817E50098723E /* KakaoAuthButton.swift */; };
 		CBA1C06029F818410098723E /* GoogleAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA1C05F29F818410098723E /* GoogleAuthButton.swift */; };
 		CBA1C06229F818530098723E /* AppleAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA1C06129F818530098723E /* AppleAuthButton.swift */; };
+		CBA67D3E2B139C4900E9FCAA /* ChatRoomVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA67D3D2B139C4900E9FCAA /* ChatRoomVM.swift */; };
 		CBA77A9F2A0BAF0000CE0A02 /* ListModalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA77A9E2A0BAF0000CE0A02 /* ListModalTableView.swift */; };
 		CBA77AA12A0BB0E300CE0A02 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA77AA02A0BB0E300CE0A02 /* LocationTableViewCell.swift */; };
 		CBBD77A92A28D58C008CBCDE /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD77A82A28D58C008CBCDE /* CommentTableViewCell.swift */; };
@@ -138,6 +139,7 @@
 		CBA1C05F29F818410098723E /* GoogleAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthButton.swift; sourceTree = "<group>"; };
 		CBA1C06129F818530098723E /* AppleAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthButton.swift; sourceTree = "<group>"; };
 		CBA1C06529F842CE0098723E /* env.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = env.xcconfig; sourceTree = "<group>"; };
+		CBA67D3D2B139C4900E9FCAA /* ChatRoomVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomVM.swift; sourceTree = "<group>"; };
 		CBA77A9E2A0BAF0000CE0A02 /* ListModalTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModalTableView.swift; sourceTree = "<group>"; };
 		CBA77AA02A0BB0E300CE0A02 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		CBBD77A82A28D58C008CBCDE /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				CB87F49729FE6AC90025B67A /* UserVM.swift */,
 				CB6E524E2A096BF1005F602A /* LocationVM.swift */,
 				CB8BE8072A1259D2001A38CE /* ArticleVM.swift */,
+				CBA67D3D2B139C4900E9FCAA /* ChatRoomVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -685,6 +688,7 @@
 				CBA1C05C29F7F7290098723E /* AuthButton.swift in Sources */,
 				CB6E524D2A0931BC005F602A /* BottomSheetVC.swift in Sources */,
 				CBA1C05E29F817E50098723E /* KakaoAuthButton.swift in Sources */,
+				CBA67D3E2B139C4900E9FCAA /* ChatRoomVM.swift in Sources */,
 				CB2FA94729F5B7170009F39F /* OnboardingVC.swift in Sources */,
 				CB6E524B2A092A01005F602A /* LocationVC.swift in Sources */,
 				CB50D2972A0ABA2D0097C24B /* LocationSelectButton.swift in Sources */,
