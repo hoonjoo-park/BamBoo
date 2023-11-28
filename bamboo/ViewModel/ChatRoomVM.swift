@@ -11,6 +11,11 @@ class ChatRoomViewModel {
     }
     
     
+    func setChatRooms(chatRooms data: [ChatRoom]) {
+        chatRoomsSubject.onNext(data)
+    }
+    
+    
     func getChatRooms() -> [ChatRoom?] {
         do {
             return try chatRoomsSubject.value()

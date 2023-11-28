@@ -5,13 +5,15 @@ enum SocketEvent {
     static let message = "message"
     static let connect = "connect"
     static let disconnect = "disconnect"
+    static let chatRooms = "chatRooms"
 }
 
 class SocketIOManager: NSObject {
     static let shared = SocketIOManager()
+    private let decoder = JSONDecoder()
+    let chatRoomVM = ChatRoomViewModel.shared
     
     var manager: SocketManager!
-    
     var socket: SocketIOClient!
     
     
@@ -36,6 +38,8 @@ class SocketIOManager: NSObject {
         guard let socket = socket else { return }
         
         socket.connect()
+        
+        getChatRooms()
     }
     
     
@@ -48,6 +52,22 @@ class SocketIOManager: NSObject {
     
     func sendMessage(message: String, userId: Int) {
         self.socket.emit(SocketEvent.message, ["message": message, "userId": userId])
+    }
+    
+    
+    func getChatRooms() {
+        self.socket.on(SocketEvent.chatRooms) { data, ack  in
+            guard let chatRoomsData = data.first else { return }
+            
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: chatRoomsData)
+                let chatRooms = try self.decoder.decode([ChatRoom].self, from: jsonData)
+                
+                self.chatRoomVM.setChatRooms(chatRooms: chatRooms)
+            } catch {
+                print("getChatRooms error: \(error)")
+            }
+        }
     }
     
 }
