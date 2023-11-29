@@ -1,12 +1,19 @@
 import UIKit
+import RxSwift
+import RxCocoa
+import SnapKit
 
 class ChatRoomsVC: UIViewController {
+    let disposeBag = DisposeBag()
     var userVM: UserViewModel!
-
+    
+    var chatRoomListCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureViewController()
+        bindChatRoomVM()
     }
     
     
@@ -37,5 +44,26 @@ class ChatRoomsVC: UIViewController {
         view.backgroundColor = BambooColors.black
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         navigationController?.navigationBar.frame.origin.y = view.safeAreaInsets.top
+        
+        chatRoomListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewHelper.createChatRoomListFlowLayout(view: view))
+        chatRoomListCollectionView.backgroundColor = BambooColors.black
+        chatRoomListCollectionView.register(ChatRoomListCollectionViewCell.self, forCellWithReuseIdentifier: ChatRoomListCollectionViewCell.reuseId)
+        
+        view.addSubview(chatRoomListCollectionView)
+        
+        chatRoomListCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.left.right.bottom.equalToSuperview()
+        }
+    }
+    
+    
+    private func bindChatRoomVM() {
+        ChatRoomViewModel.shared.chatRooms.bind(to: chatRoomListCollectionView.rx.items(cellIdentifier: ChatRoomListCollectionViewCell.reuseId,
+                                                                          cellType: ChatRoomListCollectionViewCell.self)) { row, chatRoom, cell in
+            guard let chatRoom = chatRoom else { return }
+            
+            cell.setCell(chatRoom: chatRoom)
+        }.disposed(by: disposeBag)
     }
 }

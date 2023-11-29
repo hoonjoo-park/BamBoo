@@ -55,6 +55,7 @@
 		CBA77AA12A0BB0E300CE0A02 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA77AA02A0BB0E300CE0A02 /* LocationTableViewCell.swift */; };
 		CBBD77A92A28D58C008CBCDE /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD77A82A28D58C008CBCDE /* CommentTableViewCell.swift */; };
 		CBBD77AB2A28D5C9008CBCDE /* NestedCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD77AA2A28D5C9008CBCDE /* NestedCommentTableViewCell.swift */; };
+		CBBFAAF82B178E3B00A4141A /* ChatRoomListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBFAAF72B178E3B00A4141A /* ChatRoomListCollectionViewCell.swift */; };
 		CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CD29F055950057CBEA /* AppDelegate.swift */; };
 		CBCD43D029F055950057CBEA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43CF29F055950057CBEA /* SceneDelegate.swift */; };
 		CBCD43D729F055970057CBEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD43D629F055970057CBEA /* Assets.xcassets */; };
@@ -144,6 +145,7 @@
 		CBA77AA02A0BB0E300CE0A02 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		CBBD77A82A28D58C008CBCDE /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		CBBD77AA2A28D5C9008CBCDE /* NestedCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedCommentTableViewCell.swift; sourceTree = "<group>"; };
+		CBBFAAF72B178E3B00A4141A /* ChatRoomListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListCollectionViewCell.swift; sourceTree = "<group>"; };
 		CBCD43CA29F055950057CBEA /* bamboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bamboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCD43CD29F055950057CBEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBCD43CF29F055950057CBEA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				CBD8104A2A1A32C60022E507 /* ArticleListCollectionViewCell.swift */,
 				CBBD77A82A28D58C008CBCDE /* CommentTableViewCell.swift */,
 				CBBD77AA2A28D5C9008CBCDE /* NestedCommentTableViewCell.swift */,
+				CBBFAAF72B178E3B00A4141A /* ChatRoomListCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				CBA67D3E2B139C4900E9FCAA /* ChatRoomVM.swift in Sources */,
 				CB2FA94729F5B7170009F39F /* OnboardingVC.swift in Sources */,
 				CB6E524B2A092A01005F602A /* LocationVC.swift in Sources */,
+				CBBFAAF82B178E3B00A4141A /* ChatRoomListCollectionViewCell.swift in Sources */,
 				CB50D2972A0ABA2D0097C24B /* LocationSelectButton.swift in Sources */,
 				CB6E524F2A096BF1005F602A /* LocationVM.swift in Sources */,
 				CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */,
