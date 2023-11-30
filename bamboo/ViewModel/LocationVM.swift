@@ -44,7 +44,9 @@ class LocationVM {
     
     func updateDistrictsBySelectedCity(districts: [District]) {
         let districtsIncludeAll = District(id: -1, cityId: districts[0].cityId, name: "전체")
-        districtsBySelectedCity.accept([districtsIncludeAll] + districts)
+        let sortedDistricts = districts.sorted { $0.name < $1.name }
+        
+        districtsBySelectedCity.accept([districtsIncludeAll] + sortedDistricts)
     }
     
     

@@ -10,7 +10,7 @@ struct ChatRoom: Codable {
 
 struct ChatRoomUser: Codable {
     let profile: ChatRoomUserProfile
-    let hasSeenLatestMessage: Bool
+    let lastCheck: String?
 }
 
 struct ChatRoomUserProfile: Codable {
