@@ -7,6 +7,7 @@ enum SocketEvent {
     static let disconnect = "disconnect"
     static let chatRooms = "chatRooms"
     static let updateChatRoom = "updateChatRoom"
+    static let createChatRoom = "createChatRoom"
 }
 
 class SocketIOManager: NSObject {
@@ -53,6 +54,11 @@ class SocketIOManager: NSObject {
     
     func sendMessage(message: String, userId: Int) {
         self.socket.emit(SocketEvent.message, ["message": message, "userId": userId])
+    }
+    
+    
+    func createChatRoom(userId: Int) {
+        self.socket.emit(SocketEvent.createChatRoom, ["userId": userId])
     }
     
     

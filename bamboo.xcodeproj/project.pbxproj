@@ -40,6 +40,7 @@
 		CB7132062ACC2C2B00949898 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7132052ACC2C2B00949898 /* UserProfileVC.swift */; };
 		CB71C2C12A0E5CFA005AC9E4 /* ToastMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB71C2C02A0E5CFA005AC9E4 /* ToastMessageView.swift */; };
 		CB71C2C32A0E6262005AC9E4 /* ToastMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB71C2C22A0E6262005AC9E4 /* ToastMessageVC.swift */; };
+		CB73F45A2B18EEFC009641BE /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73F4592B18EEFC009641BE /* ChatVC.swift */; };
 		CB87F49029FE48730025B67A /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */; };
 		CB87F49229FE66A00025B67A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB87F49129FE66A00025B67A /* NetworkManager.swift */; };
 		CB87F49629FE6A050025B67A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB87F49529FE6A050025B67A /* User.swift */; };
@@ -129,6 +130,7 @@
 		CB7132052ACC2C2B00949898 /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		CB71C2C02A0E5CFA005AC9E4 /* ToastMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessageView.swift; sourceTree = "<group>"; };
 		CB71C2C22A0E6262005AC9E4 /* ToastMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessageVC.swift; sourceTree = "<group>"; };
+		CB73F4592B18EEFC009641BE /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
 		CB87F49129FE66A00025B67A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CB87F49529FE6A050025B67A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				CB6E524A2A092A01005F602A /* LocationVC.swift */,
 				CB48B55E2A1E5FE900F4A3CD /* ArticleDetailVC.swift */,
 				CB7132052ACC2C2B00949898 /* UserProfileVC.swift */,
+				CB73F4592B18EEFC009641BE /* ChatVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				CB6E524D2A0931BC005F602A /* BottomSheetVC.swift in Sources */,
 				CBA1C05E29F817E50098723E /* KakaoAuthButton.swift in Sources */,
 				CBA67D3E2B139C4900E9FCAA /* ChatRoomVM.swift in Sources */,
+				CB73F45A2B18EEFC009641BE /* ChatVC.swift in Sources */,
 				CB2FA94729F5B7170009F39F /* OnboardingVC.swift in Sources */,
 				CB6E524B2A092A01005F602A /* LocationVC.swift in Sources */,
 				CBBFAAF82B178E3B00A4141A /* ChatRoomTableViewCell.swift in Sources */,

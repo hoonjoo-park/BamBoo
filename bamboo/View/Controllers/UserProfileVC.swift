@@ -1,12 +1,13 @@
-
 import UIKit
 import SnapKit
 import Kingfisher
+import RxSwift
 
 class UserProfileVC: UIViewController {
     var currentUser: User!
     var meId: Int!
     
+    let disposeBag = DisposeBag()
     let profileImageView = UIImageView()
     let emailLabel = BambooLabel(fontSize: 14, weight: .medium, color: BambooColors.gray)
     let createdAtLabel = BambooLabel(fontSize: 14, weight: .medium, color: BambooColors.gray)
@@ -19,6 +20,7 @@ class UserProfileVC: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        bindViewModel()
     }
     
     
@@ -101,6 +103,7 @@ class UserProfileVC: UIViewController {
         
         chatButtonLabel.text = "1:1 채팅하기"
         chatIconView.tintColor = BambooColors.white
+        chatButton.addTarget(self, action: #selector(handlePressChat), for: .touchUpInside)
         
         chatButton.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(20)
@@ -117,5 +120,26 @@ class UserProfileVC: UIViewController {
             make.centerY.equalToSuperview()
             make.leading.equalTo(chatIconView.snp.trailing).offset(15)
         }
+    }
+    
+    private func bindViewModel() {
+        ChatRoomViewModel.shared.createdChatRoomSubject.subscribe(onNext: { chatRoom in
+            guard let newChatRoom = chatRoom else { return }
+            
+            let chatRoomVC = ChatVC(chatRoomId: newChatRoom.id)
+            self.navigationController?.pushViewController(chatRoomVC, animated: true)
+        }).disposed(by: disposeBag)
+    }
+    
+    @objc private func handlePressChat() {
+        let existingChatRoom = ChatRoomViewModel.shared.checkHasChatRoomWithOponent(userId: currentUser.id)
+        
+        guard let existingChatRoom = existingChatRoom else {
+            SocketIOManager.shared.createChatRoom(userId: currentUser.id)
+            return
+        }
+        
+        let chatRoomVC = ChatVC(chatRoomId: existingChatRoom.id)
+        navigationController?.pushViewController(chatRoomVC, animated: true)
     }
 }
