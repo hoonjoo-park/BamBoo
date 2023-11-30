@@ -26,17 +26,19 @@ class ChatRoomViewModel {
     }
     
     
-    func addChatRoom(chatRoom: ChatRoom) {
+    func updateChatRoom(chatRoom: ChatRoom) {
         do {
-            let currentChatRooms = try chatRoomsSubject.value()
+            var currentChatRooms = try chatRoomsSubject.value()
             
-            if currentChatRooms.isEmpty {
-                chatRoomsSubject.onNext([chatRoom])
+            if let index = currentChatRooms.firstIndex(where: { $0?.id == chatRoom.id }) {
+                currentChatRooms[index] = chatRoom
             } else {
-                chatRoomsSubject.onNext(currentChatRooms + [chatRoom])
+                currentChatRooms.append(chatRoom)
             }
+            
+            chatRoomsSubject.onNext(currentChatRooms)
         } catch {
-            print("updateChatRooms error: \(error)")
+            print("updateChatRoom error: \(error)")
         }
     }
 }

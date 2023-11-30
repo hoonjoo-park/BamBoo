@@ -6,6 +6,7 @@ enum SocketEvent {
     static let connect = "connect"
     static let disconnect = "disconnect"
     static let chatRooms = "chatRooms"
+    static let updateChatRoom = "updateChatRoom"
 }
 
 class SocketIOManager: NSObject {
@@ -39,7 +40,7 @@ class SocketIOManager: NSObject {
         
         socket.connect()
         
-        getChatRooms()
+        setSocketEmitListener()
     }
     
     
@@ -55,7 +56,8 @@ class SocketIOManager: NSObject {
     }
     
     
-    func getChatRooms() {
+    func setSocketEmitListener() {
+        // chatRooms
         self.socket.on(SocketEvent.chatRooms) { data, ack  in
             guard let chatRoomsData = data.first else { return }
             
@@ -65,9 +67,21 @@ class SocketIOManager: NSObject {
                 
                 self.chatRoomVM.setChatRooms(chatRooms: chatRooms)
             } catch {
-                print("getChatRooms error: \(error)")
+                print("chatRooms error: \(error)")
+            }
+        }
+        
+        // updateChatRoom
+        self.socket.on(SocketEvent.updateChatRoom) { data, ack in
+            guard let chatRoomData = data.first else { return }
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: chatRoomData)
+                let chatRoom = try self.decoder.decode(ChatRoom.self, from: jsonData)
+                
+                self.chatRoomVM.updateChatRoom(chatRoom: chatRoom)
+            } catch {
+                print("updateChatRoom error: \(error)")
             }
         }
     }
-    
 }
