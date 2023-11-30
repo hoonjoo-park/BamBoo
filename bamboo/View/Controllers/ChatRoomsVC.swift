@@ -7,7 +7,7 @@ class ChatRoomsVC: UIViewController {
     let disposeBag = DisposeBag()
     var userVM: UserViewModel!
     
-    var chatRoomListCollectionView: UICollectionView!
+    var chatRoomTableView = UITableView(frame: .zero)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,13 +45,13 @@ class ChatRoomsVC: UIViewController {
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         navigationController?.navigationBar.frame.origin.y = view.safeAreaInsets.top
         
-        chatRoomListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewHelper.createChatRoomListFlowLayout(view: view))
-        chatRoomListCollectionView.backgroundColor = BambooColors.black
-        chatRoomListCollectionView.register(ChatRoomListCollectionViewCell.self, forCellWithReuseIdentifier: ChatRoomListCollectionViewCell.reuseId)
+        chatRoomTableView.backgroundColor = BambooColors.black
+        chatRoomTableView.register(ChatRoomTableViewCell.self, forCellReuseIdentifier: ChatRoomTableViewCell.reuseId)
+        chatRoomTableView.separatorStyle = .none
         
-        view.addSubview(chatRoomListCollectionView)
+        view.addSubview(chatRoomTableView)
         
-        chatRoomListCollectionView.snp.makeConstraints { make in
+        chatRoomTableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.left.right.bottom.equalToSuperview()
         }
@@ -59,8 +59,8 @@ class ChatRoomsVC: UIViewController {
     
     
     private func bindChatRoomVM() {
-        ChatRoomViewModel.shared.chatRooms.bind(to: chatRoomListCollectionView.rx.items(cellIdentifier: ChatRoomListCollectionViewCell.reuseId,
-                                                                          cellType: ChatRoomListCollectionViewCell.self)) { row, chatRoom, cell in
+        ChatRoomViewModel.shared.chatRooms.bind(to: chatRoomTableView.rx.items(cellIdentifier: ChatRoomTableViewCell.reuseId,
+                                                                               cellType: ChatRoomTableViewCell.self)) { index, chatRoom, cell in
             guard let chatRoom = chatRoom else { return }
             
             cell.setCell(chatRoom: chatRoom)

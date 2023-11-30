@@ -45,16 +45,6 @@ enum CollectionViewHelper {
         
         return flowLayout
     }
-    
-    static func createChatRoomListFlowLayout(view: UIView) -> UICollectionViewLayout {
-        let flowLayout = UICollectionViewFlowLayout()
-        let viewWidth = view.bounds.width
-        
-        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        flowLayout.itemSize = CGSize(width: viewWidth, height: 60)
-        
-        return flowLayout
-    }
 }
 
 enum DateHelper {

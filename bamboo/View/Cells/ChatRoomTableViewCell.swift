@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class ChatRoomListCollectionViewCell: UICollectionViewCell {
+class ChatRoomTableViewCell: UITableViewCell {
     static let reuseId = "ChatRoomListCollectionViewCell"
     
     let profileImageView = UIImageView()
@@ -11,8 +11,10 @@ class ChatRoomListCollectionViewCell: UICollectionViewCell {
     let latestMessageLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
     let createdAtLabel = BambooLabel(fontSize: 10, weight: .medium, color: BambooColors.darkGray)
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.selectionStyle = .none
         
         configureUI()
     }
@@ -26,11 +28,13 @@ class ChatRoomListCollectionViewCell: UICollectionViewCell {
     private func configureUI() {
         [profileImageView, usernameLabel, latestMessageLabel, createdAtLabel].forEach { addSubview($0) }
     
+        backgroundColor = BambooColors.black
         profileImageView.layer.cornerRadius = 12
         profileImageView.clipsToBounds = true
         
         profileImageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().offset(10)
+            make.bottom.equalToSuperview().inset(10)
             make.leading.equalToSuperview().offset(15)
             make.size.equalTo(40)
         }
