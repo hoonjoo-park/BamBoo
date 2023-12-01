@@ -55,20 +55,16 @@ class ChatRoomTableViewCell: UITableViewCell {
     }
     
     
-    func setCell(chatRoom: ChatRoom) {
-        guard let me = UserViewModel.shared.getUser(),
-              let opponentUser = chatRoom.users.filter({ user in return user.profile.userId != me.id }).first
-        else { return }
-        
-        if let profileImage = opponentUser.profile.profileImage,
+    func setCell(chatRoom: ChatRoom) {       
+        if let profileImage = chatRoom.opponentProfile.profileImage,
            let profileImageUrl = URL(string: profileImage) {
             profileImageView.setImageWithRetry(url: profileImageUrl, retry: 5)
         } else {
             profileImageView.image = placeholderImage
         }
         
-        usernameLabel.text = opponentUser.profile.username
-        latestMessageLabel.text = chatRoom.latestMessage?.content ?? "채팅방이 생성되었습니다."
-        createdAtLabel.text = DateHelper.getElapsedTime(chatRoom.createdAt)
+        usernameLabel.text = chatRoom.opponentProfile.username
+        latestMessageLabel.text = chatRoom.lastMessage?.content ?? "채팅방이 생성되었습니다."
+        createdAtLabel.text = DateHelper.getElapsedTime(chatRoom.updatedAt)
     }
 }

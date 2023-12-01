@@ -4,7 +4,7 @@ import Kingfisher
 import RxSwift
 
 class UserProfileVC: UIViewController {
-    var currentUser: User!
+    var selectedUser: User!
     var meId: Int!
     
     let disposeBag = DisposeBag()
@@ -32,7 +32,7 @@ class UserProfileVC: UIViewController {
     
     
     init(author: User, meId: Int) {
-        self.currentUser = author
+        self.selectedUser = author
         self.meId = meId
         
         super.init(nibName: nil, bundle: nil)
@@ -47,7 +47,7 @@ class UserProfileVC: UIViewController {
     private func configureViewController() {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
-        title = currentUser.name
+        title = selectedUser.name
         view.backgroundColor = BambooColors.black
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         navigationController?.isNavigationBarHidden = false
@@ -61,14 +61,14 @@ class UserProfileVC: UIViewController {
             view.addSubview(subView)
         }
         
-        if let profileImage = currentUser.profile.profileImage, let profileImageUrl = URL(string: profileImage) {
+        if let profileImage = selectedUser.profile.profileImage, let profileImageUrl = URL(string: profileImage) {
             profileImageView.kf.setImage(with: profileImageUrl)
         } else {
             profileImageView.image = UIImage(named: "avatar")
         }
         
-        emailLabel.text = currentUser.email
-        createdAtLabel.text = DateHelper.getElapsedTime(currentUser.createdAt)
+        emailLabel.text = selectedUser.email
+        createdAtLabel.text = DateHelper.getElapsedTime(selectedUser.createdAt)
         
         profileImageView.layer.cornerRadius = 30
         profileImageView.clipsToBounds = true
@@ -89,7 +89,7 @@ class UserProfileVC: UIViewController {
             make.leading.equalTo(emailLabel.snp.leading)
         }
         
-        if currentUser.id != meId {
+        if selectedUser.id != meId {
             configureChatButton()
         }
     }
@@ -126,20 +126,20 @@ class UserProfileVC: UIViewController {
         ChatRoomViewModel.shared.createdChatRoomSubject.subscribe(onNext: { chatRoom in
             guard let newChatRoom = chatRoom else { return }
             
-            let chatRoomVC = ChatVC(chatRoomId: newChatRoom.id)
+            let chatRoomVC = ChatVC(chatRoom: newChatRoom)
             self.navigationController?.pushViewController(chatRoomVC, animated: true)
         }).disposed(by: disposeBag)
     }
     
     @objc private func handlePressChat() {
-        let existingChatRoom = ChatRoomViewModel.shared.checkHasChatRoomWithOponent(userId: currentUser.id)
+        let existingChatRoom = ChatRoomViewModel.shared.checkHasChatRoomWithOponent(opponentId: selectedUser.id)
         
         guard let existingChatRoom = existingChatRoom else {
-            SocketIOManager.shared.createChatRoom(userId: currentUser.id)
+            SocketIOManager.shared.createChatRoom(userId: selectedUser.id)
             return
         }
         
-        let chatRoomVC = ChatVC(chatRoomId: existingChatRoom.id)
+        let chatRoomVC = ChatVC(chatRoom: existingChatRoom)
         navigationController?.pushViewController(chatRoomVC, animated: true)
     }
 }

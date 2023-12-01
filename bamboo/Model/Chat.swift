@@ -2,18 +2,12 @@ import Foundation
 
 struct ChatRoom: Codable {
     let id: Int
-    let users: [ChatRoomUser]
-    let createdAt: String
-    let latestMessageId: Int?
-    let latestMessage: Message?
+    let opponentProfile: OpponentProfile
+    let updatedAt: String
+    let lastMessage: Message?
 }
 
-struct ChatRoomUser: Codable {
-    let profile: ChatRoomUserProfile
-    let lastCheck: String?
-}
-
-struct ChatRoomUserProfile: Codable {
+struct OpponentProfile: Codable {
     let id: Int
     let profileImage: String?
     let userId: Int
@@ -22,7 +16,6 @@ struct ChatRoomUserProfile: Codable {
 
 struct Message: Codable {
     let id: Int
-    let senderId: Int
     let sender: User
     let chatRoomId: Int
     let content: String

@@ -27,13 +27,13 @@ class ChatRoomViewModel {
     }
     
     
-    func checkHasChatRoomWithOponent(userId: Int) -> ChatRoom? {
+    func checkHasChatRoomWithOponent(opponentId: Int) -> ChatRoom? {
         do {
             let currentChatRooms = try chatRoomsSubject.value()
             
             guard !currentChatRooms.isEmpty else { return nil }
             
-            return currentChatRooms.first { $0?.users[0].profile.userId == userId || $0?.users[1].profile.userId == userId } ?? nil
+            return currentChatRooms.first { $0?.opponentProfile.userId == opponentId } ?? nil
         } catch {
             print("checkHasChatRoomWithOponent error: \(error)")
             return nil

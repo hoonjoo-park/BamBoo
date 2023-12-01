@@ -1,12 +1,12 @@
 import UIKit
 
 class ChatVC: UIViewController {
-    var chatRoomId: Int!
+    var currentChatRoom: ChatRoom!
     
-    init(chatRoomId: Int) {
+    init(chatRoom: ChatRoom) {
         super.init(nibName: nil, bundle: nil)
         
-        self.chatRoomId = chatRoomId
+        self.currentChatRoom = chatRoom
     }
     
     
@@ -31,7 +31,7 @@ class ChatVC: UIViewController {
     private func configureViewController() {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
-        title = "채팅"
+        title = currentChatRoom.opponentProfile.username
         view.backgroundColor = BambooColors.black
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         navigationController?.isNavigationBarHidden = false
