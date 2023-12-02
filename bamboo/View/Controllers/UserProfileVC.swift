@@ -132,7 +132,7 @@ class UserProfileVC: UIViewController {
     }
     
     @objc private func handlePressChat() {
-        let existingChatRoom = ChatRoomViewModel.shared.checkHasChatRoomWithOponent(opponentId: selectedUser.id)
+        let existingChatRoom = ChatRoomViewModel.shared.checkHasChatRoomWithOponent(senderId: selectedUser.id)
         
         guard let existingChatRoom = existingChatRoom else {
             SocketIOManager.shared.createChatRoom(userId: selectedUser.id)

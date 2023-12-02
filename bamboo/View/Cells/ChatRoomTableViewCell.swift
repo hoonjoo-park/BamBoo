@@ -56,14 +56,14 @@ class ChatRoomTableViewCell: UITableViewCell {
     
     
     func setCell(chatRoom: ChatRoom) {       
-        if let profileImage = chatRoom.opponentProfile.profileImage,
+        if let profileImage = chatRoom.senderProfile.profileImage,
            let profileImageUrl = URL(string: profileImage) {
             profileImageView.setImageWithRetry(url: profileImageUrl, retry: 5)
         } else {
             profileImageView.image = placeholderImage
         }
         
-        usernameLabel.text = chatRoom.opponentProfile.username
+        usernameLabel.text = chatRoom.senderProfile.username
         latestMessageLabel.text = chatRoom.lastMessage?.content ?? "채팅방이 생성되었습니다."
         createdAtLabel.text = DateHelper.getElapsedTime(chatRoom.updatedAt)
     }

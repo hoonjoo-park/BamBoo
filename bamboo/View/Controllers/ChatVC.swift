@@ -31,7 +31,7 @@ class ChatVC: UIViewController {
     private func configureViewController() {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
-        title = currentChatRoom.opponentProfile.username
+        title = currentChatRoom.senderProfile.username
         view.backgroundColor = BambooColors.black
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         navigationController?.isNavigationBarHidden = false
