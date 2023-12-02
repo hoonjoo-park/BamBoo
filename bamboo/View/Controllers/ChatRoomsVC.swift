@@ -69,6 +69,7 @@ class ChatRoomsVC: UIViewController {
                 self.chatRoomTableView.deselectRow(at: indexPath, animated: true)
                 
                 let chatVC = ChatVC(chatRoom: selectedChatRoom)
+                chatVC.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(chatVC, animated: true)
             }).disposed(by: disposeBag)
     }

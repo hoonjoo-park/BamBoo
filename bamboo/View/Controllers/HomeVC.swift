@@ -38,6 +38,7 @@ class HomeVC: ToastMessageVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         view.backgroundColor = BambooColors.black
         navigationController?.isNavigationBarHidden = true
     }

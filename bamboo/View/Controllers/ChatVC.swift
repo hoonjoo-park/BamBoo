@@ -1,7 +1,16 @@
 import UIKit
+import SnapKit
 
 class ChatVC: UIViewController {
     var currentChatRoom: ChatRoom!
+    
+    let bottomContainer = UIView(frame: .zero)
+    let messageInputContainer = UIView(frame: .zero)
+    let messageInput = MessageTextView()
+    let sendButton = UIButton(frame: .zero)
+    let sendIcon = UIImageView(image: UIImage(systemName: "arrow.up"))
+    let placeHolder = BambooLabel(fontSize: 14, weight: .regular, color: BambooColors.gray)
+    let inputPlaceHolderText = "메시지를 입력해 주세요"
     
     init(chatRoom: ChatRoom) {
         super.init(nibName: nil, bundle: nil)
@@ -19,16 +28,19 @@ class ChatVC: UIViewController {
         super.viewWillAppear(animated)
         
         ChatRoomViewModel.shared.createdChatRoomSubject.accept(nil)
-        configureViewController()
+        configureNavigation()
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureViewController()
     }
     
     
-    private func configureViewController() {
+    
+    private func configureNavigation() {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         title = currentChatRoom.senderProfile.username
@@ -37,5 +49,84 @@ class ChatVC: UIViewController {
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.tintColor = BambooColors.white
         navigationController?.navigationBar.backgroundColor = BambooColors.black
+    }
+    
+    
+    private func configureViewController() {
+        messageInput.delegate = self
+        placeHolder.text = inputPlaceHolderText
+        
+        [bottomContainer].forEach { view.addSubview($0) }
+        bottomContainer.addSubview(messageInputContainer)
+        [messageInput, sendButton, placeHolder].forEach { messageInputContainer.addSubview($0) }
+        sendButton.addSubview(sendIcon)
+        
+        bottomContainer.backgroundColor = BambooColors.navy
+        messageInputContainer.layer.cornerRadius = 22.5
+        messageInputContainer.backgroundColor = BambooColors.black
+        messageInput.backgroundColor = BambooColors.black
+        sendButton.backgroundColor = BambooColors.green
+        sendButton.layer.cornerRadius = 15
+        sendIcon.tintColor = BambooColors.white
+        
+        bottomContainer.snp.makeConstraints { make in
+            make.height.equalTo(85)
+            make.horizontalEdges.bottom.equalToSuperview()
+        }
+        
+        messageInputContainer.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(15)
+            make.horizontalEdges.equalToSuperview().inset(25)
+            make.height.equalTo(47)
+        }
+        
+        sendButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().inset(10)
+            make.width.height.equalTo(30)
+        }
+        
+        messageInput.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(15)
+            make.trailing.equalTo(sendButton.snp.leading).offset(-15)
+            make.verticalEdges.equalToSuperview()
+        }
+        
+        sendIcon.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        placeHolder.snp.makeConstraints { make in
+            make.leading.equalTo(messageInput.snp.leading).inset(5)
+            make.verticalEdges.equalToSuperview()
+        }
+    }
+}
+
+extension ChatVC: UITextViewDelegate {
+    var lineHeight: CGFloat {
+        return messageInput.font?.lineHeight ?? 0
+    }
+    
+    var maxNumberOfLines: CGFloat {
+        return 7
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        let maxSize = CGSize(width: textView.frame.width, height: .infinity)
+        let estimatedSize = textView.sizeThatFits(maxSize)
+        let maximumHeight = lineHeight * maxNumberOfLines
+        
+        placeHolder.isHidden = !textView.text.isEmpty
+        
+        messageInputContainer.snp.updateConstraints { make in
+            make.height.equalTo(min(estimatedSize.height, maximumHeight))
+        }
+        
+        bottomContainer.snp.updateConstraints { make in
+            make.height.equalTo(min(38 + maximumHeight, 38 + estimatedSize.height))
+        }
+        
+        textView.isScrollEnabled = estimatedSize.height > maximumHeight
     }
 }
