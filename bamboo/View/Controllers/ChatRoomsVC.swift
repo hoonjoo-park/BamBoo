@@ -13,6 +13,7 @@ class ChatRoomsVC: UIViewController {
         super.viewDidLoad()
         
         configureViewController()
+        configureChatRoomTableView()
         bindChatRoomVM()
     }
     
@@ -45,16 +46,29 @@ class ChatRoomsVC: UIViewController {
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         navigationController?.navigationBar.frame.origin.y = view.safeAreaInsets.top
         
-        chatRoomTableView.backgroundColor = BambooColors.black
-        chatRoomTableView.register(ChatRoomTableViewCell.self, forCellReuseIdentifier: ChatRoomTableViewCell.reuseId)
-        chatRoomTableView.separatorStyle = .none
-        
         view.addSubview(chatRoomTableView)
         
         chatRoomTableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.left.right.bottom.equalToSuperview()
         }
+    }
+    
+    
+    private func configureChatRoomTableView() {
+        chatRoomTableView.backgroundColor = BambooColors.black
+        chatRoomTableView.register(ChatRoomTableViewCell.self, forCellReuseIdentifier: ChatRoomTableViewCell.reuseId)
+        chatRoomTableView.separatorStyle = .none
+        
+        chatRoomTableView.rx.itemSelected
+            .subscribe(onNext: { indexPath in
+                let chatRooms = ChatRoomViewModel.shared.getChatRooms()
+                
+                guard let selectedChatRoom = chatRooms[indexPath.row] else { return }
+                
+                let chatVC = ChatVC(chatRoom: selectedChatRoom)
+                self.navigationController?.pushViewController(chatVC, animated: true)
+            }).disposed(by: disposeBag)
     }
     
     
