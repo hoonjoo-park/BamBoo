@@ -17,6 +17,21 @@ class UserViewModel {
     }
     
     
+    func login(_ user: User, _ token: String) {
+        updateUser(user)
+        
+        SocketIOManager.shared.configureSocket(token: token)
+        SocketIOManager.shared.connectSocket()
+    }
+    
+    
+    func logout() {
+        UserDefaults.standard.removeToken()
+        SocketIOManager.shared.disconnectSocket()
+        userSubject.onNext(nil)
+    }
+    
+    
     func updateProfile(_ profile: UserProfile) {
         guard let currentUser = try? userSubject.value(),
               let profileImage = profile.profileImage else { return }

@@ -27,11 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 .subscribe(onNext: { [weak self] user in
                     guard let self = self, let token = token else { return }
                     
-                    self.userVM.updateUser(user)
+                    self.userVM.login(user, token)
                     self.setRootAsTabBar()
-                    
-                    SocketIOManager.shared.configureSocket(token: token)
-                    SocketIOManager.shared.connectSocket()
                 }, onError: { error in
                     print("[Fetch User Error], \(error)")
                     

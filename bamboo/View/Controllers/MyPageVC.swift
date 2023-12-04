@@ -164,7 +164,7 @@ extension MyPageVC: UITableViewDelegate, UITableViewDataSource {
             let alert = UIAlertController(title: "로그아웃", message: "로그아웃 하시겠습니까?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "취소", style: .destructive))
             alert.addAction(UIAlertAction(title: "확인", style: .default) { action in
-                UserDefaults.standard.removeToken()
+                UserViewModel.shared.logout()
             })
             
             self.present(alert, animated: true, completion: nil)

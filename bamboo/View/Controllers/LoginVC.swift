@@ -52,10 +52,10 @@ extension LoginVC: AuthButtonDelegate {
         NetworkManager.shared.fetchUser()
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] user in
-                self?.userVM.updateUser(user)
+                self?.userVM.login(user, accessToken)
             }, onError: { error in
                 print("[Fetch User Error], \(error)")
-                UserDefaults.standard.removeToken()
+                self.userVM.logout()
                 
             }).disposed(by: disposeBag)
         
