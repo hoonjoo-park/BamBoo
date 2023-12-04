@@ -36,6 +36,7 @@ class ChatVC: UIViewController {
         super.viewDidLoad()
         
         configureViewController()
+        configureKeyboardNotification()
     }
     
     
@@ -99,6 +100,35 @@ class ChatVC: UIViewController {
         placeHolder.snp.makeConstraints { make in
             make.leading.equalTo(messageInput.snp.leading).inset(5)
             make.verticalEdges.equalToSuperview()
+        }
+    }
+    
+    
+    private func configureKeyboardNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleKeyboardNotification),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleKeyboardNotification),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    
+    @objc private func handleKeyboardNotification(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else { return }
+        
+        let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+        let isKeyboardUp = notification.name == UIResponder.keyboardWillShowNotification
+        let keyboardHeight = isKeyboardUp ? keyboardFrame.height : 0
+        
+        bottomContainer.snp.updateConstraints { make in
+            make.bottom.equalTo(view.safeAreaInsets.bottom).inset(keyboardHeight)
+        }
+        
+        UIView.animate(withDuration: 0, delay: 0,options: .curveEaseOut) {
+            self.view.layoutIfNeeded()
         }
     }
 }
