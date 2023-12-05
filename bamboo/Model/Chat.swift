@@ -19,5 +19,5 @@ struct Message: Codable {
     let senderProfile: SenderProfile
     let chatRoomId: Int
     let content: String
-    let createdAt: Date
+    let createdAt: String
 }
