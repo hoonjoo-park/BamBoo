@@ -44,7 +44,9 @@ class ChatVC: UIViewController {
         chatTableView.transform = CGAffineTransform(scaleX: 1, y: -1)
         chatTableView.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.reuseId)
         chatTableView.backgroundColor = BambooColors.black
-        chatTableView.separatorColor = .clear
+        chatTableView.separatorStyle = .none
+        chatTableView.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
+        
         bindChatVM()
         
         configureViewController()
