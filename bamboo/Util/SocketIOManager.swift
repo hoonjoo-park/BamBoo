@@ -95,5 +95,19 @@ class SocketIOManager: NSObject {
                 print("updateChatRoom error: \(error)")
             }
         }
+        
+        
+        self.socket.on(SocketEvent.enterRoom) { data, ack in
+            guard let initialMessages = data.first else { return }
+            
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: initialMessages)
+                let messages = try self.decoder.decode([Message].self, from: jsonData)
+                
+                ChatViewModel.shared.setInitialMessages(messages: messages)
+            } catch {
+                print("get initial messages error: \(error)")
+            }
+        }
     }
 }

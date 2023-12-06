@@ -11,8 +11,8 @@ class ArticleListCollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     private func configureCollectionView() {
         backgroundColor = BambooColors.lightNavy
     }
-    
 }

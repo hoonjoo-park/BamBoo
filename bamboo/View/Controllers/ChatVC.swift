@@ -1,9 +1,14 @@
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class ChatVC: UIViewController {
     var currentChatRoom: ChatRoom!
+    let chatVM = ChatViewModel.shared
+    let disposeBag = DisposeBag()
     
+    var chatCollectionView: UICollectionView!
     let bottomContainer = UIView(frame: .zero)
     let messageInputContainer = UIView(frame: .zero)
     let messageInput = MessageTextView()
@@ -35,6 +40,11 @@ class ChatVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        chatCollectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewHelper.createChatFlowLayout(view: view))
+        chatCollectionView.register(ChatCollectionViewCell.self, forCellWithReuseIdentifier: ChatCollectionViewCell.reuseId)
+        chatCollectionView.backgroundColor = BambooColors.black
+        bindChatVM()
+        
         configureViewController()
         configureKeyboardNotification()
     }
@@ -57,7 +67,7 @@ class ChatVC: UIViewController {
         messageInput.delegate = self
         placeHolder.text = inputPlaceHolderText
         
-        [bottomContainer].forEach { view.addSubview($0) }
+        [chatCollectionView, bottomContainer].forEach { view.addSubview($0) }
         bottomContainer.addSubview(messageInputContainer)
         [messageInput, sendButton, placeHolder].forEach { messageInputContainer.addSubview($0) }
         sendButton.addSubview(sendIcon)
@@ -69,6 +79,13 @@ class ChatVC: UIViewController {
         sendButton.backgroundColor = BambooColors.green
         sendButton.layer.cornerRadius = 15
         sendIcon.tintColor = BambooColors.white
+        
+        
+        chatCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalTo(bottomContainer.snp.top)
+        }
         
         bottomContainer.snp.makeConstraints { make in
             make.height.equalTo(85)
@@ -101,6 +118,18 @@ class ChatVC: UIViewController {
             make.leading.equalTo(messageInput.snp.leading).inset(5)
             make.verticalEdges.equalToSuperview()
         }
+    }
+    
+    
+    private func bindChatVM() {
+        chatVM.chatMessages.bind(to: chatCollectionView.rx.items(
+            cellIdentifier: ChatCollectionViewCell.reuseId,
+            cellType: ChatCollectionViewCell.self)) {  row, chatMessage, cell in
+                guard let chatMessage = chatMessage else { return }
+                
+                cell.setCell(message: chatMessage)
+            
+        }.disposed(by: disposeBag)
     }
     
     

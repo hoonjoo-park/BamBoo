@@ -45,6 +45,16 @@ enum CollectionViewHelper {
         
         return flowLayout
     }
+    
+    
+    static func createChatFlowLayout(view: UIView) -> UICollectionViewFlowLayout {
+        let flowLayout = UICollectionViewFlowLayout()
+        let viewWidth = view.bounds.width
+        
+        flowLayout.itemSize = CGSize(width: viewWidth, height: 65)
+        
+        return flowLayout
+    }
 }
 
 enum DateHelper {

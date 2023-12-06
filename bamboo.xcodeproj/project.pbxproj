@@ -67,6 +67,7 @@
 		CBCD43F129F055970057CBEA /* bambooUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43F029F055970057CBEA /* bambooUITestsLaunchTests.swift */; };
 		CBCD43FE29F058400057CBEA /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD43FD29F058400057CBEA /* RootTabBarController.swift */; };
 		CBCDE2332B1BAF0C00E3DEBF /* MessageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCDE2322B1BAF0C00E3DEBF /* MessageTextView.swift */; };
+		CBD0C2C22B209440003D6C25 /* ChatVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD0C2C12B209440003D6C25 /* ChatVM.swift */; };
 		CBD810462A1A10E40022E507 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD810452A1A10E40022E507 /* HomeHeaderView.swift */; };
 		CBD810492A1A32A60022E507 /* ArticleListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD810482A1A32A60022E507 /* ArticleListCollectionView.swift */; };
 		CBD8104B2A1A32C60022E507 /* ArticleListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD8104A2A1A32C60022E507 /* ArticleListCollectionViewCell.swift */; };
@@ -164,6 +165,7 @@
 		CBCD43F029F055970057CBEA /* bambooUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bambooUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CBCD43FD29F058400057CBEA /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		CBCDE2322B1BAF0C00E3DEBF /* MessageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTextView.swift; sourceTree = "<group>"; };
+		CBD0C2C12B209440003D6C25 /* ChatVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVM.swift; sourceTree = "<group>"; };
 		CBD810452A1A10E40022E507 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		CBD810482A1A32A60022E507 /* ArticleListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListCollectionView.swift; sourceTree = "<group>"; };
 		CBD8104A2A1A32C60022E507 /* ArticleListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				CBA67D3D2B139C4900E9FCAA /* ChatRoomVM.swift */,
 				CB6E524E2A096BF1005F602A /* LocationVM.swift */,
 				CB87F49729FE6AC90025B67A /* UserVM.swift */,
+				CBD0C2C12B209440003D6C25 /* ChatVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				CB2FA94729F5B7170009F39F /* OnboardingVC.swift in Sources */,
 				CB6E524B2A092A01005F602A /* LocationVC.swift in Sources */,
 				CBBFAAF82B178E3B00A4141A /* ChatRoomTableViewCell.swift in Sources */,
+				CBD0C2C22B209440003D6C25 /* ChatVM.swift in Sources */,
 				CB50D2972A0ABA2D0097C24B /* LocationSelectButton.swift in Sources */,
 				CB6E524F2A096BF1005F602A /* LocationVM.swift in Sources */,
 				CBCD43CE29F055950057CBEA /* AppDelegate.swift in Sources */,
