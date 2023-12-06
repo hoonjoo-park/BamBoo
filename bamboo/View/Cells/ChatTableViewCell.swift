@@ -1,8 +1,8 @@
 import UIKit
 import SnapKit
 
-class ChatCollectionViewCell: UICollectionViewCell {
-    static let reuseId = "ChatCollectionViewCell"
+class ChatTableViewCell: UITableViewCell {
+    static let reuseId = "ChatTableViewCell"
     
     let container = UIView()
     let bubble = UIView()
@@ -11,10 +11,11 @@ class ChatCollectionViewCell: UICollectionViewCell {
     
     var me: User?
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         me = UserViewModel.shared.getUser()
+        selectionStyle = .none
         configureDefaultUI()
     }
     
@@ -44,6 +45,7 @@ class ChatCollectionViewCell: UICollectionViewCell {
         
         [bubble, createdAtLabel].forEach { container.addSubview($0) }
         
+        backgroundColor = BambooColors.black
         bubble.addSubview(contentLabel)
         bubble.layer.cornerRadius = 12
         

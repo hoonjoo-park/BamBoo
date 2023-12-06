@@ -8,7 +8,7 @@ class ChatVC: UIViewController {
     let chatVM = ChatViewModel.shared
     let disposeBag = DisposeBag()
     
-    var chatCollectionView: UICollectionView!
+    let chatTableView = UITableView(frame: .zero)
     let bottomContainer = UIView(frame: .zero)
     let messageInputContainer = UIView(frame: .zero)
     let messageInput = MessageTextView()
@@ -41,9 +41,10 @@ class ChatVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        chatCollectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewHelper.createChatFlowLayout(view: view))
-        chatCollectionView.register(ChatCollectionViewCell.self, forCellWithReuseIdentifier: ChatCollectionViewCell.reuseId)
-        chatCollectionView.backgroundColor = BambooColors.black
+        chatTableView.transform = CGAffineTransform(scaleX: 1, y: -1)
+        chatTableView.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.reuseId)
+        chatTableView.backgroundColor = BambooColors.black
+        chatTableView.separatorColor = .clear
         bindChatVM()
         
         configureViewController()
@@ -68,7 +69,7 @@ class ChatVC: UIViewController {
         messageInput.delegate = self
         placeHolder.text = inputPlaceHolderText
         
-        [chatCollectionView, bottomContainer].forEach { view.addSubview($0) }
+        [chatTableView, bottomContainer].forEach { view.addSubview($0) }
         bottomContainer.addSubview(messageInputContainer)
         [messageInput, sendButton, placeHolder].forEach { messageInputContainer.addSubview($0) }
         sendButton.addSubview(sendIcon)
@@ -82,7 +83,7 @@ class ChatVC: UIViewController {
         sendIcon.tintColor = BambooColors.white
         
         
-        chatCollectionView.snp.makeConstraints { make in
+        chatTableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalTo(bottomContainer.snp.top)
@@ -123,11 +124,12 @@ class ChatVC: UIViewController {
     
     
     private func bindChatVM() {
-        chatVM.chatMessages.bind(to: chatCollectionView.rx.items(
-            cellIdentifier: ChatCollectionViewCell.reuseId,
-            cellType: ChatCollectionViewCell.self)) {  row, chatMessage, cell in
+        chatVM.chatMessages.bind(to: chatTableView.rx.items(
+            cellIdentifier: ChatTableViewCell.reuseId,
+            cellType: ChatTableViewCell.self)) { row, chatMessage, cell in
                 guard let chatMessage = chatMessage else { return }
                 
+                cell.transform = CGAffineTransform(scaleX: 1, y: -1)
                 cell.setCell(message: chatMessage)
             
         }.disposed(by: disposeBag)
