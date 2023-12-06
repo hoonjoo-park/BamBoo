@@ -50,9 +50,11 @@ enum CollectionViewHelper {
 enum DateHelper {
     static func getTime(_ createdAt: String) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "a HH:mm"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         
         guard let date = dateFormatter.date(from: createdAt) else { return "" }
+        
+        dateFormatter.dateFormat = "a HH:mm"
         
         return dateFormatter.string(from: date)
     }

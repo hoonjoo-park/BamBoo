@@ -71,7 +71,7 @@ class ChatTableViewCell: UITableViewCell {
         }
         
         createdAtLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(bubble.snp.leading).inset(10)
+            make.trailing.equalTo(bubble.snp.leading).offset(-5)
             make.bottom.equalTo(bubble.snp.bottom)
         }
     }
@@ -86,7 +86,7 @@ class ChatTableViewCell: UITableViewCell {
         }
         
         createdAtLabel.snp.makeConstraints { make in
-            make.leading.equalTo(bubble.snp.leading).offset(10)
+            make.leading.equalTo(bubble.snp.trailing).offset(5)
             make.bottom.equalTo(bubble.snp.bottom)
         }
     }
