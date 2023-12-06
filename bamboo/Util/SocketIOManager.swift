@@ -8,7 +8,7 @@ enum SocketEvent {
     static let chatRooms = "chatRooms"
     static let updateChatRoom = "updateChatRoom"
     static let createChatRoom = "createChatRoom"
-    static let joinRoom = "joinRoom"
+    static let enterRoom = "enterRoom"
 }
 
 class SocketIOManager: NSObject {
@@ -63,8 +63,8 @@ class SocketIOManager: NSObject {
     }
     
     
-    func joinRoom(chatRoomId: Int) {
-        self.socket.emit(SocketEvent.joinRoom, ["chatRoomId": chatRoomId])
+    func enterRoom(chatRoomId: Int) {
+        self.socket.emit(SocketEvent.enterRoom, ["chatRoomId": chatRoomId])
     }
     
     
