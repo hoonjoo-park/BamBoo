@@ -33,6 +33,7 @@ class ChatVC: UIViewController {
         super.viewWillAppear(animated)
         
         ChatRoomViewModel.shared.createdChatRoomSubject.accept(nil)
+        SocketIOManager.shared.enterRoom(chatRoomId: currentChatRoom.id)
         configureNavigation()
     }
     

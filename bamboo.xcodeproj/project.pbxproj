@@ -313,13 +313,13 @@
 			isa = PBXGroup;
 			children = (
 				CBD8104A2A1A32C60022E507 /* ArticleListCollectionViewCell.swift */,
+				CB1ECD742B1F88A900E3F7FA /* ChatCollectionViewCell.swift */,
 				CBBFAAF72B178E3B00A4141A /* ChatRoomTableViewCell.swift */,
 				CBBD77A82A28D58C008CBCDE /* CommentTableViewCell.swift */,
 				CBA77AA02A0BB0E300CE0A02 /* LocationTableViewCell.swift */,
 				CB87F48F29FE48730025B67A /* MyPageTableViewCell.swift */,
 				CBBD77AA2A28D5C9008CBCDE /* NestedCommentTableViewCell.swift */,
 				CB586FA52A05146F00827590 /* PressableTableViewCell.swift */,
-				CB1ECD742B1F88A900E3F7FA /* ChatCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

@@ -53,7 +53,8 @@ class ChatCollectionViewCell: UICollectionViewCell {
         }
         
         contentLabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(15)
+            make.horizontalEdges.equalToSuperview().inset(15)
+            make.verticalEdges.equalToSuperview().inset(10)
         }
     }
     
