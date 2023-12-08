@@ -129,6 +129,7 @@ class ChatVC: UIViewController {
             cellType: ChatTableViewCell.self)) { row, chatMessage, cell in
                 guard let chatMessage = chatMessage else { return }
                 
+                cell.transform = CGAffineTransform(scaleX: 1, y: -1)
                 cell.setCell(message: chatMessage)
             
         }.disposed(by: disposeBag)

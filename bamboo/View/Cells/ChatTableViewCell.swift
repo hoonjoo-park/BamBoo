@@ -50,7 +50,6 @@ class ChatTableViewCell: UITableViewCell {
     
     
     private func configureDefaultUI() {
-        self.transform = CGAffineTransform(scaleX: 1, y: -1)
         self.addSubview(container)
         
         [bubble, createdAtLabel].forEach { container.addSubview($0) }
@@ -64,17 +63,9 @@ class ChatTableViewCell: UITableViewCell {
             make.verticalEdges.equalToSuperview()
         }
         
-        bubble.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-        }
-        
         contentLabel.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(15)
             make.verticalEdges.equalToSuperview().inset(10)
-        }
-        
-        createdAtLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(bubble.snp.bottom)
         }
     }
     
@@ -83,12 +74,15 @@ class ChatTableViewCell: UITableViewCell {
         bubble.backgroundColor = BambooColors.green
         
         
-        bubble.snp.makeConstraints { make in
+        bubble.snp.remakeConstraints { make in
             make.trailing.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.width.lessThanOrEqualToSuperview().multipliedBy(0.6)
         }
         
-        createdAtLabel.snp.makeConstraints { make in
+        createdAtLabel.snp.remakeConstraints { make in
             make.trailing.equalTo(bubble.snp.leading).offset(-5)
+            make.bottom.equalTo(bubble.snp.bottom)
         }
     }
     
@@ -96,12 +90,15 @@ class ChatTableViewCell: UITableViewCell {
     private func configureOpponentMessageUI() {
         bubble.backgroundColor = BambooColors.darkGray
         
-        bubble.snp.makeConstraints { make in
+        bubble.snp.remakeConstraints { make in
             make.leading.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.width.lessThanOrEqualToSuperview().multipliedBy(0.6)
         }
         
-        createdAtLabel.snp.makeConstraints { make in
+        createdAtLabel.snp.remakeConstraints { make in
             make.leading.equalTo(bubble.snp.trailing).offset(5)
+            make.bottom.equalTo(bubble.snp.bottom)
         }
     }
     
