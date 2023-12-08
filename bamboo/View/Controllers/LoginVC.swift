@@ -7,7 +7,7 @@ import FirebaseAuth
 
 class LoginVC: BottomSheetVC {
     let disposeBag = DisposeBag()
-    let userVM = UserViewModel()
+    let userVM = UserViewModel.shared
     let kakaoAuthButton = KakaoAuthButton(fontSize: 14, weight: .medium, color: BambooColors.black, iconName: "kakaoIcon")
     let googleAuthButton = GoogleAuthButton(fontSize: 14, weight: .medium, color: BambooColors.black, iconName: "googleIcon")
     let appleAuthButton = AppleAuthButton(fontSize: 14, weight: .medium, color: BambooColors.white, iconName: "appleIcon")
@@ -59,7 +59,7 @@ extension LoginVC: AuthButtonDelegate {
                 
             }).disposed(by: disposeBag)
         
-        let rootTabBarController = RootTabBarController(userVM: userVM)
+        let rootTabBarController = RootTabBarController()
         
         if let window = UIApplication.shared.windows.first {
             window.rootViewController = rootTabBarController

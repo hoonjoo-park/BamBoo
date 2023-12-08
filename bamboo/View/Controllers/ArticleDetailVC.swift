@@ -8,7 +8,7 @@ class ArticleDetailVC: ToastMessageVC {
     let disposeBag = DisposeBag()
     var selectedArticleId: Int!
     var articleVM: ArticleVM!
-    var userVM: UserViewModel!
+    var userVM = UserViewModel.shared
     var comments: [Comment] = []
     
     let contentHeaderView = UIView()
@@ -26,10 +26,9 @@ class ArticleDetailVC: ToastMessageVC {
     let commentContainerView = CommentContainerView(frame: .zero)
     
     
-    init(selectedId: Int, articleVM: ArticleVM, userVM: UserViewModel) {
+    init(selectedId: Int, articleVM: ArticleVM) {
         self.selectedArticleId = selectedId
         self.articleVM = articleVM
-        self.userVM = userVM
         self.articleVM.fetchArticle(articleId: selectedId)
         
         super.init()

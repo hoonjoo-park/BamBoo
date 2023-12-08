@@ -12,6 +12,7 @@ class ChatViewModel {
     
     
     func setInitialMessages(messages: [Message]) {
+        print(messages.count)
         chatMessagesSubject.onNext(messages)
     }
     

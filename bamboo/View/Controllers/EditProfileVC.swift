@@ -13,12 +13,10 @@ class EditProfileVC: ToastMessageVC {
     let usernameInput = UITextField()
     let saveButton = LabelButton(fontSize: 14, weight: .semibold, color: BambooColors.white)
     
-    var userVM: UserViewModel!
+    let userVM = UserViewModel.shared
     let disposeBag = DisposeBag()
     
-    init(userVM: UserViewModel!) {
-        self.userVM = userVM
-        
+    override init() {
         super.init()
     }
     

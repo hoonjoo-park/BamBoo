@@ -5,7 +5,7 @@ import SnapKit
 
 class ChatRoomsVC: UIViewController {
     let disposeBag = DisposeBag()
-    var userVM: UserViewModel!
+    let userVM = UserViewModel.shared
     
     var chatRoomTableView = UITableView(frame: .zero)
     
@@ -28,9 +28,8 @@ class ChatRoomsVC: UIViewController {
     }
     
     
-    init(userVM: UserViewModel) {
+    init() {
         super.init(nibName: nil, bundle: nil)
-        self.userVM = userVM
     }
     
     

@@ -6,15 +6,14 @@ import RxCocoa
 class HomeVC: ToastMessageVC {
     enum Section { case main }
     
-    var userVM: UserViewModel!
+    let userVM = UserViewModel.shared
     var articleVM: ArticleVM!
     let disposeBag = DisposeBag()
     let homeHeaderView = HomeHeaderView(frame: .zero)
     let emptyView = ArticleListEmptyView()
     var articleListCollectionView: ArticleListCollectionView!
     
-    init(userVM: UserViewModel, articleVM: ArticleVM) {
-        self.userVM = userVM
+    init(articleVM: ArticleVM) {
         self.articleVM = articleVM
         
         super.init()
@@ -113,8 +112,7 @@ class HomeVC: ToastMessageVC {
                       let articleVM = self?.articleVM,
                       let userVM = self?.userVM else { return }
                 
-                let articleDetailVC = ArticleDetailVC(selectedId: selectedArticleList.id,
-                                                      articleVM: articleVM, userVM: userVM)
+                let articleDetailVC = ArticleDetailVC(selectedId: selectedArticleList.id, articleVM: articleVM)
                 articleDetailVC.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(articleDetailVC, animated: true)
             }.disposed(by: disposeBag)

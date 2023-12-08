@@ -48,7 +48,6 @@ class ChatVC: UIViewController {
         chatTableView.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
         
         bindChatVM()
-        
         configureViewController()
         configureKeyboardNotification()
     }
@@ -83,7 +82,6 @@ class ChatVC: UIViewController {
         sendButton.backgroundColor = BambooColors.green
         sendButton.layer.cornerRadius = 15
         sendIcon.tintColor = BambooColors.white
-        
         
         chatTableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -131,7 +129,6 @@ class ChatVC: UIViewController {
             cellType: ChatTableViewCell.self)) { row, chatMessage, cell in
                 guard let chatMessage = chatMessage else { return }
                 
-                cell.transform = CGAffineTransform(scaleX: 1, y: -1)
                 cell.setCell(message: chatMessage)
             
         }.disposed(by: disposeBag)

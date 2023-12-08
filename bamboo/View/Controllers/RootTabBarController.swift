@@ -2,12 +2,11 @@ import UIKit
 import RxSwift
 
 class RootTabBarController: UITabBarController {
-    var userVM: UserViewModel
+    var userVM = UserViewModel.shared
     let articleVM = ArticleVM()
     let disposeBag = DisposeBag()
     
-    init(userVM: UserViewModel) {
-        self.userVM = userVM
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -31,7 +30,7 @@ class RootTabBarController: UITabBarController {
     
     
     private func createHomeVC() -> UINavigationController {
-        let homeVC = HomeVC(userVM: userVM, articleVM: articleVM)
+        let homeVC = HomeVC(articleVM: articleVM)
         let tabBarImage: UIImage!
         
         tabBarImage = UIImage(systemName: "house")?.withBaselineOffset(fromBottom: 15)
@@ -54,7 +53,7 @@ class RootTabBarController: UITabBarController {
     
     
     private func createMyPageVC() -> UINavigationController {
-        let myPageVC = MyPageVC(userVM: userVM)
+        let myPageVC = MyPageVC()
         let tabBarImage: UIImage!
         
         tabBarImage = UIImage(systemName: "person")?.withBaselineOffset(fromBottom: 15)

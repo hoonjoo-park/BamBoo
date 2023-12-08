@@ -28,7 +28,7 @@ class SocketIOManager: NSObject {
     func configureSocket(token: String) {
         manager = SocketManager(socketURL: URL(string: "http://localhost:3090")!,
                                 config: [
-                                    .log(true),
+                                    .log(false),
                                     .compress,
                                     .connectParams(["token": token])
                                 ])

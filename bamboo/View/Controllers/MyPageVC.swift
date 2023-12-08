@@ -15,12 +15,11 @@ class MyPageVC: UIViewController {
     let editIcon = UIImageView(image: UIImage(systemName: "square.and.pencil"))
     let editLabel = BambooLabel(fontSize: 14, weight: .medium, color: BambooColors.gray)
     
-    var userVM: UserViewModel!
+    let userVM = UserViewModel.shared
     let disposeBag = DisposeBag()
     
-    init(userVM: UserViewModel) {
+    init() {
         super.init(nibName: nil, bundle: nil)
-        self.userVM = userVM
     }
     
     
@@ -157,7 +156,7 @@ extension MyPageVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            let chatRoomsVC = ChatRoomsVC(userVM: self.userVM)
+            let chatRoomsVC = ChatRoomsVC()
             navigationController?.pushViewController(chatRoomsVC, animated: true)
             break
         case 1:
@@ -170,7 +169,7 @@ extension MyPageVC: UITableViewDelegate, UITableViewDataSource {
             self.present(alert, animated: true, completion: nil)
             break
         case 2:
-            let unregisterVC = UnregisterVC(userVM: userVM)
+            let unregisterVC = UnregisterVC()
             self.navigationController?.pushViewController(unregisterVC, animated: true)
             break
         default:
@@ -180,7 +179,7 @@ extension MyPageVC: UITableViewDelegate, UITableViewDataSource {
     
     
     @objc private func handleTapEditButton() {
-        let editProfileVC = EditProfileVC(userVM: userVM)
+        let editProfileVC = EditProfileVC()
         navigationController?.pushViewController(editProfileVC, animated: true)
     }
 }

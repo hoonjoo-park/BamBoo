@@ -2,16 +2,15 @@ import UIKit
 import SnapKit
 
 class UnregisterVC: UIViewController {
-    var userVM: UserViewModel!
+    let userVM = UserViewModel.shared
     
     let descriptionLabel = BambooLabel(fontSize: 14, weight: .medium, color: BambooColors.white)
     let confirmLabel = BambooLabel(fontSize: 14, weight: .medium, color: BambooColors.white)
     let unregisterButton = LabelButton(fontSize: 14, weight: .semibold, color: BambooColors.white)
     
     
-    init(userVM: UserViewModel) {
+    init() {
         super.init(nibName: nil, bundle: nil)
-        self.userVM = userVM
     }
     
     
@@ -22,7 +21,7 @@ class UnregisterVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureViewController()
         configureUI()
     }

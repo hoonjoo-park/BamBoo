@@ -49,7 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     private func setRootAsTabBar() {
-        let rootTabBarController = RootTabBarController(userVM: self.userVM)
+        let rootTabBarController = RootTabBarController()
         self.window?.rootViewController = rootTabBarController
         self.window?.makeKeyAndVisible()
     }

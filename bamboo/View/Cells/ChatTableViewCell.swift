@@ -4,18 +4,17 @@ import SnapKit
 class ChatTableViewCell: UITableViewCell {
     static let reuseId = "ChatTableViewCell"
     
+    let me = UserViewModel.shared.getUser()
+    
     let container = UIView()
     let bubble = UIView()
     let contentLabel = BambooLabel(fontSize: 14, weight: .medium, color: BambooColors.white)
     let createdAtLabel = BambooLabel(fontSize: 12, weight: .medium, color: BambooColors.gray)
     
-    var me: User?
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        me = UserViewModel.shared.getUser()
         selectionStyle = .none
+        
         configureDefaultUI()
     }
     
@@ -25,9 +24,19 @@ class ChatTableViewCell: UITableViewCell {
     }
     
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    
     func setCell(message: Message) {
         guard let me = self.me else { return }
-        
+
         contentLabel.text = message.content
         createdAtLabel.text = DateHelper.getTime(message.createdAt)
         
@@ -41,6 +50,7 @@ class ChatTableViewCell: UITableViewCell {
     
     
     private func configureDefaultUI() {
+        self.transform = CGAffineTransform(scaleX: 1, y: -1)
         self.addSubview(container)
         
         [bubble, createdAtLabel].forEach { container.addSubview($0) }
@@ -54,9 +64,17 @@ class ChatTableViewCell: UITableViewCell {
             make.verticalEdges.equalToSuperview()
         }
         
+        bubble.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+        }
+        
         contentLabel.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(15)
             make.verticalEdges.equalToSuperview().inset(10)
+        }
+        
+        createdAtLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(bubble.snp.bottom)
         }
     }
     
@@ -67,12 +85,10 @@ class ChatTableViewCell: UITableViewCell {
         
         bubble.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
-            make.centerY.equalToSuperview()
         }
         
         createdAtLabel.snp.makeConstraints { make in
             make.trailing.equalTo(bubble.snp.leading).offset(-5)
-            make.bottom.equalTo(bubble.snp.bottom)
         }
     }
     
@@ -82,12 +98,10 @@ class ChatTableViewCell: UITableViewCell {
         
         bubble.snp.makeConstraints { make in
             make.leading.equalToSuperview()
-            make.centerY.equalToSuperview()
         }
         
         createdAtLabel.snp.makeConstraints { make in
             make.leading.equalTo(bubble.snp.trailing).offset(5)
-            make.bottom.equalTo(bubble.snp.bottom)
         }
     }
     
