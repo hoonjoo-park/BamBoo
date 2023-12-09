@@ -33,7 +33,6 @@ class ChatVC: UIViewController {
         super.viewWillAppear(animated)
         
         ChatRoomViewModel.shared.createdChatRoomSubject.accept(nil)
-        SocketIOManager.shared.enterRoom(chatRoomId: currentChatRoom.id)
         
         configureNavigation()
     }
@@ -41,6 +40,8 @@ class ChatVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        SocketIOManager.shared.enterRoom(chatRoomId: currentChatRoom.id)
         
         chatTableView.transform = CGAffineTransform(scaleX: 1, y: -1)
         chatTableView.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.reuseId)
@@ -82,9 +83,12 @@ class ChatVC: UIViewController {
         sendButton.addSubview(sendIcon)
         
         bottomContainer.backgroundColor = BambooColors.navy
+        
         messageInputContainer.layer.cornerRadius = 22.5
         messageInputContainer.backgroundColor = BambooColors.black
         messageInput.backgroundColor = BambooColors.black
+        
+        sendButton.addTarget(self, action: #selector(onSubmitMessage), for: .touchUpInside)
         sendButton.backgroundColor = BambooColors.green
         sendButton.layer.cornerRadius = 15
         sendIcon.tintColor = BambooColors.white
@@ -139,6 +143,14 @@ class ChatVC: UIViewController {
                 cell.setCell(message: chatMessage)
             
         }.disposed(by: disposeBag)
+    }
+    
+    
+    @objc private func onSubmitMessage() {
+        guard let message = messageInput.text else { return }
+        
+        messageInput.text = ""
+        SocketIOManager.shared.sendMessage(chatRoomId: currentChatRoom.id, message: message)
     }
     
     

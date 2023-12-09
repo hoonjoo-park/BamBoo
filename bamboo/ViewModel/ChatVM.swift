@@ -19,7 +19,7 @@ class ChatViewModel {
     func addMessages(messages: [Message]) {
         let currentMessages = getMessages()
         
-        chatMessagesSubject.onNext(currentMessages + messages)
+        chatMessagesSubject.onNext(messages + currentMessages)
     }
     
     

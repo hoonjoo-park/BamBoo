@@ -15,6 +15,7 @@ class SocketIOManager: NSObject {
     static let shared = SocketIOManager()
     private let decoder = JSONDecoder()
     let chatRoomVM = ChatRoomViewModel.shared
+    let chatVM = ChatViewModel.shared
     
     var manager: SocketManager!
     var socket: SocketIOClient!
@@ -53,8 +54,8 @@ class SocketIOManager: NSObject {
     }
     
     
-    func sendMessage(message: String, userId: Int) {
-        self.socket.emit(SocketEvent.message, ["message": message, "userId": userId])
+    func sendMessage(chatRoomId: Int, message: String) {
+        self.socket.emit(SocketEvent.message, ["chatRoomId": chatRoomId, "message": message])
     }
     
     
@@ -86,6 +87,7 @@ class SocketIOManager: NSObject {
         // updateChatRoom
         self.socket.on(SocketEvent.updateChatRoom) { data, ack in
             guard let chatRoomData = data.first else { return }
+            
             do {
                 let jsonData = try JSONSerialization.data(withJSONObject: chatRoomData)
                 let chatRoom = try self.decoder.decode(ChatRoom.self, from: jsonData)
@@ -105,6 +107,19 @@ class SocketIOManager: NSObject {
                 let messages = try self.decoder.decode([Message].self, from: jsonData)
                 
                 ChatViewModel.shared.setInitialMessages(messages: messages)
+            } catch {
+                print("get initial messages error: \(error)")
+            }
+        }
+        
+        self.socket.on(SocketEvent.message) { data, ack in
+            guard let newMessage = data.first else { return }
+            
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: newMessage)
+                let message = try self.decoder.decode(Message.self, from: jsonData)
+                
+                self.chatVM.addMessages(messages: [message])
             } catch {
                 print("get initial messages error: \(error)")
             }
