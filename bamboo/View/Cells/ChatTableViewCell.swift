@@ -59,6 +59,7 @@ class ChatTableViewCell: UITableViewCell {
         bubble.layer.cornerRadius = 12
         
         container.snp.makeConstraints { make in
+            make.height.greaterThanOrEqualTo(50)
             make.horizontalEdges.equalToSuperview().inset(15)
             make.verticalEdges.equalToSuperview()
         }
