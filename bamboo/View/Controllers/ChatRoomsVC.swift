@@ -42,7 +42,7 @@ class ChatRoomsVC: UIViewController {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         view.backgroundColor = BambooColors.black
-        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        navigationItem.backBarButtonItem = backButton
         navigationController?.navigationBar.frame.origin.y = view.safeAreaInsets.top
         
         view.addSubview(chatRoomTableView)

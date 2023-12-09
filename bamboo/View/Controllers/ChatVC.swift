@@ -34,6 +34,7 @@ class ChatVC: UIViewController {
         
         ChatRoomViewModel.shared.createdChatRoomSubject.accept(nil)
         SocketIOManager.shared.enterRoom(chatRoomId: currentChatRoom.id)
+        
         configureNavigation()
     }
     
@@ -58,10 +59,11 @@ class ChatVC: UIViewController {
     
     private func configureNavigation() {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        let titleView = AvatarNavigationTitleView(profileImage: currentChatRoom.senderProfile.profileImage,
+                                                  title: currentChatRoom.senderProfile.username)
         
-        title = currentChatRoom.senderProfile.username
-        view.backgroundColor = BambooColors.black
-        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        navigationItem.titleView = titleView
+        navigationItem.backBarButtonItem = backButton
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.tintColor = BambooColors.white
         navigationController?.navigationBar.backgroundColor = BambooColors.black
@@ -69,6 +71,8 @@ class ChatVC: UIViewController {
     
     
     private func configureViewController() {
+        view.backgroundColor = BambooColors.black
+        
         messageInput.delegate = self
         placeHolder.text = inputPlaceHolderText
         

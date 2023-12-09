@@ -35,6 +35,7 @@
 		CB5ED4A32ABEDEE100C2E9EF /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5ED4A22ABEDEE100C2E9EF /* UIImageView+Ext.swift */; };
 		CB5ED4A52ABEEA3F00C2E9EF /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5ED4A42ABEEA3F00C2E9EF /* NotificationHelper.swift */; };
 		CB65A0EF2A2B25C70053C295 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65A0EE2A2B25C70053C295 /* IconButton.swift */; };
+		CB6B7E542B2493610095C803 /* AvatarNavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B7E532B2493610095C803 /* AvatarNavigationTitleView.swift */; };
 		CB6E524B2A092A01005F602A /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E524A2A092A01005F602A /* LocationVC.swift */; };
 		CB6E524D2A0931BC005F602A /* BottomSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E524C2A0931BC005F602A /* BottomSheetVC.swift */; };
 		CB6E524F2A096BF1005F602A /* LocationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E524E2A096BF1005F602A /* LocationVM.swift */; };
@@ -128,6 +129,7 @@
 		CB5ED4A22ABEDEE100C2E9EF /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		CB5ED4A42ABEEA3F00C2E9EF /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 		CB65A0EE2A2B25C70053C295 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
+		CB6B7E532B2493610095C803 /* AvatarNavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarNavigationTitleView.swift; sourceTree = "<group>"; };
 		CB6E524A2A092A01005F602A /* LocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVC.swift; sourceTree = "<group>"; };
 		CB6E524C2A0931BC005F602A /* BottomSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetVC.swift; sourceTree = "<group>"; };
 		CB6E524E2A096BF1005F602A /* LocationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVM.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				CBE51F4E2A374A00000D7118 /* CommentContainerView.swift */,
 				CBD810452A1A10E40022E507 /* HomeHeaderView.swift */,
 				CB71C2C02A0E5CFA005AC9E4 /* ToastMessageView.swift */,
+				CB6B7E532B2493610095C803 /* AvatarNavigationTitleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 				CBCDE2332B1BAF0C00E3DEBF /* MessageTextView.swift in Sources */,
 				CB87F49029FE48730025B67A /* MyPageTableViewCell.swift in Sources */,
 				CB1ECD752B1F88A900E3F7FA /* ChatTableViewCell.swift in Sources */,
+				CB6B7E542B2493610095C803 /* AvatarNavigationTitleView.swift in Sources */,
 				CBD948BF2A3460BF00245FDB /* ChatTextField.swift in Sources */,
 				CB8BE8082A1259D2001A38CE /* ArticleVM.swift in Sources */,
 				CB2FA94329F554750009F39F /* MyPageVC.swift in Sources */,

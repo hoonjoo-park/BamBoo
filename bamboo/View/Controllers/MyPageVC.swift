@@ -39,7 +39,11 @@ class MyPageVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
+        navigationItem.backBarButtonItem = backButton
         
         bindUserVM()
     }
@@ -47,7 +51,6 @@ class MyPageVC: UIViewController {
     
     private func configureViewController() {
         view.backgroundColor = BambooColors.black
-        navigationController?.isNavigationBarHidden = true
         view.addSubview(tableView)
     }
     
