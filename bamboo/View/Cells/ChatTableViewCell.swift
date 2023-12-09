@@ -50,19 +50,12 @@ class ChatTableViewCell: UITableViewCell {
     
     
     private func configureDefaultUI() {
-        self.addSubview(container)
-        
-        [bubble, createdAtLabel].forEach { container.addSubview($0) }
-        
         backgroundColor = BambooColors.black
+        
+        [bubble, createdAtLabel].forEach { contentView.addSubview($0) }
         bubble.addSubview(contentLabel)
         bubble.layer.cornerRadius = 12
-        
-        container.snp.makeConstraints { make in
-            make.height.greaterThanOrEqualTo(50)
-            make.horizontalEdges.equalToSuperview().inset(15)
-            make.verticalEdges.equalToSuperview()
-        }
+        contentLabel.numberOfLines = 0
         
         contentLabel.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(15)
@@ -72,13 +65,14 @@ class ChatTableViewCell: UITableViewCell {
     
     
     private func configureMyMessageUI() {
+        let marginGuide = contentView.layoutMarginsGuide
         bubble.backgroundColor = BambooColors.green
         
-        
+
         bubble.snp.remakeConstraints { make in
-            make.trailing.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.width.lessThanOrEqualToSuperview().multipliedBy(0.6)
+            make.width.lessThanOrEqualToSuperview().multipliedBy(0.65)
+            make.trailing.equalTo(marginGuide.snp.trailing)
+            make.verticalEdges.equalTo(marginGuide.snp.verticalEdges).inset(-5)
         }
         
         createdAtLabel.snp.remakeConstraints { make in
@@ -89,12 +83,13 @@ class ChatTableViewCell: UITableViewCell {
     
     
     private func configureOpponentMessageUI() {
+        let marginGuide = contentView.layoutMarginsGuide
         bubble.backgroundColor = BambooColors.darkGray
         
         bubble.snp.remakeConstraints { make in
-            make.leading.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.width.lessThanOrEqualToSuperview().multipliedBy(0.6)
+            make.width.lessThanOrEqualToSuperview().multipliedBy(0.65)
+            make.leading.equalTo(marginGuide.snp.leading)
+            make.verticalEdges.equalTo(marginGuide.snp.verticalEdges).inset(-5)
         }
         
         createdAtLabel.snp.remakeConstraints { make in

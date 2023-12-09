@@ -45,6 +45,8 @@ class ChatVC: UIViewController {
         chatTableView.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.reuseId)
         chatTableView.backgroundColor = BambooColors.black
         chatTableView.separatorStyle = .none
+        chatTableView.rowHeight = UITableView.automaticDimension
+        chatTableView.estimatedRowHeight = 50
         chatTableView.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
         
         bindChatVM()
