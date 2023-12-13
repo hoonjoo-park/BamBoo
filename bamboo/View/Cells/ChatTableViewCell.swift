@@ -34,17 +34,38 @@ class ChatTableViewCell: UITableViewCell {
     }
     
     
-    func setCell(message: Message) {
+    func setCell(message: Message, nextMessage: Message?) {
         guard let me = self.me else { return }
 
         contentLabel.text = message.content
         createdAtLabel.text = DateHelper.getTime(message.createdAt)
         
-        
         if me.id == message.senderProfile.userId {
             configureMyMessageUI()
         } else {
             configureOpponentMessageUI()
+        }
+        
+        guard let nextMessage = nextMessage else { return }
+        
+        configureUIByNextMessage(message, nextMessage)
+    }
+    
+    
+    private func configureUIByNextMessage(_ message:Message, _ nextMessage: Message) {
+        let isNextMessageSentAtSameTime = DateHelper.getTime(nextMessage.createdAt) == DateHelper.getTime(message.createdAt)
+        let isLastMessageOfSection = message.senderProfile.userId != nextMessage.senderProfile.userId
+        
+        if !isLastMessageOfSection && isNextMessageSentAtSameTime {
+            createdAtLabel.isHidden = true
+        }
+        
+        if isLastMessageOfSection {
+            let marginGuide = contentView.layoutMarginsGuide
+            
+            bubble.snp.updateConstraints { make in
+                make.bottom.equalTo(marginGuide.snp.bottom).inset(10)
+            }
         }
     }
     
