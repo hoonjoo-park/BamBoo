@@ -146,6 +146,25 @@ class ChatVC: UIViewController {
                 cell.setCell(message: chatMessage, nextMessage: nextMessage)
             
         }.disposed(by: disposeBag)
+        
+        chatTableView.rx.contentOffset
+            .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { offset in
+                let isEndReached = self.checkIsEndReached(y: offset.y)
+                
+                if isEndReached {
+                    // TODO: run fetchMoreMessages here
+                }
+        }).disposed(by: disposeBag)
+    }
+    
+    
+    private func checkIsEndReached(y: CGFloat) -> Bool {
+        if chatTableView.contentSize.height == 0 {
+            return false
+        }
+        
+        return y + chatTableView.frame.size.height + 100 > chatTableView.contentSize.height
     }
     
     
