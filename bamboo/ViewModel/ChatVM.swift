@@ -9,17 +9,30 @@ class ChatViewModel {
     var chatMessages: Observable<[Message?]> {
         return chatMessagesSubject.asObservable()
     }
-    
-    
-    func setInitialMessages(messages: [Message]) {
-        chatMessagesSubject.onNext(messages)
+    private let pageSubject = BehaviorSubject<Int>(value: 1)
+    var page: Observable<Int> {
+        return pageSubject.asObservable()
     }
     
     
-    func addMessages(messages: [Message]) {
+    func setInitialMessages(_ response: MessageResponse) {
+        chatMessagesSubject.onNext(response.messages)
+        pageSubject.onNext(response.page)
+    }
+    
+    
+    func addMessage(_ message: Message) {
         let currentMessages = getMessages()
         
-        chatMessagesSubject.onNext(messages + currentMessages)
+        chatMessagesSubject.onNext([message] + currentMessages)
+    }
+    
+    
+    func addMoreMessages(_ response: MessageResponse) {
+        let currentMessages = getMessages()
+        
+        chatMessagesSubject.onNext(response.messages + currentMessages)
+        pageSubject.onNext(response.page)
     }
     
     
@@ -29,6 +42,16 @@ class ChatViewModel {
         } catch {
             print("getMessaged error: \(error)")
             return []
+        }
+    }
+    
+    
+    func getPage() -> Int {
+        do {
+            return try pageSubject.value()
+        } catch {
+            print("getPage error: \(error)")
+            return 1
         }
     }
     

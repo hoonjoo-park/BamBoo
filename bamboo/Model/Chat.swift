@@ -14,6 +14,11 @@ struct SenderProfile: Codable {
     let username: String
 }
 
+struct MessageResponse: Codable {
+    let page: Int
+    let messages: [Message]
+}
+
 struct Message: Codable {
     let id: Int
     let senderProfile: SenderProfile

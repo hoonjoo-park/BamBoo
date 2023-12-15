@@ -104,13 +104,14 @@ class SocketIOManager: NSObject {
             
             do {
                 let jsonData = try JSONSerialization.data(withJSONObject: initialMessages)
-                let messages = try self.decoder.decode([Message].self, from: jsonData)
+                let response = try self.decoder.decode(MessageResponse.self, from: jsonData)
                 
-                ChatViewModel.shared.setInitialMessages(messages: messages)
+                ChatViewModel.shared.setInitialMessages(response)
             } catch {
                 print("get initial messages error: \(error)")
             }
         }
+        
         
         self.socket.on(SocketEvent.message) { data, ack in
             guard let newMessage = data.first else { return }
@@ -119,7 +120,7 @@ class SocketIOManager: NSObject {
                 let jsonData = try JSONSerialization.data(withJSONObject: newMessage)
                 let message = try self.decoder.decode(Message.self, from: jsonData)
                 
-                self.chatVM.addMessages(messages: [message])
+                self.chatVM.addMessage(message)
             } catch {
                 print("get initial messages error: \(error)")
             }
