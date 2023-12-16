@@ -329,4 +329,27 @@ class NetworkManager {
                 }
             }
     }
+    
+    
+    func fetchMoreMessages(chatRoomId: Int, page: Int) -> Observable<MessageResponse> {
+        let urlString = "\(baseUrl)/chat/\(chatRoomId)"
+        let token = UserDefaults.standard.getToken()
+        
+        guard let token = token else { return Observable.error(NSError(domain: "No token found", code: 401, userInfo: nil)) }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)"
+        ]
+        let params: [String: Any] = [
+            "page": page,
+        ]
+        
+        return RxAlamofire.request(.get, urlString, parameters: params, headers: headers)
+            .validate()
+            .responseJSON()
+            .map { [unowned self] response -> MessageResponse in
+                guard let data = response.data else { throw BambooError.dataNotFound }
+                return try self.decoder.decode(MessageResponse.self, from: data)
+            }
+    }
 }

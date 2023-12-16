@@ -7,6 +7,7 @@ class ChatVC: UIViewController {
     var currentChatRoom: ChatRoom!
     let chatVM = ChatViewModel.shared
     let disposeBag = DisposeBag()
+    var hasMessagesToFetchMore = true
     
     let chatTableView = UITableView(frame: .zero)
     let bottomContainer = UIView(frame: .zero)
@@ -152,8 +153,18 @@ class ChatVC: UIViewController {
             .subscribe(onNext: { offset in
                 let isEndReached = self.checkIsEndReached(y: offset.y)
                 
-                if isEndReached {
-                    // TODO: run fetchMoreMessages here
+                if isEndReached, self.hasMessagesToFetchMore {
+                    
+                    NetworkManager.shared
+                        .fetchMoreMessages(chatRoomId: self.currentChatRoom.id, page: self.chatVM.getPage())
+                        .subscribe(onNext: { response in
+                            if response.messages.isEmpty {
+                                self.hasMessagesToFetchMore = false
+                                return
+                            }
+                            
+                            self.chatVM.addMoreMessages(response)
+                        }).disposed(by: self.disposeBag)
                 }
         }).disposed(by: disposeBag)
     }
