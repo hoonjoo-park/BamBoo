@@ -104,7 +104,7 @@ class SocketIOManager: NSObject {
             
             do {
                 let jsonData = try JSONSerialization.data(withJSONObject: initialMessages)
-                let response = try self.decoder.decode(MessageResponse.self, from: jsonData)
+                let response = try self.decoder.decode([Message].self, from: jsonData)
                 
                 ChatViewModel.shared.setInitialMessages(response)
             } catch {

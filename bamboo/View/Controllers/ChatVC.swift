@@ -8,6 +8,7 @@ class ChatVC: UIViewController {
     let chatVM = ChatViewModel.shared
     let disposeBag = DisposeBag()
     var hasMessagesToFetchMore = true
+    let messageCountPerPage = 50
     
     let chatTableView = UITableView(frame: .zero)
     let bottomContainer = UIView(frame: .zero)
@@ -145,28 +146,33 @@ class ChatVC: UIViewController {
                 
                 cell.transform = CGAffineTransform(scaleX: 1, y: -1)
                 cell.setCell(message: chatMessage, nextMessage: nextMessage)
-            
-        }.disposed(by: disposeBag)
+                
+            }.disposed(by: disposeBag)
         
         chatTableView.rx.contentOffset
             .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
             .subscribe(onNext: { offset in
                 let isEndReached = self.checkIsEndReached(y: offset.y)
+                let currentMessages = self.chatVM.getMessages()
+                let messageSize = currentMessages.count
                 
-                if isEndReached, self.hasMessagesToFetchMore {
-                    
-                    NetworkManager.shared
-                        .fetchMoreMessages(chatRoomId: self.currentChatRoom.id, page: self.chatVM.getPage())
-                        .subscribe(onNext: { response in
-                            if response.messages.isEmpty {
-                                self.hasMessagesToFetchMore = false
-                                return
-                            }
-                            
-                            self.chatVM.addMoreMessages(response)
-                        }).disposed(by: self.disposeBag)
-                }
-        }).disposed(by: disposeBag)
+                if messageSize == 0 { return }
+                
+                guard let lastMessageId = currentMessages[0]?.id else { return }
+                
+                if !isEndReached || !self.hasMessagesToFetchMore || messageSize < self.messageCountPerPage { return }
+                
+                NetworkManager.shared
+                    .fetchMoreMessages(chatRoomId: self.currentChatRoom.id, lastMessageId: lastMessageId)
+                    .subscribe(onNext: { messages in
+                        if messages.isEmpty {
+                            self.hasMessagesToFetchMore = false
+                            return
+                        }
+                        
+                        self.chatVM.addMoreMessages(messages)
+                    }).disposed(by: self.disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     

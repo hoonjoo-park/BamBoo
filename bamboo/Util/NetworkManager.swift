@@ -331,7 +331,7 @@ class NetworkManager {
     }
     
     
-    func fetchMoreMessages(chatRoomId: Int, page: Int) -> Observable<MessageResponse> {
+    func fetchMoreMessages(chatRoomId: Int, lastMessageId: Int) -> Observable<[Message]> {
         let urlString = "\(baseUrl)/chat/\(chatRoomId)"
         let token = UserDefaults.standard.getToken()
         
@@ -341,15 +341,15 @@ class NetworkManager {
             "Authorization": "Bearer \(token)"
         ]
         let params: [String: Any] = [
-            "page": page,
+            "lastMessageId": lastMessageId,
         ]
         
         return RxAlamofire.request(.get, urlString, parameters: params, headers: headers)
             .validate()
             .responseJSON()
-            .map { [unowned self] response -> MessageResponse in
+            .map { [unowned self] response -> [Message] in
                 guard let data = response.data else { throw BambooError.dataNotFound }
-                return try self.decoder.decode(MessageResponse.self, from: data)
+                return try self.decoder.decode([Message].self, from: data)
             }
     }
 }
